@@ -9,6 +9,9 @@ public class LanternColorChange : MonoBehaviour
     public RuntimeAnimatorController flameGreen;
     public Light flameLight;
 
+    public ParticleSystem psBlue;
+    public ParticleSystem psGreen;
+
 
     void Start()
     {
@@ -25,11 +28,13 @@ public class LanternColorChange : MonoBehaviour
     {
             flameColor.runtimeAnimatorController = flameBlue;
             flameLight.color = Color.blue;
+        psBlue.Play();
     }
 
     public void LanternGreen()
     {
         flameColor.runtimeAnimatorController = flameGreen;
         flameLight.color = Color.green;
+        psGreen.Play();
     }
 }
