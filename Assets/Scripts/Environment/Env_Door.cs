@@ -6,6 +6,17 @@ using SUPERCharacter;
 
 public class Env_Door : MonoBehaviour
 {
+    #region Public variables
+    [Tooltip("How wide should the door open? (Recommend 90*)")]
+    public float MaximumOpenRange;
+
+    public float OpeningSpeed;
+
+    public TextMeshProUGUI InteractCue;
+
+    #endregion
+
+    #region Private variables
     private bool CanInteract;
 
     private GameObject player;
@@ -13,7 +24,8 @@ public class Env_Door : MonoBehaviour
     private float MinRotation;
     private float MaxRotation;
     private float CurrentRotation;
-    private float DoorPercentage;
+    private float DoorChange;
+    private float OpeningPercentage; 
 
     private float cursorPos;
     private float cursorCenter;
@@ -22,27 +34,39 @@ public class Env_Door : MonoBehaviour
     private float opening;
     private float lastOpeningpos;
 
-    public TextMeshProUGUI InteractCue;
 
     private KeyCode DoorInteract;
+    #endregion
+
+    #region Audio
+    private AudioSource SFX;
+
+    public AudioClip OpeningFX;
+    public AudioClip ClosingFX;//Same audio file but in reverse
+
+    private float clipLength;
+    private float currentClipTime;
+    private float startTime;
+    private float endTime;
+    private float playbackSpeed;
+
+    #endregion
 
 
     void Start()
     {
-        //Cursor.visible = false;//This is unnecessary, delete when merging and do it in the character model instead (the cursor cannot be blocked)
-
         CurrentRotation = transform.eulerAngles.y;
         MinRotation = CurrentRotation;
-        MaxRotation = CurrentRotation + 90;
+        MaxRotation = CurrentRotation + MaximumOpenRange;
 
         DoorInteract = KeyCode.Mouse0;//This is a test function that's modifiable later on
+
+        SFX = GetComponent<AudioSource>();
+        clipLength = SFX.clip.length;
     }
 
     private void Update()
     {
-        //Debug.Log(Input.mousePosition.x);
-        Debug.Log(CurrentRotation);
-
         if (CanInteract)
         {
             InteractCue.text = "Press " + DoorInteract;
@@ -61,14 +85,41 @@ public class Env_Door : MonoBehaviour
                 player.GetComponent<SUPERCharacterAIO>().enableCameraControl = true;
                 Cursor.lockState = CursorLockMode.Locked;
                 InteractCue.gameObject.SetActive(true);
-                if (opening < 0)
-                    lastOpeningpos = 0;
-                else if (opening > 90)
-                    lastOpeningpos = 90;
-                else
-                    lastOpeningpos = opening;
+                CurrentRotation = transform.eulerAngles.y;
             }
 
+
+
+            if (currentClipTime < endTime)//Only works for opening door
+            {
+                if (SFX.clip == ClosingFX)
+                {
+                    startTime = clipLength - SFX.time;
+                    SFX.clip = OpeningFX;
+                }
+                else
+                    startTime = SFX.time;
+
+                playbackSpeed = 0.6f;
+                playbackSpeed += (endTime - startTime);
+
+                PlaySound(startTime, endTime, playbackSpeed);
+            }
+            else if (currentClipTime > endTime)
+            {
+                if (SFX.clip == OpeningFX)
+                {
+                    startTime = clipLength - SFX.time;
+                    SFX.clip = ClosingFX;
+                }
+                else
+                    startTime = SFX.time;
+
+                playbackSpeed = 0.6f;
+                playbackSpeed += (startTime - endTime);
+
+                PlaySound(startTime, clipLength - endTime, playbackSpeed);
+            }
         }
     }
 
@@ -94,17 +145,58 @@ public class Env_Door : MonoBehaviour
 
     private void Interact()
     {
+        OpeningPercentage = ((transform.eulerAngles.y - MinRotation) / (MaxRotation - MinRotation));//Calculates how wide the door is opened in percentages from closed (0%) to fully open (100%)
+
+
+        DoorChange = opening;
         InteractCue.gameObject.SetActive(false);
         player.GetComponent<SUPERCharacterAIO>().enableCameraControl = false;
-        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.lockState = CursorLockMode.None;
         cursorPos = Input.mousePosition.x;
 
-        opening = ((cursorPos - cursorCenter) / maxCursorDistance);
-        opening *= 180; //might be too weak, needs tweaking
-        opening += lastOpeningpos;
-        Debug.Log(opening);
+        opening = ((cursorPos - cursorCenter) / maxCursorDistance); //takes into consideration difference in different screen sizes
+        opening *= 180;
+        //opening *= OpeningSpeed;
 
-        if(CurrentRotation + opening < MaxRotation && CurrentRotation + opening > MinRotation)
-            transform.eulerAngles = new Vector3(transform.rotation.x, CurrentRotation + opening, transform.rotation.z);
+
+
+        if (CurrentRotation + opening > MaxRotation)
+        {
+            opening = MaxRotation - CurrentRotation;
+        }
+        if(CurrentRotation + opening < MinRotation)
+        {
+            opening = MinRotation - CurrentRotation;
+        }
+
+        transform.eulerAngles = new Vector3(transform.rotation.x, CurrentRotation + opening, transform.rotation.z);
+
+        if (DoorChange != opening)//Triggers when the player moves the door
+        {
+            endTime = clipLength * OpeningPercentage; //To which segment should the audio play. If the door is opened to from 0% - 40%, the audio will play the same length
+        }
+    }
+
+    
+    private void PlaySound(float start, float end, float speed)
+    {
+        SFX.pitch = speed;
+        SFX.time = start;
+        SFX.Play();
+        SFX.SetScheduledEndTime(AudioSettings.dspTime + (end - start));
+        currentClipTime = end;
+    }
+    
+
+    IEnumerator PlayAudio(float start, float speed)
+    {
+        SFX.pitch = speed;
+        SFX.time = start;
+        SFX.Play();
+
+        yield return new WaitForSeconds(0.1f);
+
+        currentClipTime = SFX.time;
+        SFX.Stop();
     }
 }
