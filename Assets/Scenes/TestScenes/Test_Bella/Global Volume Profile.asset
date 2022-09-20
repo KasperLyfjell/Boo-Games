@@ -24,7 +24,7 @@ MonoBehaviour:
     m_Value: 1
   fixedExposure:
     m_OverrideState: 1
-    m_Value: 10.015572
+    m_Value: 9.956836
   compensation:
     m_OverrideState: 1
     m_Value: 0
@@ -376,7 +376,7 @@ MonoBehaviour:
       m_RotationOrder: 4
   scatteringTint:
     m_OverrideState: 1
-    m_Value: {r: 0.15447482, g: 0.02990388, b: 0.3018868, a: 1}
+    m_Value: {r: 0.078097194, g: 0.14635016, b: 0.254717, a: 1}
   powderEffectIntensity:
     m_OverrideState: 0
     m_Value: 0.25
@@ -502,8 +502,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   active: 1
   indirectDiffuseLightingMultiplier:
-    m_OverrideState: 0
-    m_Value: 1
+    m_OverrideState: 1
+    m_Value: 1.89
   indirectDiffuseLightingLayers:
     m_OverrideState: 0
     m_Value: 255
@@ -626,7 +626,7 @@ MonoBehaviour:
     m_Value: 400
   enableVolumetricFog:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 1
   albedo:
     m_OverrideState: 1
     m_Value: {r: 0, g: 0, b: 0, a: 1}
