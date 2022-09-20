@@ -90,7 +90,12 @@ public class Env_Door : MonoBehaviour
 
 
 
-            if (currentClipTime < endTime)//Only works for opening door
+            if (currentClipTime != endTime)//Only works for opening door
+            {
+
+            }
+            /*
+            else if (currentClipTime > endTime)
             {
                 if (SFX.clip == ClosingFX)
                 {
@@ -101,25 +106,11 @@ public class Env_Door : MonoBehaviour
                     startTime = SFX.time;
 
                 playbackSpeed = 0.6f;
-                playbackSpeed += (endTime - startTime);
+                playbackSpeed += (startTime - endTime);
 
                 PlaySound(startTime, endTime, playbackSpeed);
             }
-            else if (currentClipTime > endTime)
-            {
-                if (SFX.clip == OpeningFX)
-                {
-                    startTime = clipLength - SFX.time;
-                    SFX.clip = ClosingFX;
-                }
-                else
-                    startTime = SFX.time;
-
-                playbackSpeed = 0.6f;
-                playbackSpeed += (startTime - endTime);
-
-                PlaySound(startTime, clipLength - endTime, playbackSpeed);
-            }
+            */
         }
     }
 
@@ -171,9 +162,38 @@ public class Env_Door : MonoBehaviour
 
         transform.eulerAngles = new Vector3(transform.rotation.x, CurrentRotation + opening, transform.rotation.z);
 
-        if (DoorChange != opening)//Triggers when the player moves the door
+        if(DoorChange != opening)
         {
-            endTime = clipLength * OpeningPercentage; //To which segment should the audio play. If the door is opened to from 0% - 40%, the audio will play the same length
+            if (DoorChange < opening)//Triggers when the player moves the door
+            {
+                if (SFX.clip == ClosingFX)
+                {
+                    startTime = clipLength - SFX.time;
+                    SFX.clip = OpeningFX;
+                }
+                else
+                    startTime = SFX.time;
+
+                endTime = clipLength * OpeningPercentage; //To which segment should the audio play. If the door is opened to from 0% - 40%, the audio will play the same length
+            }
+            else if (DoorChange > opening)
+            {
+                if (SFX.clip == OpeningFX)
+                {
+                    startTime = clipLength - SFX.time;
+                    SFX.clip = ClosingFX;
+                }
+                else
+                    startTime = SFX.time;
+
+                endTime = clipLength * (1 - OpeningPercentage);
+            }
+            Debug.Log(startTime);
+
+            playbackSpeed = 0.6f;
+            playbackSpeed += (endTime - startTime);
+
+            PlaySound(startTime, endTime, 1);
         }
     }
 

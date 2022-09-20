@@ -1790,7 +1790,7 @@ MonoBehaviour:
   OpeningSpeed: 1
   InteractCue: {fileID: 1363291057}
   OpeningFX: {fileID: 8300000, guid: 2f05389fd8f219f4091b910a66575d9a, type: 3}
-  ClosingFX: {fileID: 8300000, guid: 96aacd39d2e954546954c67213023686, type: 3}
+  ClosingFX: {fileID: 8300000, guid: 2f05389fd8f219f4091b910a66575d9a, type: 3}
 --- !u!135 &1973143706
 SphereCollider:
   m_ObjectHideFlags: 0
