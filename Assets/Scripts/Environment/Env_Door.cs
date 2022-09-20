@@ -92,25 +92,16 @@ public class Env_Door : MonoBehaviour
 
             if (currentClipTime != endTime)//Only works for opening door
             {
-
-            }
-            /*
-            else if (currentClipTime > endTime)
-            {
-                if (SFX.clip == ClosingFX)
-                {
-                    startTime = clipLength - SFX.time;
-                    SFX.clip = OpeningFX;
-                }
-                else
+                if (SFX.isPlaying)
                     startTime = SFX.time;
+                else
+                    startTime = currentClipTime;
 
-                playbackSpeed = 0.6f;
-                playbackSpeed += (startTime - endTime);
+                playbackSpeed = 0.7f;
+                playbackSpeed += ((endTime - startTime) / (clipLength * 3));
 
                 PlaySound(startTime, endTime, playbackSpeed);
             }
-            */
         }
     }
 
@@ -166,34 +157,16 @@ public class Env_Door : MonoBehaviour
         {
             if (DoorChange < opening)//Triggers when the player moves the door
             {
-                if (SFX.clip == ClosingFX)
-                {
-                    startTime = clipLength - SFX.time;
-                    SFX.clip = OpeningFX;
-                }
-                else
-                    startTime = SFX.time;
+                SFX.clip = OpeningFX;
 
                 endTime = clipLength * OpeningPercentage; //To which segment should the audio play. If the door is opened to from 0% - 40%, the audio will play the same length
             }
             else if (DoorChange > opening)
             {
-                if (SFX.clip == OpeningFX)
-                {
-                    startTime = clipLength - SFX.time;
-                    SFX.clip = ClosingFX;
-                }
-                else
-                    startTime = SFX.time;
+                SFX.clip = ClosingFX;
 
                 endTime = clipLength * (1 - OpeningPercentage);
             }
-            Debug.Log("start: " + startTime + " end: " + endTime);
-
-            playbackSpeed = 0.6f;
-            playbackSpeed += (endTime - startTime);
-
-            PlaySound(startTime, endTime, 1);
         }
     }
 
@@ -204,20 +177,6 @@ public class Env_Door : MonoBehaviour
         SFX.time = start;
         SFX.Play();
         SFX.SetScheduledEndTime(AudioSettings.dspTime + (end - start));
-        //SFX.SetScheduledEndTime(AudioSettings.dspTime + (end - start));
         currentClipTime = end;
-    }
-
-
-    IEnumerator PlayAudio(float start, float speed)
-    {
-        SFX.pitch = speed;
-        SFX.time = start;
-        SFX.Play();
-
-        yield return new WaitForSeconds(0.1f);
-
-        currentClipTime = SFX.time;
-        SFX.Stop();
     }
 }
