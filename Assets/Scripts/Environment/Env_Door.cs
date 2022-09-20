@@ -25,7 +25,7 @@ public class Env_Door : MonoBehaviour
     private float MaxRotation;
     private float CurrentRotation;
     private float DoorChange;
-    private float OpeningPercentage; 
+    private float OpeningPercentage;
 
     private float cursorPos;
     private float cursorCenter;
@@ -116,7 +116,7 @@ public class Env_Door : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Player")
+        if (other.tag == "Player")
         {
             CanInteract = true;
             player = other.gameObject;
@@ -155,14 +155,14 @@ public class Env_Door : MonoBehaviour
         {
             opening = MaxRotation - CurrentRotation;
         }
-        if(CurrentRotation + opening < MinRotation)
+        if (CurrentRotation + opening < MinRotation)
         {
             opening = MinRotation - CurrentRotation;
         }
 
         transform.eulerAngles = new Vector3(transform.rotation.x, CurrentRotation + opening, transform.rotation.z);
 
-        if(DoorChange != opening)
+        if (DoorChange != opening)
         {
             if (DoorChange < opening)//Triggers when the player moves the door
             {
@@ -188,7 +188,7 @@ public class Env_Door : MonoBehaviour
 
                 endTime = clipLength * (1 - OpeningPercentage);
             }
-            Debug.Log(startTime);
+            Debug.Log("start: " + startTime + " end: " + endTime);
 
             playbackSpeed = 0.6f;
             playbackSpeed += (endTime - startTime);
@@ -197,16 +197,17 @@ public class Env_Door : MonoBehaviour
         }
     }
 
-    
+
     private void PlaySound(float start, float end, float speed)
     {
         SFX.pitch = speed;
         SFX.time = start;
         SFX.Play();
         SFX.SetScheduledEndTime(AudioSettings.dspTime + (end - start));
+        //SFX.SetScheduledEndTime(AudioSettings.dspTime + (end - start));
         currentClipTime = end;
     }
-    
+
 
     IEnumerator PlayAudio(float start, float speed)
     {
