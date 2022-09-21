@@ -26,8 +26,8 @@ public class LanternColorChange : MonoBehaviour
 
     public void LanternBlue()
     {
-            flameColor.runtimeAnimatorController = flameBlue;
-            flameLight.color = Color.blue;
+        flameColor.runtimeAnimatorController = flameBlue;
+        flameLight.color = Color.blue;
         psBlue.Play();
     }
 

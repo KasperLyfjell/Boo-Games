@@ -26,11 +26,13 @@ public class LanternWheelButtonController : MonoBehaviour
     public void Selected()
     {
         selected = true;
+        LanternWheelController.lanternID = id;
     }
 
     public void Deselected()
     {
         selected = false;
+        LanternWheelController.lanternID = 0;
     }
 
     public void HoverEnter()

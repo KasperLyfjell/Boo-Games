@@ -342,6 +342,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 204960232}
+  charScript: {fileID: 1197412230}
+  flameColor: {fileID: 6600527568686629001}
+  flameYellow: {fileID: 9100000, guid: afdc6e8bcd57e9e42a64978e5ea081e9, type: 2}
+  flameBlue: {fileID: 9100000, guid: e13ea6e950164bc4699082df462930d0, type: 2}
+  flameGreen: {fileID: 9100000, guid: 426cb9c0a1bd56f4c9db02ca44153364, type: 2}
+  flameLight: {fileID: 885468181}
 --- !u!1001 &217409674
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -635,7 +641,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a62e5d868d188c64da2777191cded3d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 1
+  id: 7
 --- !u!95 &272394279
 Animator:
   serializedVersion: 4
@@ -11460,6 +11466,17 @@ MonoBehaviour:
   flameLight: {fileID: 885468181}
   psBlue: {fileID: 602661876}
   psGreen: {fileID: 301409091}
+--- !u!114 &1197412230 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6817638361354391145, guid: 32fce1012f8c24c43af86f00f457f500, type: 3}
+  m_PrefabInstance: {fileID: 1814908406}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1197412221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8acb2371b9f0ce3429e7935fa5efe263, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1291134528
 GameObject:
   m_ObjectHideFlags: 0
@@ -11802,7 +11819,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a62e5d868d188c64da2777191cded3d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 1
+  id: 4
 --- !u!95 &1351663368
 Animator:
   serializedVersion: 4
@@ -12037,7 +12054,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a62e5d868d188c64da2777191cded3d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 1
+  id: 8
 --- !u!95 &1361832217
 Animator:
   serializedVersion: 4
@@ -12272,7 +12289,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a62e5d868d188c64da2777191cded3d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 1
+  id: 3
 --- !u!95 &1403327897
 Animator:
   serializedVersion: 4
@@ -12918,7 +12935,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a62e5d868d188c64da2777191cded3d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 1
+  id: 5
 --- !u!95 &1767604011
 Animator:
   serializedVersion: 4
@@ -13153,7 +13170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a62e5d868d188c64da2777191cded3d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 1
+  id: 6
 --- !u!95 &1802406729
 Animator:
   serializedVersion: 4
@@ -14022,7 +14039,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a62e5d868d188c64da2777191cded3d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 1
+  id: 2
 --- !u!95 &2126383398
 Animator:
   serializedVersion: 4
