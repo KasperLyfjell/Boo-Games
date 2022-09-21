@@ -34,8 +34,9 @@ public class Env_Door : MonoBehaviour
     private float opening;
     private float lastOpeningpos;
 
-
     private KeyCode DoorInteract;
+
+    private Quaternion RotationalPosition;
     #endregion
 
     #region Audio
@@ -43,6 +44,7 @@ public class Env_Door : MonoBehaviour
 
     public AudioClip OpeningFX;
     public AudioClip ClosingFX;//Same audio file but in reverse
+    public AudioClip SlowOpeningFX;
 
     private float clipLength;
     private float currentClipTime;
@@ -63,6 +65,8 @@ public class Env_Door : MonoBehaviour
 
         SFX = GetComponent<AudioSource>();
         clipLength = SFX.clip.length;
+
+        RotationalPosition = transform.rotation;
     }
 
     private void Update()
@@ -86,6 +90,8 @@ public class Env_Door : MonoBehaviour
                 Cursor.lockState = CursorLockMode.Locked;
                 InteractCue.gameObject.SetActive(true);
                 CurrentRotation = transform.eulerAngles.y;
+
+                //SFX.Stop();
             }
 
 
@@ -97,11 +103,27 @@ public class Env_Door : MonoBehaviour
                 else
                     startTime = currentClipTime;
 
-                playbackSpeed = 0.7f;
-                playbackSpeed += ((endTime - startTime) / (clipLength * 3));
+                playbackSpeed = 0.8f;
+                playbackSpeed += ((endTime - startTime) / (clipLength));
 
-                PlaySound(startTime, endTime, playbackSpeed);
+
+                SFX.clip = SlowOpeningFX;
+
+                /*
+                if (playbackSpeed < 1)
+                    SFX.clip = SlowOpeningFX;
+                else
+                    SFX.clip = OpeningFX;
+                */
+                
+
+                PlaySound(startTime, endTime, 1);
             }
+        }
+
+        if(transform.rotation != RotationalPosition)
+        {
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, RotationalPosition, OpeningSpeed * Time.deltaTime);
         }
     }
 
@@ -137,8 +159,8 @@ public class Env_Door : MonoBehaviour
         cursorPos = Input.mousePosition.x;
 
         opening = ((cursorPos - cursorCenter) / maxCursorDistance); //takes into consideration difference in different screen sizes
-        opening *= 180;
-        //opening *= OpeningSpeed;
+        Debug.Log(opening);
+        opening *= MaxRotation * 2;
 
 
 
@@ -151,7 +173,9 @@ public class Env_Door : MonoBehaviour
             opening = MinRotation - CurrentRotation;
         }
 
-        transform.eulerAngles = new Vector3(transform.rotation.x, CurrentRotation + opening, transform.rotation.z);
+        //transform.eulerAngles = new Vector3(transform.rotation.x, CurrentRotation + opening, transform.rotation.z);
+        Vector3 rotPos = new Vector3(transform.rotation.x, CurrentRotation + opening, transform.rotation.z);
+        RotationalPosition = Quaternion.Euler(rotPos);
 
         if (DoorChange != opening)
         {

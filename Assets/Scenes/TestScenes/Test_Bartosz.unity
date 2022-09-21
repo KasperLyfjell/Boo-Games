@@ -1787,10 +1787,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaximumOpenRange: 90
-  OpeningSpeed: 1
+  OpeningSpeed: 100
   InteractCue: {fileID: 1363291057}
-  OpeningFX: {fileID: 8300000, guid: 645a4371b88aac24cbd550859625f5c6, type: 3}
+  OpeningFX: {fileID: 8300000, guid: 2f05389fd8f219f4091b910a66575d9a, type: 3}
   ClosingFX: {fileID: 8300000, guid: 2f05389fd8f219f4091b910a66575d9a, type: 3}
+  SlowOpeningFX: {fileID: 8300000, guid: 8d52bf53c1a8ae44886354e392233cb7, type: 3}
 --- !u!135 &1973143706
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1814,11 +1815,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 2f05389fd8f219f4091b910a66575d9a, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 8d52bf53c1a8ae44886354e392233cb7, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
