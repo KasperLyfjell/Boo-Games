@@ -35,7 +35,6 @@ public class Env_Door_Supreme : MonoBehaviour
     private float maxCursorDistance;
 
     private float opening;
-    private float lastOpeningpos;
 
     private KeyCode DoorInteract;
 
@@ -50,10 +49,7 @@ public class Env_Door_Supreme : MonoBehaviour
     //public AudioClip ClosingFX;//Same audio file but in reverse
 
     private float clipLength;
-    private float currentClipTime;
     private float startTime;
-    private float endTime;
-    private float playbackSpeed;
     private float soundChangeThreshold;
 
     #endregion
@@ -174,34 +170,13 @@ public class Env_Door_Supreme : MonoBehaviour
 
         Vector3 rotPos = new Vector3(transform.rotation.x, CurrentRotation + opening, transform.rotation.z);
         RotationalPosition = Quaternion.Euler(rotPos);
-
-        /*
-        if (DoorChange != opening)
-        {
-            if (DoorChange < opening)//Triggers when the player moves the door
-            {
-                SFX.clip = OpeningFX;
-
-                endTime = clipLength * OpeningPercentage; //To which segment should the audio play. If the door is opened to from 0% - 40%, the audio will play the same length
-            }
-            else if (DoorChange > opening)
-            {
-                SFX.clip = ClosingFX;
-
-                endTime = clipLength * (1 - OpeningPercentage);
-            }
-        }
-        */
     }
 
 
     private void PlaySound(float start)
     {
-        //SFX.pitch = speed;
         SFX.time = start;
         SFX.Play();
-        //SFX.SetScheduledEndTime(AudioSettings.dspTime + (end - start));
-        //currentClipTime = end;
     }
 
     private void ChangeSound(AudioClip sound)
