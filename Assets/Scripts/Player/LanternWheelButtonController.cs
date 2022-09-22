@@ -27,10 +27,12 @@ public class LanternWheelButtonController : MonoBehaviour
     {
         selected = true;
         LanternWheelController.lanternID = id;
+        Invoke("Deselected", 0.5f);
     }
 
     public void Deselected()
     {
+        UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(null);
         selected = false;
         LanternWheelController.lanternID = 0;
     }

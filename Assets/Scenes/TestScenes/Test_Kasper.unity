@@ -348,6 +348,12 @@ MonoBehaviour:
   flameBlue: {fileID: 9100000, guid: e13ea6e950164bc4699082df462930d0, type: 2}
   flameGreen: {fileID: 9100000, guid: 426cb9c0a1bd56f4c9db02ca44153364, type: 2}
   flameLight: {fileID: 885468181}
+  blueCollected: 0
+  greenCollected: 0
+  buttonBlue: {fileID: 2126383399}
+  iconBlue: {fileID: 256335524}
+  buttonGreen: {fileID: 1361832218}
+  iconGreen: {fileID: 1317041955}
 --- !u!1001 &217409674
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11466,6 +11472,7 @@ MonoBehaviour:
   flameLight: {fileID: 885468181}
   psBlue: {fileID: 602661876}
   psGreen: {fileID: 301409091}
+  lwCon: {fileID: 204960233}
 --- !u!114 &1197412230 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6817638361354391145, guid: 32fce1012f8c24c43af86f00f457f500, type: 3}

@@ -16,6 +16,20 @@ public class LanternWheelController : MonoBehaviour
     public RuntimeAnimatorController flameGreen;
     public Light flameLight;
 
+    public bool blueCollected = false;
+    public bool greenCollected = false;
+    public Button buttonBlue;
+    public GameObject iconBlue;
+    public Button buttonGreen;
+    public GameObject iconGreen;
+
+    private void Start()
+    {
+        buttonBlue.interactable = false;
+        iconBlue.SetActive(false);
+        buttonGreen.interactable = false;
+        iconGreen.SetActive(false);
+    }
     // Update is called once per frame
     void Update()
     {
@@ -51,12 +65,13 @@ public class LanternWheelController : MonoBehaviour
             case 1: //Standard Lantern Color
                 flameColor.runtimeAnimatorController = flameYellow;
                 flameLight.color = Color.yellow;
-                Debug.Log("YELLOW");
                 break;
             case 2: // Blue light
-                flameColor.runtimeAnimatorController = flameBlue;
-                flameLight.color = Color.blue;
-                Debug.Log("BLUE");
+                if (blueCollected == true)
+                {
+                    flameColor.runtimeAnimatorController = flameBlue;
+                    flameLight.color = Color.blue;
+                }
                 break;
             case 3: // X light
                 
@@ -74,9 +89,11 @@ public class LanternWheelController : MonoBehaviour
 
                 break;
             case 8: // Green light
-                flameColor.runtimeAnimatorController = flameGreen;
-                flameLight.color = Color.green;
-                Debug.Log("GREEN");
+                if (greenCollected == true)
+                {
+                    flameColor.runtimeAnimatorController = flameGreen;
+                    flameLight.color = Color.green;
+                }
                 break;
 
         }

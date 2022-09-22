@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class LanternColorChange : MonoBehaviour
@@ -12,6 +10,9 @@ public class LanternColorChange : MonoBehaviour
     public ParticleSystem psBlue;
     public ParticleSystem psGreen;
 
+    public LanternWheelController lwCon;
+    bool playedBlue;
+    bool playedGreen;
 
     void Start()
     {
@@ -29,6 +30,14 @@ public class LanternColorChange : MonoBehaviour
         flameColor.runtimeAnimatorController = flameBlue;
         flameLight.color = Color.blue;
         psBlue.Play();
+
+        if (playedBlue == false)
+        {
+            playedBlue = true;
+            lwCon.blueCollected = true;
+            lwCon.buttonBlue.interactable = true;
+            lwCon.iconBlue.SetActive(true);
+        }
     }
 
     public void LanternGreen()
@@ -36,5 +45,13 @@ public class LanternColorChange : MonoBehaviour
         flameColor.runtimeAnimatorController = flameGreen;
         flameLight.color = Color.green;
         psGreen.Play();
+
+        if (playedGreen == false)
+        {
+            playedGreen = true;
+            lwCon.greenCollected = true;
+            lwCon.buttonGreen.interactable = true;
+            lwCon.iconGreen.SetActive(true);
+        }
     }
 }
