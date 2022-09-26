@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.UI;
 
 public class LanternWheelButtonController : MonoBehaviour
 {
@@ -32,7 +31,6 @@ public class LanternWheelButtonController : MonoBehaviour
 
     public void Deselected()
     {
-        UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(null);
         selected = false;
         LanternWheelController.lanternID = 0;
     }
