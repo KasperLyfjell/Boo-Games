@@ -1698,7 +1698,7 @@ MeshRenderer:
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 73c176f402d2c2f4d929aa5da7585d17, type: 2}
+  - {fileID: 2100000, guid: b1eb19a2d95b6e8439cfbc569fba4b6c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1914,7 +1914,7 @@ GameObject:
   - component: {fileID: 1814987444}
   - component: {fileID: 1814987443}
   m_Layer: 0
-  m_Name: Door_Iteration 6_Supreme
+  m_Name: Door_Iteration 7_Supreme
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2302,12 +2302,12 @@ GameObject:
   - component: {fileID: 1973143706}
   - component: {fileID: 1973143707}
   m_Layer: 0
-  m_Name: Door_Iteration 5
+  m_Name: Door_Iteration 6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1973143703
 Transform:
   m_ObjectHideFlags: 0
@@ -2315,15 +2315,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1973143702}
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -3.32, y: 1.57, z: 0.03}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -5.11, y: 1.57, z: 2.6}
   m_LocalScale: {x: 1.1591, y: 1.9307129, z: 1.1591}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1555089337}
   m_Father: {fileID: 0}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1973143705
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2337,8 +2337,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaximumOpenRange: 90
-  OpeningSpeed: 100
-  OpeningForce: 0
+  OpeningSpeed: 15
+  OpeningForce: 300
   InteractCue: {fileID: 1363291057}
   OpeningFX: {fileID: 8300000, guid: 2f05389fd8f219f4091b910a66575d9a, type: 3}
   SlowOpeningFX: {fileID: 8300000, guid: 8d52bf53c1a8ae44886354e392233cb7, type: 3}
@@ -2466,7 +2466,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1984429246
 Transform:
   m_ObjectHideFlags: 0
