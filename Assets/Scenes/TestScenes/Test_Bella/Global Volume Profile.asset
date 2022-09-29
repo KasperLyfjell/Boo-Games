@@ -376,7 +376,7 @@ MonoBehaviour:
       m_RotationOrder: 4
   scatteringTint:
     m_OverrideState: 1
-    m_Value: {r: 0.078097194, g: 0.14635016, b: 0.254717, a: 1}
+    m_Value: {r: 0.17653969, g: 0.21320124, b: 0.2735849, a: 1}
   powderEffectIntensity:
     m_OverrideState: 0
     m_Value: 0.25
@@ -873,7 +873,7 @@ MonoBehaviour:
   active: 1
   shadows:
     m_OverrideState: 1
-    m_Value: {x: 0.4620353, y: 0.6307239, z: 1, w: 0.14354067}
+    m_Value: {x: 0.956841, y: 1, z: 0.9920799, w: 0.14354067}
   midtones:
     m_OverrideState: 0
     m_Value: {x: 1, y: 1, z: 1, w: 0}
@@ -970,7 +970,7 @@ MonoBehaviour:
     m_Value: 0.01192826
   aerosolTint:
     m_OverrideState: 1
-    m_Value: {r: 0.9, g: 0.9, b: 0.9, a: 1}
+    m_Value: {r: 1, g: 0.98490566, b: 0.98490566, a: 1}
   aerosolMaximumAltitude:
     m_OverrideState: 1
     m_Value: 8289.296
@@ -982,7 +982,7 @@ MonoBehaviour:
     m_Value: 3
   groundTint:
     m_OverrideState: 1
-    m_Value: {r: 0.20465466, g: 0.30348012, b: 0.5943396, a: 1}
+    m_Value: {r: 0.26486292, g: 0.29318917, b: 0.3773585, a: 1}
   groundColorTexture:
     m_OverrideState: 1
     m_Value: {fileID: 0}
