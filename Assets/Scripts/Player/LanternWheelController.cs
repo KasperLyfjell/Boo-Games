@@ -23,6 +23,8 @@ public class LanternWheelController : MonoBehaviour
     public Button buttonGreen;
     public GameObject iconGreen;
 
+    bool played = false;
+
     private void Start()
     {
         buttonBlue.interactable = false;
@@ -33,16 +35,18 @@ public class LanternWheelController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Q) && !played)
         {
+            played = true;
             charScript.enableCameraControl = false;
             lanternWheelSelected = true;
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
         }
 
-        if (Input.GetKeyUp(KeyCode.Q))
+        if (Input.GetKeyUp(KeyCode.Q) && played)
         {
+            played = false;
             charScript.enableCameraControl = true;
             lanternWheelSelected = false;
             Cursor.lockState = CursorLockMode.Locked;
