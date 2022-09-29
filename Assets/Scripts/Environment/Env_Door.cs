@@ -17,10 +17,12 @@ public class Env_Door: MonoBehaviour
     [Tooltip("How wide should the door open? (Recommend 90*)")]
     public float MaximumOpenRange;
 
-    [Tooltip("The baseline speed at which the player opens the door. This is the minimum speed. (Recommend ~10)")]
+    [Tooltip("The baseline speed at which the player opens the door. This is the minimum speed. (Recommend ~15)")]
     public float OpeningSpeed;
-    [Tooltip("How much effect does pulling on the door have. If you yank the mouse, the door will open much faster with higher force. (Recommend ~250)")]
+    [Tooltip("How much effect does pulling on the door have. If you yank the mouse, the door will open much faster with higher force. (Recommend ~300)")]
     public float OpeningForce;
+    [Tooltip("How much force is required to slam the door open/close (Recommend ~80)")]
+    public float SlamThreshold;
 
     public TextMeshProUGUI InteractCue;
 
@@ -45,6 +47,11 @@ public class Env_Door: MonoBehaviour
     private KeyCode DoorInteract;
 
     private Quaternion RotationalPosition;
+    private Vector3 RotationalAngle;
+
+    private float decay;
+    private float force;
+    private bool OutOfBoundries;
     #endregion
 
     #region Audio
@@ -63,7 +70,7 @@ public class Env_Door: MonoBehaviour
 
     void Start()
     {
-        CurrentRotation = transform.eulerAngles.y;
+        CurrentRotation = transform.EulerAsInspector().y;
         MinRotation = CurrentRotation;
         MaxRotation = CurrentRotation + MaximumOpenRange;
 
@@ -72,7 +79,7 @@ public class Env_Door: MonoBehaviour
         SFX = GetComponent<AudioSource>();
         clipLength = SFX.clip.length;
 
-        RotationalPosition = transform.rotation;
+        RotationalPosition = transform.localRotation;
         soundChangeThreshold = OpeningSpeed + (OpeningForce / 10);//Should be hopefully around 40
     }
 
@@ -96,57 +103,56 @@ public class Env_Door: MonoBehaviour
                 player.GetComponent<SUPERCharacterAIO>().enableCameraControl = true;
                 Cursor.lockState = CursorLockMode.Locked;
                 InteractCue.gameObject.SetActive(true);
-                CurrentRotation = transform.eulerAngles.y;
+                CurrentRotation = transform.EulerAsInspector().y;
             }
         }
 
-        if (transform.rotation != RotationalPosition)
+        if (transform.localRotation != RotationalPosition)
         {
-            float decay = RotationalPosition.y - transform.rotation.y;
+            decay = RotationalPosition.y - transform.localRotation.y;
             if (decay < 0)
                 decay *= -1;
             decay *= OpeningForce;
             //decay will decrease as the door gets closer to its final position. Decay is positive as to avoid issues if force would become negative. 
-            float force = OpeningSpeed + decay;
+            force = OpeningSpeed + decay;
             //Debug.Log("Force: " + force + ", Decay: " + decay);//Nice dubugging tool to figure out how the physics work
 
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, RotationalPosition, force * Time.deltaTime);
-
-            if (transform.eulerAngles.y > MaxRotation && RotationalPosition.y > transform.eulerAngles.y)//Slamming door open
+            if (transform.EulerAsInspector().y > MaxRotation && RotationalAngle.y > transform.EulerAsInspector().y)//Slamming door open
             {
-                //find out the strength of the slam to play sound
+                SFX.Stop();
+
+                if (!OutOfBoundries)
+                {
+                    if (force > SlamThreshold)
+                        Debug.Log("I slam the door open");
+
+                    OutOfBoundries = true;
+                }
+
+                RotationalPosition = Quaternion.Euler(new Vector3(transform.rotation.x, transform.rotation.y, transform.rotation.z));
 
             }
-            else if (transform.eulerAngles.y < MinRotation && RotationalPosition.y < transform.eulerAngles.y)//Locking the door
+            else if (transform.EulerAsInspector().y < MinRotation && RotationalAngle.y  < transform.EulerAsInspector().y)//Locking the door
             {
+                SFX.Stop();
 
-            }
+                if (!OutOfBoundries)
+                {
+                    if (force > SlamThreshold)
+                        Debug.Log("I slam the door close");
+                    else
+                        Debug.Log("I gently close the door");
 
-            OpeningPercentage = ((transform.eulerAngles.y - MinRotation) / (MaxRotation - MinRotation));//Calculates how wide the door is opened in percentages from closed (0%) to fully open (100%)
+                    OutOfBoundries = true;
+                }
 
-            if (RotationalPosition.eulerAngles.y > transform.eulerAngles.y)//The door is opening
-            {
-                //Change to opening audio
+                RotationalPosition = Quaternion.Euler(new Vector3(transform.rotation.x, transform.rotation.y, transform.rotation.z));
             }
-            else if (RotationalPosition.eulerAngles.y < transform.eulerAngles.y)//The door is closing
+            else
             {
-                OpeningPercentage = 1 - OpeningPercentage;
-                //Change to closing audio
-            }
-
-            startTime = clipLength * OpeningPercentage;
-
-            if (!SFX.isPlaying)
-            {
-                PlaySound(startTime);
-            }
-            else if (force < soundChangeThreshold && SFX.clip != SlowOpeningFX)
-            {
-                ChangeSound(SlowOpeningFX);
-            }
-            else if (force > soundChangeThreshold && SFX.clip == SlowOpeningFX)
-            {
-                ChangeSound(OpeningFX);
+                transform.localRotation = Quaternion.RotateTowards(transform.localRotation, RotationalPosition, force * Time.deltaTime);
+                AudioSetup();
+                OutOfBoundries = false;
             }
         }
         else
@@ -185,6 +191,7 @@ public class Env_Door: MonoBehaviour
 
 
 
+        /*
         if (CurrentRotation + opening > MaxRotation)
         {
             opening = MaxRotation - CurrentRotation;
@@ -193,11 +200,42 @@ public class Env_Door: MonoBehaviour
         {
             opening = MinRotation - CurrentRotation;
         }
+        */
 
-        Vector3 rotPos = new Vector3(transform.rotation.x, CurrentRotation + opening, transform.rotation.z);
-        RotationalPosition = Quaternion.Euler(rotPos);
+        RotationalAngle = new Vector3(transform.rotation.x, CurrentRotation + opening, transform.localRotation.z);
+        RotationalPosition = Quaternion.Euler(RotationalAngle);
     }
 
+
+    private void AudioSetup()
+    {
+        OpeningPercentage = ((transform.EulerAsInspector().y - MinRotation) / (MaxRotation - MinRotation));//Calculates how wide the door is opened in percentages from closed (0%) to fully open (100%)
+
+        if (RotationalPosition.eulerAngles.y > transform.eulerAngles.y)//The door is opening
+        {
+            //Change to opening audio
+        }
+        else if (RotationalPosition.eulerAngles.y < transform.eulerAngles.y)//The door is closing
+        {
+            OpeningPercentage = 1 - OpeningPercentage;
+            //Change to closing audio
+        }
+
+        startTime = clipLength * OpeningPercentage;
+
+        if (!SFX.isPlaying)
+        {
+            PlaySound(startTime);
+        }
+        else if (force < soundChangeThreshold && SFX.clip != SlowOpeningFX)
+        {
+            ChangeSound(SlowOpeningFX);
+        }
+        else if (force > soundChangeThreshold && SFX.clip == SlowOpeningFX)
+        {
+            ChangeSound(OpeningFX);
+        }
+    }
 
     private void PlaySound(float start)
     {

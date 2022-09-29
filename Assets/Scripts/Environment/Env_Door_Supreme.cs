@@ -70,7 +70,7 @@ public class Env_Door_Supreme : MonoBehaviour
         CurrentRotation = transform.localEulerAngles.y;//this is supposed to be 0 but isnt because of local angles. Fix tomorrow
         MinRotation = CurrentRotation;
         MaxRotation = CurrentRotation + MaximumOpenRange;
-        Debug.Log("Current Rot: " + CurrentRotation + ", Max Rot: " + MaxRotation);
+       //Debug.Log("Current Rot: " + CurrentRotation + ", Max Rot: " + MaxRotation);
 
         DoorInteract = KeyCode.Mouse0;//This is a test function that's modifiable later on
 
@@ -190,6 +190,7 @@ public class Env_Door_Supreme : MonoBehaviour
 
         Vector3 rotPos = new Vector3(transform.localRotation.x, CurrentRotation + opening, transform.localRotation.z);
         RotationalPosition = Quaternion.Euler(rotPos);
+        Debug.Log(RotationalPosition.y);
     }
 
     private void AudioSetup()
