@@ -59,6 +59,13 @@ public class Env_Door: MonoBehaviour
 
     public AudioClip OpeningFX;
     public AudioClip SlowOpeningFX;
+
+    public AudioClip ClosingFX;
+    public AudioClip SlowClosingFX;
+
+    public AudioClip SlamOpen;
+    public AudioClip SlamClose;
+    public AudioClip QuietClose;
     //public AudioClip ClosingFX;//Same audio file but in reverse
 
     private float clipLength;
@@ -213,12 +220,12 @@ public class Env_Door: MonoBehaviour
 
         if (RotationalPosition.eulerAngles.y > transform.eulerAngles.y)//The door is opening
         {
-            //Change to opening audio
+            SFX.clip = OpeningFX;
         }
         else if (RotationalPosition.eulerAngles.y < transform.eulerAngles.y)//The door is closing
         {
             OpeningPercentage = 1 - OpeningPercentage;
-            //Change to closing audio
+            SFX.clip = ClosingFX;
         }
 
         startTime = clipLength * OpeningPercentage;
@@ -227,6 +234,29 @@ public class Env_Door: MonoBehaviour
         {
             PlaySound(startTime);
         }
+        else if (force < soundChangeThreshold)//Slow sfx
+        {
+            if (RotationalPosition.eulerAngles.y > transform.eulerAngles.y && SFX.clip != SlowOpeningFX)//opening
+            {
+                ChangeSound(SlowOpeningFX);
+            }
+            else if(RotationalPosition.eulerAngles.y < transform.eulerAngles.y && SFX.clip != SlowClosingFX)//closing
+            {
+                ChangeSound(SlowClosingFX);
+            }
+        }
+        else if (force > soundChangeThreshold)//Fast sfx
+        {
+            if (RotationalPosition.eulerAngles.y > transform.eulerAngles.y && SFX.clip != OpeningFX)//opening
+            {
+                ChangeSound(OpeningFX);
+            }
+            else if (RotationalPosition.eulerAngles.y < transform.eulerAngles.y && SFX.clip != ClosingFX)//closing
+            {
+                ChangeSound(ClosingFX);
+            }
+        }
+        /*
         else if (force < soundChangeThreshold && SFX.clip != SlowOpeningFX)
         {
             ChangeSound(SlowOpeningFX);
@@ -235,6 +265,7 @@ public class Env_Door: MonoBehaviour
         {
             ChangeSound(OpeningFX);
         }
+        */
     }
 
     private void PlaySound(float start)
