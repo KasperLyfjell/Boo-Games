@@ -28,7 +28,6 @@ public class Env_Door_Supreme : MonoBehaviour
 
     #region Private variables
     private bool CanInteract;
-    private bool OutOfBoundries;
 
     private GameObject player;
 
@@ -124,7 +123,7 @@ public class Env_Door_Supreme : MonoBehaviour
                     //find out the strength of the slam to play sound    
                 }
 
-                OutOfBoundries = true;
+
                 transform.localRotation = Quaternion.Euler(transform.localRotation.x, MaxRotation, transform.localRotation.z);
             }
             else if (transform.localEulerAngles.y < MinRotation)//Locking the door
@@ -134,12 +133,12 @@ public class Env_Door_Supreme : MonoBehaviour
                     //find out the strength of the slam to play sound
                 }
 
-                OutOfBoundries = true;
+
                 transform.localRotation = Quaternion.Euler(transform.localRotation.x, MinRotation, transform.localRotation.z);
             }
             else
             {
-                OutOfBoundries = false;
+
                 AudioSetup();
             }
         }
