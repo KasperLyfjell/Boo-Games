@@ -416,10 +416,22 @@ public class SUPERCharacterAIO : MonoBehaviour{
         
         #region Footstep
         playerAudioSource = GetComponent<AudioSource>();
-        #endregion
-        
-    }
-    void Update(){
+            #endregion
+
+            //This applies the settings set by the player in the main menu
+            ApplyGameSettings();
+        }
+
+        public void ApplyGameSettings()
+        {
+            headbobPower = GameSettings.HeadBobbing;
+            ZTilt = GameSettings.HeadBobbing / 5;
+
+            Sensitivity = GameSettings.MouseSensitivity;
+        }
+
+        void Update(){
+
         if(!controllerPaused){
         #region Input
         #if ENABLE_INPUT_SYSTEM
@@ -572,9 +584,9 @@ public class SUPERCharacterAIO : MonoBehaviour{
         }
         #region Animation
         UpdateAnimationTriggers(controllerPaused);
-        #endregion
-    }
-    void FixedUpdate() {
+            #endregion
+        }
+        void FixedUpdate() {
         if(!controllerPaused){
             #region Movement
             if(enableMovementControl){
@@ -2178,5 +2190,5 @@ public class SuperFPEditor : Editor{
     }
 }
 #endif
-#endregion
+    #endregion
 }
