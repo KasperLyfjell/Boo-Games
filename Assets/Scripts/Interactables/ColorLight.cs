@@ -10,8 +10,11 @@ public class ColorLight : MonoBehaviour
 
     Animator lanternFlameColor;
     Light lanternLightColor;
+
     Light colorSelf;
     Animator flameSelf;
+    ParticleSystem poofEffect;
+
     public RuntimeAnimatorController[] lightFlameColors;
     LanternWheelController lwController;
 
@@ -26,6 +29,7 @@ public class ColorLight : MonoBehaviour
 
         colorSelf = GetComponentInChildren<Light>();
         flameSelf = GetComponentInChildren<Animator>();
+        poofEffect = GetComponentInChildren<ParticleSystem>();
 
         switch (lightType)
         {
@@ -70,6 +74,9 @@ public class ColorLight : MonoBehaviour
         else if (Input.GetMouseButton(1))
         {
             colorSelf.color = lanternLightColor.color;
+            var main = poofEffect.main;
+            main.startColor = lanternLightColor.color;
+            poofEffect.Play();
             flameSelf.runtimeAnimatorController = lanternFlameColor.runtimeAnimatorController;
         }
 
@@ -80,14 +87,18 @@ public class ColorLight : MonoBehaviour
     {
         lanternFlameColor.runtimeAnimatorController = lightFlameColors[0];
         lanternLightColor.color = Color.yellow;
-        //psBlue.Play();
+        var main = poofEffect.main;
+        main.startColor = Color.yellow;
+        poofEffect.Play();
     }
 
     void LanternBlue()
     {
         lanternFlameColor.runtimeAnimatorController = lightFlameColors[1];
         lanternLightColor.color = Color.blue;
-        //psBlue.Play();
+        var main = poofEffect.main;
+        main.startColor = Color.blue;
+        poofEffect.Play();
 
         if (playedBlue == false)
         {
@@ -102,7 +113,9 @@ public class ColorLight : MonoBehaviour
     {
         lanternFlameColor.runtimeAnimatorController = lightFlameColors[2];
         lanternLightColor.color = Color.green;
-        //psGreen.Play();
+        var main = poofEffect.main;
+        main.startColor = Color.green;
+        poofEffect.Play();
 
         if (playedGreen == false)
         {

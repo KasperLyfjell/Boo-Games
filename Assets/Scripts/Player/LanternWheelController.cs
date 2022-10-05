@@ -4,20 +4,19 @@ using SUPERCharacter;
 
 public class LanternWheelController : MonoBehaviour
 {
-    public Animator anim;
+    Animator anim;
     private bool lanternWheelSelected = false;
     public static int lanternID;
 
     public SUPERCharacterAIO charScript;
 
-    public Animator flameColor;
-    public RuntimeAnimatorController flameYellow;
-    public RuntimeAnimatorController flameBlue;
-    public RuntimeAnimatorController flameGreen;
-    public Light flameLight;
+    public RuntimeAnimatorController flameYellow, flameBlue, flameGreen;
+    Animator flameColor;
+    Light flameLight;
 
     public bool blueCollected = false;
     public bool greenCollected = false;
+
     public Button buttonBlue;
     public GameObject iconBlue;
     public Button buttonGreen;
@@ -31,6 +30,10 @@ public class LanternWheelController : MonoBehaviour
         iconBlue.SetActive(false);
         buttonGreen.interactable = false;
         iconGreen.SetActive(false);
+
+        anim = GetComponent<Animator>();
+        flameLight = GameObject.Find("PlayerLanternLight").GetComponent<Light>();
+        flameColor = GameObject.Find("PlayerLanternFlame").GetComponent<Animator>();
     }
     // Update is called once per frame
     void Update()

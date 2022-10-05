@@ -26,7 +26,7 @@ public class LanternWheelButtonController : MonoBehaviour
     {
         selected = true;
         LanternWheelController.lanternID = id;
-        Invoke("Deselected", 0.5f);
+        Invoke("Deselected", 0.1f);
     }
 
     public void Deselected()
