@@ -5123,7 +5123,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _newGameLevel: OutdoorsScene
   noSavedGameDialog: {fileID: 1831652343}
-  brightnessTextValue: {fileID: 971126711}
+  brightnessTextValue: {fileID: 2039285400}
   brightnessSlider: {fileID: 1503754949}
   defaultBrightness: 1
   quialityDropdown: {fileID: 0}
