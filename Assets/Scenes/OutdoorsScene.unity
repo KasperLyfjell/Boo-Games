@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 1171.7959, g: 1192.125, b: 1427.3906, a: 1}
+  m_IndirectSpecularColor: {r: 1172.1787, g: 1192.6641, b: 1428.1641, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -485,7 +485,7 @@ GameObject:
   - component: {fileID: 211334708}
   - component: {fileID: 211334707}
   m_Layer: 0
-  m_Name: DynamicAudioZone
+  m_Name: '[Forest] DynamicAudioZone'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -505,7 +505,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PreDefinedSource: 0
   minDelay: 15
-  maxDelay: 30
+  maxDelay: 20
   RandomVolume: 0
   minVolume: 0
   maxVolume: 0
@@ -558,8 +558,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1686258142}
-  m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_Father: {fileID: 1947743522}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: -18.371, z: 0}
 --- !u!1 &404968336
 GameObject:
@@ -624,8 +624,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1788598235}
   - {fileID: 1732760372}
+  - {fileID: 1788598235}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1177,7 +1177,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 13.117, y: 27.357, z: 53.811}
 --- !u!1 &950131305 stripped
 GameObject:
@@ -1319,7 +1319,7 @@ PlayableDirector:
   m_Enabled: 1
   serializedVersion: 3
   m_PlayableAsset: {fileID: 11400000, guid: 3baa07a9e1fd6e14280642ac46898716, type: 2}
-  m_InitialState: 1
+  m_InitialState: 0
   m_WrapMode: 2
   m_DirectorUpdateMode: 1
   m_InitialTime: 0
@@ -1362,23 +1362,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Events:
     m_Signals:
-    - {fileID: 0}
     - {fileID: 11400000, guid: f4216427a2a89814397d45bbbeebeb41, type: 2}
     m_Events:
-    - m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1732760371}
-          m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-          m_MethodName: CutsceneEnd
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
     - m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1732760371}
@@ -1574,7 +1559,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6817638361354391145, guid: 32fce1012f8c24c43af86f00f457f500, type: 3}
       propertyPath: sprintingSpeed
-      value: 484
+      value: 600
       objectReference: {fileID: 0}
     - target: {fileID: 6817638361354391145, guid: 32fce1012f8c24c43af86f00f457f500, type: 3}
       propertyPath: drawPrimitiveUI
@@ -2369,7 +2354,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 20.346, z: 0}
 --- !u!114 &1676936220
 MonoBehaviour:
@@ -2722,7 +2707,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e38218fd3bd9814c95a4ec38c1a6115, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PlayIntro: 1
   EditorLightUp: {fileID: 837416028}
+  Intro: {fileID: 950131315}
   player: {fileID: 973860289}
 --- !u!4 &1732760372
 Transform:
@@ -2737,7 +2724,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 454336946}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1788598233
 GameObject:
@@ -2782,7 +2769,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 454336946}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1943552724
 GameObject:
@@ -2878,6 +2865,7 @@ Transform:
   m_Children:
   - {fileID: 472358600}
   - {fileID: 1182472201}
+  - {fileID: 211334710}
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
