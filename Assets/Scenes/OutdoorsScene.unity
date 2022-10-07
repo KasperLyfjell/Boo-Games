@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 146.84973, g: 221.08325, b: 462.87646, a: 1}
+  m_IndirectSpecularColor: {r: 302.47583, g: 468.938, b: 1065.1074, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -140,7 +140,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &61947533
 Transform:
   m_ObjectHideFlags: 0
@@ -149,8 +149,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 61947532}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -71, z: 0}
-  m_LocalScale: {x: 266, y: 1, z: 800}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 20, y: 1, z: 20}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3511633898084159114}
@@ -1063,6 +1063,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6817638360860843948, guid: 32fce1012f8c24c43af86f00f457f500, type: 3}
+      propertyPath: m_TagString
+      value: MainCamera
+      objectReference: {fileID: 0}
     - target: {fileID: 6817638361354391144, guid: 32fce1012f8c24c43af86f00f457f500, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -1189,6 +1193,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6817638361354391147, guid: 32fce1012f8c24c43af86f00f457f500, type: 3}
       propertyPath: m_Name
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 6817638361354391147, guid: 32fce1012f8c24c43af86f00f457f500, type: 3}
+      propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1420,7 +1428,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a68c43fe1f2a47cfa234b5eeaa98012, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Intensity: 8420.6875
+  m_Intensity: 16416.672
   m_EnableSpotReflector: 1
   m_LuxAtDistance: 1
   m_InnerSpotPercent: 0
@@ -1542,7 +1550,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 8420.6875
+  m_Intensity: 16416.672
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -2345,8 +2353,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3511633898084159113}
-  m_LocalRotation: {x: -0, y: 0.26794228, z: -0, w: 0.96343505}
-  m_LocalPosition: {x: 68, y: 209, z: 250}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -53.67, y: 209, z: 134.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2354,7 +2362,7 @@ Transform:
   - {fileID: 61947533}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 31.084, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3511633898310707449
 GameObject:
   m_ObjectHideFlags: 0
@@ -2447,25 +2455,28 @@ VisualEffect:
   m_PropertySheet:
     m_Float:
       m_Array:
-      - m_Value: 1
+      - m_Value: 0.5
         m_Name: Intensity
         m_Overridden: 1
-      - m_Value: 2
+      - m_Value: 4
         m_Name: KillSphereRadius
+        m_Overridden: 1
+      - m_Value: 0.3
+        m_Name: SizeScale
         m_Overridden: 1
     m_Vector2f:
       m_Array: []
     m_Vector3f:
       m_Array:
-      - m_Value: {x: 266, y: 0, z: 800}
+      - m_Value: {x: 20, y: 0, z: 20}
         m_Name: SpawnBounds_size
         m_Overridden: 1
-      - m_Value: {x: 0, y: -1, z: 0}
+      - m_Value: {x: 0, y: 1, z: 0}
         m_Name: Plane_normal
-        m_Overridden: 1
+        m_Overridden: 0
       - m_Value: {x: 0, y: 0, z: 0}
         m_Name: Plane_position
-        m_Overridden: 1
+        m_Overridden: 0
       - m_Value: {x: 0, y: 0, z: 0}
         m_Name: SpawnBounds_center
         m_Overridden: 1
@@ -2475,7 +2486,7 @@ VisualEffect:
       m_Array: []
     m_Int:
       m_Array:
-      - m_Value: 20000
+      - m_Value: 5000
         m_Name: MaxSpawnRate
         m_Overridden: 1
     m_Matrix4x4f:
@@ -2530,7 +2541,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5059112419794211199}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 259, y: -53, z: 244}
+  m_LocalPosition: {x: 48.9, y: -18.3, z: -125.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2556,13 +2567,13 @@ MonoBehaviour:
     volumeMask: {fileID: 0}
     textureScrollingSpeed: {x: 0, y: 0, z: 0}
     textureTiling: {x: 1, y: 1, z: 1}
-    positiveFade: {x: 0.0005164756, y: 0.015974442, z: 0.00033690452}
-    negativeFade: {x: 0.0005164756, y: 0.015974442, z: 0.00033690452}
+    positiveFade: {x: 0.005, y: 0.015974442, z: 0.005}
+    negativeFade: {x: 0.005, y: 0.015974442, z: 0.005}
     m_EditorUniformFade: 0.5
     m_EditorPositiveFade: {x: 0, y: 0, z: 0}
     m_EditorNegativeFade: {x: 0, y: 0, z: 0}
     m_EditorAdvancedFade: 0
-    size: {x: 968.1, y: 31.3, z: 1484.1}
+    size: {x: 100, y: 31.3, z: 100}
     invertFade: 0
     distanceFadeStart: 10000
     distanceFadeEnd: 10000
@@ -2585,7 +2596,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &5059112419905209522
 GameObject:
   m_ObjectHideFlags: 0
@@ -2660,7 +2671,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5059112420274107540}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 246, y: 35, z: 244}
+  m_LocalPosition: {x: 118, y: 35, z: 56}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2681,7 +2692,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parameters:
     albedo: {r: 1, g: 1, b: 1, a: 1}
-    meanFreePath: 4743.8
+    meanFreePath: 126
     anisotropy: 0
     volumeMask: {fileID: 0}
     textureScrollingSpeed: {x: 0, y: 0, z: 0}
@@ -2692,7 +2703,7 @@ MonoBehaviour:
     m_EditorPositiveFade: {x: 0, y: 0, z: 0}
     m_EditorNegativeFade: {x: 0, y: 0, z: 0}
     m_EditorAdvancedFade: 0
-    size: {x: 968.1, y: 285.5, z: 1484.1}
+    size: {x: 441.7, y: 285.5, z: 491}
     invertFade: 0
     distanceFadeStart: 10000
     distanceFadeEnd: 10000
