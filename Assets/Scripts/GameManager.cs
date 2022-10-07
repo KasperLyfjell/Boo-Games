@@ -5,7 +5,14 @@ using SUPERCharacter;
 
 public class GameManager : MonoBehaviour
 {
+    public GameObject EditorLightUp;
+
     public SUPERCharacterAIO player;
+
+    private void Start()
+    {
+        EditorLightUp.SetActive(false);
+    }
 
     public void CutsceneEnd()
     {
