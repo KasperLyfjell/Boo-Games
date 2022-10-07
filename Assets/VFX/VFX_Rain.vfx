@@ -974,7 +974,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.Texture2D, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"obj":{"fileID":2800000,"guid":"7e95901fa84e1af449a9aba366a09985","type":3}}'
+      m_SerializableObject: '{"obj":{"fileID":2800000,"guid":"8afed00c267aa4841ad73679253f77fa","type":3}}'
     m_Space: 2147483647
   m_Property:
     name: mainTexture
@@ -1080,7 +1080,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.AnimationCurve, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"frames":[{"time":0.00416742917150259,"value":0.6032218337059021,"inTangent":0.2932778000831604,"outTangent":0.2932778000831604,"tangentMode":0,"leftTangentMode":1,"rightTangentMode":1,"broken":false},{"time":0.987518310546875,"value":0.8916168212890625,"inTangent":0.2932778000831604,"outTangent":0.2932778000831604,"tangentMode":0,"leftTangentMode":1,"rightTangentMode":1,"broken":false}],"preWrapMode":8,"postWrapMode":8,"version":1}'
+      m_SerializableObject: '{"frames":[{"time":0.0000017797574400901795,"value":0.2069968581199646,"inTangent":0.5569785833358765,"outTangent":0.5569785833358765,"tangentMode":0,"leftTangentMode":1,"rightTangentMode":1,"broken":false},{"time":0.970855712890625,"value":0.74774169921875,"inTangent":0.5569785833358765,"outTangent":0.5569785833358765,"tangentMode":0,"leftTangentMode":1,"rightTangentMode":1,"broken":false}],"preWrapMode":8,"postWrapMode":8,"version":1}'
     m_Space: 2147483647
   m_Property:
     name: Size
