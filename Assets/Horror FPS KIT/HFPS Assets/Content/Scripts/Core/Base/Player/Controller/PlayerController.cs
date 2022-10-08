@@ -263,9 +263,6 @@ namespace HFPS.Player
         private bool onLadder;
         private bool wallRicochet;
 
-        private Ladder ladder;
-        private Vector3 ladderExit;
-
         private ControllerColliderHit colliderHit;
         private ParticleSystem foamParticles;
         #endregion
@@ -522,24 +519,6 @@ namespace HFPS.Player
                 if (cameraHeadBob.cameraAnimations)
                     cameraHeadBob.cameraAnimations.CrossFade(cameraHeadBob.cameraIdle);
 
-                if (onLadder)
-                {
-                    Vector3 verticalMove = Vector3.up;
-                    verticalMove *= inputY > 0.1f ? 1 : inputY < -0.1f ? -1 : 0;
-                    verticalMove *= basicSettings.climbSpeed;
-
-                    if (CharacterControl.enabled)
-                        isGrounded = (CharacterControl.Move(verticalMove * Time.deltaTime) & CollisionFlags.Below) != 0;
-
-                    if (ladder != null && Vector3.Distance(transform.position, ladder.LadderUp) < 0.2f)
-                    {
-                        LerpPlayerLadder(ladderExit);
-                        onLadder = false;
-                    }
-
-                    if (isGrounded && inputY < 0 || JumpPressed)
-                        LadderExit();
-                }
             }
             else
             {
@@ -1111,65 +1090,12 @@ namespace HFPS.Player
         /// <summary>
         /// Use ladder function
         /// </summary>
-        public void UseLadder(Ladder ladder, Vector2 look, bool climbUp)
-        {
-            ladderReady = false;
-            characterState = CharacterState.Stand;
-            this.ladder = ladder;
-
-            moveDirection = Vector3.zero;
-            inputX = 0f;
-            inputY = 0f;
-
-            // adjust exit position of the ladder
-            ladderExit = ladder.LadderExit;
-            ladderExit.y += CharacterControl.skinWidth + (controllerAdjustments.normalHeight / 2);
-
-            if (climbUp)
-            {
-                Vector3 enter = ladder.LadderCenter;
-                enter.y = transform.position.y;
-
-                // adjust enter position by groundCheckOffset
-                if (Vector3.Distance(transform.position, ladder.LadderUp) > groundCheckOffset + 0.1f)
-                    enter.y += Mathf.Abs(groundCheckOffset) + Physics.defaultContactOffset;
-
-                StartCoroutine(MovePlayer(enter, autoMoveSettings.climbUpAutoMove, true));
-                scriptManager.GetComponent<MouseLook>().LerpLook(look, autoMoveSettings.climbUpAutoLook, true);
-            }
-            else
-            {
-                // adjust climb down enter position
-                Vector3 enter = ladder.LadderUp;
-                enter.y -= 0.5f;
-
-                StartCoroutine(MovePlayer(enter, autoMoveSettings.climbDownAutoMove, true));
-                scriptManager.GetComponent<MouseLook>().LerpLook(look, autoMoveSettings.climbDownAutoLook, true);
-            }
-
-            gameManager.ShowHelpButtons(new HelpButton(ExitLadder.Item2, InputHandler.CompositeOf("Jump").GetBindingPath()), null, null, null);
-            itemSwitcher.FreeHands(true);
-            movementState = MovementState.Ladder;
-        }
+        
 
         /// <summary>
         /// Exit ladder movement
         /// </summary>
-        public void LadderExit()
-        {
-            if (ladderReady)
-            {
-                movementState = MovementState.Normal;
-                scriptManager.GetComponent<MouseLook>().LockLook(false);
-                gameManager.HideSprites(1);
-                itemSwitcher.FreeHands(false);
-                ladder.Collider.enabled = true;
-                ladderExit = Vector3.zero;
-                ladderReady = false;
-                onLadder = false;
-                ladder = null;
-            }
-        }
+        
 
         /// <summary>
         /// Lerp player from ladder to position
@@ -1224,11 +1150,7 @@ namespace HFPS.Player
             if (unlockLook) 
                 scriptManager.GetComponent<MouseLook>().LockLook(false);
 
-            if (!isLadder && ladder != null)
-            {
-                ladder.Collider.enabled = true;
-                ladderExit = Vector3.zero;
-            }
+            
         }
 
         IEnumerator RemoveFoam()

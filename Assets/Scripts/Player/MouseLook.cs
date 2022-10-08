@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +8,16 @@ public class MouseLook : MonoBehaviour
     public float mouseSensitivity = 100f;
     public Transform playerBody;
     float xRotation = 0f;
+
+    internal object GetRotation()
+    {
+        throw new NotImplementedException();
+    }
+
+    internal void SetRotation(Vector2 vector2)
+    {
+        throw new NotImplementedException();
+    }
 
     void Start()
     {
