@@ -63,7 +63,7 @@ namespace HFPS.UI
                     displayText.gameObject.SetActive(true);
 
                     displayText.text = "Press button...";
-                    MenuController.Instance.StartInteractiveRebind(this, realActionName, bindingIndex);
+                    //MenuController.Instance.StartInteractiveRebind(this, realActionName, bindingIndex);
                 }
                 else
                 {
