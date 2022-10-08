@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using UnityEditor;
 
 [CustomEditor(typeof(DynamicAudioZone))]
@@ -82,3 +83,4 @@ public class AudioZoneSettings : Editor
 
 
 }
+#endif

@@ -21,6 +21,8 @@ using UnityEngine.InputSystem.Interactions;
 namespace SUPERCharacter{
 [RequireComponent(typeof(Rigidbody)), RequireComponent(typeof(CapsuleCollider))][AddComponentMenu("SUPER Character/SUPER Character Controller")]
 public class SUPERCharacterAIO : MonoBehaviour{
+
+        public bool GameStarted;
     #region Variables
 
     public bool controllerPaused = false;
@@ -295,7 +297,7 @@ public class SUPERCharacterAIO : MonoBehaviour{
     public bool enableGroundingDebugging = false, enableMovementDebugging = false, enableMouseAndCameraDebugging = false, enableVaultDebugging = false;
     #endregion
     void Start(){
-   
+            GameStarted = true;
         
         
         #region Camera
