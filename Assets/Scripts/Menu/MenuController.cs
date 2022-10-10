@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
+using System;
 
 public class MenuController : MonoBehaviour
 {
@@ -43,6 +44,11 @@ public class MenuController : MonoBehaviour
 
     [Header("Toggle Settings")]
     [SerializeField] private Toggle invertYToggle = null;
+
+    public static Action OnBeforeRebind { get; internal set; }
+    public static Action OnAfterRebind { get; internal set; }
+    public static bool HasReference { get; internal set; }
+    public static object Instance { get; internal set; }
 
     private void Start()
     {

@@ -21,6 +21,8 @@ using UnityEngine.InputSystem.Interactions;
 namespace SUPERCharacter{
 [RequireComponent(typeof(Rigidbody)), RequireComponent(typeof(CapsuleCollider))][AddComponentMenu("SUPER Character/SUPER Character Controller")]
 public class SUPERCharacterAIO : MonoBehaviour{
+
+        public bool GameStarted;
     #region Variables
 
     public bool controllerPaused = false;
@@ -295,7 +297,7 @@ public class SUPERCharacterAIO : MonoBehaviour{
     public bool enableGroundingDebugging = false, enableMovementDebugging = false, enableMouseAndCameraDebugging = false, enableVaultDebugging = false;
     #endregion
     void Start(){
-   
+            GameStarted = true;
         
         
         #region Camera
@@ -1716,7 +1718,7 @@ public class SuperFPEditor : Editor{
 
             if(t.cameraPerspective == PerspectiveModes._1stPerson){
                 t.viewInputMethods = (ViewInputModes)EditorGUILayout.EnumPopup(new GUIContent("Camera Input Methods", "The input method used to rotate the camera."),t.viewInputMethods);
-                t.standingEyeHeight = EditorGUILayout.Slider(new GUIContent("Standing Eye Height", "The Eye height of the player measured from the center of the character's capsule and upwards."),t.standingEyeHeight,0,1);
+                t.standingEyeHeight = EditorGUILayout.Slider(new GUIContent("Standing Eye Height", "The Eye height of the player measured from the center of the character's capsule and upwards."),t.standingEyeHeight,0,10);
                 t.crouchingEyeHeight = EditorGUILayout.Slider(new GUIContent("Crouching Eye Height", "The Eye height of the player measured from the center of the character's capsule and upwards."),t.crouchingEyeHeight,0,1);
                 t.FOVKickAmount = EditorGUILayout.Slider(new GUIContent("FOV Kick Amount", "How much should the camera's FOV change based on the current movement speed?"),t.FOVKickAmount,0,50);
                 t.FOVSensitivityMultiplier = EditorGUILayout.Slider(new GUIContent("FOV Sensitivity Multiplier", "How much should the camera's FOV effect the mouse sensitivity? (Lower FOV = less sensitive)"),t.FOVSensitivityMultiplier,0,1);
