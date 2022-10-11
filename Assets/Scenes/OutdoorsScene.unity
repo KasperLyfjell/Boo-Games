@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 31.127808, g: 52.590332, b: 133.6687, a: 1}
+  m_IndirectSpecularColor: {r: 31.052238, g: 52.54471, b: 133.98755, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -204,7 +204,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &61947533
 Transform:
   m_ObjectHideFlags: 0
@@ -213,8 +213,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 61947532}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 73, y: -38.5, z: 168.00002}
-  m_LocalScale: {x: 500, y: 1, z: 500}
+  m_LocalPosition: {x: 0, y: -38.5, z: 0}
+  m_LocalScale: {x: 40, y: 1, z: 40}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3511633898084159114}
@@ -5487,6 +5487,12 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!4 &973860294 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6817638361354391144, guid: 32fce1012f8c24c43af86f00f457f500,
+    type: 3}
+  m_PrefabInstance: {fileID: 1033982515}
+  m_PrefabAsset: {fileID: 0}
 --- !u!65 &974702029
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13342,6 +13348,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3511633898084159114}
+  - component: {fileID: 3511633898084159115}
   m_Layer: 0
   m_Name: VFX_Set
   m_TagString: Untagged
@@ -13357,7 +13364,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3511633898084159113}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -53.67, y: 209, z: 134.7}
+  m_LocalPosition: {x: -53.67, y: 200, z: 134.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -13366,6 +13373,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3511633898084159115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3511633898084159113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8edea2c5443434a46bdb5cf0771b032c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 973860294}
+  moveTowardPoint: {x: 0, y: 0, z: 0}
+  speed: 3
 --- !u!1 &3511633898310707449
 GameObject:
   m_ObjectHideFlags: 0
@@ -13378,7 +13400,6 @@ GameObject:
   - component: {fileID: 3511633898310707452}
   - component: {fileID: 3511633898310707451}
   - component: {fileID: 3511633898310707454}
-  - component: {fileID: 3511633898310707453}
   m_Layer: 0
   m_Name: Rain
   m_TagString: Untagged
@@ -13394,7 +13415,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3511633898310707449}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 73, y: -38.5, z: 168}
+  m_LocalPosition: {x: 0, y: -38.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -13458,7 +13479,7 @@ VisualEffect:
   m_PropertySheet:
     m_Float:
       m_Array:
-      - m_Value: 1
+      - m_Value: 0.1
         m_Name: Intensity
         m_Overridden: 1
       - m_Value: 3
@@ -13471,7 +13492,7 @@ VisualEffect:
       m_Array: []
     m_Vector3f:
       m_Array:
-      - m_Value: {x: 500, y: 0, z: 500}
+      - m_Value: {x: 40, y: 0, z: 40}
         m_Name: SpawnBounds_size
         m_Overridden: 1
       - m_Value: {x: 0, y: 1, z: 0}
@@ -13489,7 +13510,7 @@ VisualEffect:
       m_Array: []
     m_Int:
       m_Array:
-      - m_Value: 125000
+      - m_Value: 3000
         m_Name: MaxSpawnRate
         m_Overridden: 1
     m_Matrix4x4f:
@@ -13505,21 +13526,6 @@ VisualEffect:
         m_Overridden: 1
     m_Bool:
       m_Array: []
---- !u!114 &3511633898310707453
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3511633898310707449}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7dd51a3f71441d4fad5cfc25b944001, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Property:
-    m_Name: Plane
-  Target: {fileID: 0}
 --- !u!114 &3511633898310707454
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13533,8 +13539,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ExecuteInEditor: 1
-  m_Bindings:
-  - {fileID: 3511633898310707453}
+  m_Bindings: []
   m_VisualEffect: {fileID: 3511633898310707452}
 --- !u!4 &5059112419794211184
 Transform:
