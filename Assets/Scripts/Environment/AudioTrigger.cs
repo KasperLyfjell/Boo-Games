@@ -14,6 +14,39 @@ public class AudioTrigger : MonoBehaviour
     public bool TriggerOnEnter;
     public bool TriggerOnExit;
 
+    public bool FadeOutAudio;
+    public AudioSource AudioToFade;
+
+    public bool FollowUp;
+    public AudioSource followupAudio;
+
+    public bool FadeIn;
+
+
+    private bool fade;
+    private float delay;
+
+
+
+    private void Update()
+    {
+        if (fade)
+        {
+            if (!FadeIn)
+            {
+                AudioToFade.volume -= delay * Time.deltaTime;
+                Source.volume += delay * Time.deltaTime;
+            }
+            else
+            {
+                Source.volume += 0.2f * Time.deltaTime;
+                if (Source.volume >= 0.8)
+                    fade = false;
+            }
+
+        }
+    }
+
     private void OnTriggerEnter(Collider collider)
     {
         if(collider.gameObject.name == "Player" && TriggerOnEnter)
@@ -49,5 +82,37 @@ public class AudioTrigger : MonoBehaviour
     private void PlaySound()
     {
         Source.Play();
+
+        if (FadeOutAudio)
+            StartCoroutine(Fadeout(2));
+
+        if (FollowUp)
+            StartCoroutine(followUp(Source.clip.length - Source.time));
+
+        if (FadeIn)
+        {
+            fade = true;
+        }
+
+    }
+
+    IEnumerator Fadeout(float duration)
+    {
+        delay = duration;
+        Source.volume = 0;
+        Source.time = AudioToFade.time;
+        fade = true;
+
+        yield return new WaitForSeconds(duration);
+
+        fade = false; 
+
+    }
+
+    IEnumerator followUp(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        followupAudio.Play();
     }
 }
