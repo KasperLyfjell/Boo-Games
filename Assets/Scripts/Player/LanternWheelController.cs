@@ -13,6 +13,7 @@ public class LanternWheelController : MonoBehaviour
     public RuntimeAnimatorController flameYellow, flameBlue, flameGreen;
     Animator flameColor;
     Light flameLight;
+    Animator arm;
 
     public bool blueCollected = false;
     public bool greenCollected = false;
@@ -34,6 +35,7 @@ public class LanternWheelController : MonoBehaviour
         anim = GetComponent<Animator>();
         flameLight = GameObject.Find("PlayerLanternLight").GetComponent<Light>();
         flameColor = GameObject.Find("PlayerLanternFlame").GetComponent<Animator>();
+        arm = GameObject.Find("LanternArms").GetComponent<Animator>();
     }
     // Update is called once per frame
     void Update()
@@ -70,6 +72,7 @@ public class LanternWheelController : MonoBehaviour
             case 0: //nothing
                 break;
             case 1: //Standard Lantern Color
+                arm.SetTrigger("Reload");
                 flameColor.runtimeAnimatorController = flameYellow;
                 flameLight.color = Color.yellow;
                 break;
