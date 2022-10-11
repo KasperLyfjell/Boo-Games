@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,18 +15,10 @@ public class FlameMainMenu : MonoBehaviour
     Coroutine m_CorotineAnim;
     bool IsDone;
 
-    public void Func_PlayUIAnim()
+    public void Start()
     {
         IsDone = false;
-        StartCoroutine(Func_PlayAnimUI());
     }
-
-    public void Func_StopUIAnim()
-    {
-        IsDone = true;
-        StopCoroutine(Func_PlayAnimUI());
-    }
-
     IEnumerator Func_PlayAnimUI()
     {
         yield return new WaitForSeconds(m_Speed);
