@@ -1307,7 +1307,7 @@ GameObject:
   - component: {fileID: 296394580}
   - component: {fileID: 296394582}
   m_Layer: 5
-  m_Name: Image
+  m_Name: LighterFlame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
