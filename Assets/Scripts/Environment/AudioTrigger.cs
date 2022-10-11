@@ -17,6 +17,9 @@ public class AudioTrigger : MonoBehaviour
     public bool FadeOutAudio;
     public AudioSource AudioToFade;
 
+    public bool FollowUpAudio;
+    public AudioSource followAudio;
+    public float followDelay;
 
     public bool FadeIn;
     public bool FadeOut;
@@ -89,7 +92,10 @@ public class AudioTrigger : MonoBehaviour
         Source.Play();
 
         if (FadeOutAudio)
-            StartCoroutine(Fadeout(2));
+            StartCoroutine(Fadeout(0.6f));
+
+        if(FollowUpAudio)
+            StartCoroutine(FollowUp(Source.clip.length + followDelay));
 
         if (FadeIn)
         {
@@ -109,5 +115,12 @@ public class AudioTrigger : MonoBehaviour
 
         fade = false; 
 
+    }
+
+    IEnumerator FollowUp(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        followAudio.Play();
     }
 }
