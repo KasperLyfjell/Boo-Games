@@ -32,6 +32,10 @@ public class LanternWheelController : MonoBehaviour
     Animator lighterAnim;
     bool lighterEquipped = true;
 
+    [HideInInspector]
+    public bool tutorial;
+    public GameObject tutorialUI;
+
     private void Start()
     {
         buttonBlue.interactable = false;
@@ -55,6 +59,13 @@ public class LanternWheelController : MonoBehaviour
     {
         if (CanInteract)
         {
+            if(tutorial && Input.GetKeyDown(KeyCode.Q))
+            {
+                tutorialUI.SetActive(false);
+                Time.timeScale = 1;
+                tutorial = false;
+            }
+
             if (Input.GetKeyDown(KeyCode.Q) && !played)
             {
                 played = true;

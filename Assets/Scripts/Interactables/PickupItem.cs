@@ -14,7 +14,10 @@ public class PickupItem : MonoBehaviour
 
     private bool Inside;
 
-    [Header("Only for Lantern")]
+    [Header("Only for Collectable")]
+    public GameObject Tutorial;
+    public UnityEvent addColor;
+    [Header("Only for Lantern and Collectable")]
     public LanternWheelController LanternWheel;
     [Header("Only for Keys")]
     public temp_Door DoorToUnlock;
@@ -70,7 +73,12 @@ public class PickupItem : MonoBehaviour
         switch (Type)
         {
             case ObjectType.Collectable:
-                //Add object to inventory
+                Tutorial.SetActive(true);
+                LanternWheel.tutorial = true;
+                LanternWheel.CanInteract = true;
+                LanternWheel.blueCollected = true;
+                addColor.Invoke();
+                Time.timeScale = 0;
                 Destroy(gameObject);
                 break;
             case ObjectType.Interactable:

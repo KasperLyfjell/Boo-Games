@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class temp_Door : MonoBehaviour
 {
@@ -16,6 +18,11 @@ public class temp_Door : MonoBehaviour
     public AudioClip SFXOpen;
     public AudioClip SFXUnlock;
 
+    [Header("This is for the ending")]
+    private bool EndHasCome;
+    public GameObject Dimmer;
+    public AudioSource voice;
+
     private void Start()
     {
         Source = GetComponent<AudioSource>();
@@ -23,18 +30,25 @@ public class temp_Door : MonoBehaviour
 
     private void Update()
     {
-        if (IsInside)
+        if (EndHasCome)
         {
-            if (Input.GetKeyDown(Interaction))
+            Dimmer.GetComponent<Image>().color += new Color(0, 0, 0, 0.5f * Time.deltaTime);         
+        }
+        else
+        {
+            if (IsInside)
             {
-                if (HasKey)
-                    Unlock();
-                else
+                if (Input.GetKeyDown(Interaction))
                 {
-                    if (DoorIsLocked)
-                        Locked();
+                    if (HasKey)
+                        Unlock();
                     else
-                        Open();
+                    {
+                        if (DoorIsLocked)
+                            Locked();
+                        else
+                            Open();
+                    }
                 }
             }
         }
@@ -54,24 +68,42 @@ public class temp_Door : MonoBehaviour
 
     private void Locked()
     {
-        Source.clip = SFXLocked;
-        Source.Play();
+        if(SFXLocked != null)
+        {
+            Source.clip = SFXLocked;
+            Source.Play();
+        }
     }
 
     private void Open()
     {
-        Source.clip = SFXOpen;
-        Source.Play();
+        if (SFXOpen != null)
+        {
+            Source.clip = SFXOpen;
+            Source.Play();
 
-        //Start fade to end-game
+            StartCoroutine(Ending());
+        }
     }
 
     private void Unlock()
     {
-        Source.clip = SFXUnlock;
-        Source.Play();
+        if (SFXUnlock != null)
+        {
+            Source.clip = SFXUnlock;
+            Source.Play();
 
-        DoorIsLocked = false;
-        HasKey = false;
+            DoorIsLocked = false;
+            HasKey = false;
+        }
+    }
+
+    IEnumerator Ending()
+    {
+        EndHasCome = true;
+        yield return new WaitForSeconds(4);
+        voice.Play();
+        yield return new WaitForSeconds(4);
+        SceneManager.LoadScene("MainMenu");
     }
 }
