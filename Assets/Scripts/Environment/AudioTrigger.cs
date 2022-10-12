@@ -23,6 +23,7 @@ public class AudioTrigger : MonoBehaviour
 
     public bool FadeIn;
     public bool FadeOut;
+    public float FadeTo = 1;//Volume % to fade to
 
 
     private bool fade;
@@ -48,7 +49,7 @@ public class AudioTrigger : MonoBehaviour
 
                 Source.volume += 0.4f * Time.deltaTime;
 
-                if (Source.volume >= 1)
+                if (Source.volume >= FadeTo)
                     fade = false;
             }
 
