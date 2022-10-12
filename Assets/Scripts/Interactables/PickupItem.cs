@@ -1,30 +1,39 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PickupItem : MonoBehaviour
 {
+    [Tooltip("Found under: Audio > SFX > Collectable SFX player")]
+    public AudioSource SFXListener;
     [SerializeField] ObjectType Type = new ObjectType();
 
     public KeyCode InteractButton;
-    public AudioSource SoundEffect;
-    public LanternWheelController LanternWheel;
+    public AudioClip SoundEffect;
 
-    private GameObject player;
     private bool Inside;
+
+    [Header("Only for Lantern")]
+    public LanternWheelController LanternWheel;
+    [Header("Only for Keys")]
+    public temp_Door DoorToUnlock;
+
+    [Header("If there is VA line when picking up item")]
+    public AudioSource Voiceline;
 
     enum ObjectType
     {
         Collectable,
         Interactable,
-        Lantern
+        Lantern,
+        Key
     }
 
     private void OnTriggerEnter(Collider collider)
     {
         if(collider.gameObject.tag == "Player")
         {
-            player = collider.gameObject;
             Inside = true;
         }
     }
@@ -48,8 +57,16 @@ public class PickupItem : MonoBehaviour
         }
     }
 
+
+
     private void PickUp()
     {
+        SFXListener.clip = SoundEffect;
+        SFXListener.Play();
+
+        if (Voiceline != null)
+            Voiceline.Play();
+
         switch (Type)
         {
             case ObjectType.Collectable:
@@ -63,11 +80,13 @@ public class PickupItem : MonoBehaviour
                 LanternWheel.PickupLantern();
                 Destroy(gameObject);
                 break;
+            case ObjectType.Key:
+                if (GetComponent<MeshRenderer>().enabled)
+                {
+                    DoorToUnlock.HasKey = true;
+                    Destroy(gameObject);
+                }
+                break;
         }
-
-        if(SoundEffect != null)
-            if(SoundEffect.clip != null)
-                SoundEffect.Play();
-
     }
 }
