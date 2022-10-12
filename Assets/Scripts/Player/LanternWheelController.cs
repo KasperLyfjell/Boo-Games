@@ -13,7 +13,8 @@ public class LanternWheelController : MonoBehaviour
     public RuntimeAnimatorController flameYellow, flameBlue, flameGreen;
     Animator flameColor;
     Light flameLight;
-    Animator arm;
+    GameObject arm;
+    Animator armAnim;
 
     public bool blueCollected = false;
     public bool greenCollected = false;
@@ -25,6 +26,10 @@ public class LanternWheelController : MonoBehaviour
 
     bool played = false;
 
+    GameObject lighter;
+    Animator lighterAnim;
+    bool lighterEquipped = false;
+
     private void Start()
     {
         buttonBlue.interactable = false;
@@ -35,7 +40,12 @@ public class LanternWheelController : MonoBehaviour
         anim = GetComponent<Animator>();
         flameLight = GameObject.Find("PlayerLanternLight").GetComponent<Light>();
         flameColor = GameObject.Find("PlayerLanternFlame").GetComponent<Animator>();
-        arm = GameObject.Find("LanternArms").GetComponent<Animator>();
+        arm = GameObject.Find("LanternArms");
+        armAnim = arm.GetComponent<Animator>();
+
+        lighter = GameObject.Find("PlayerLighter");
+        lighter.SetActive(false);
+        lighterAnim = lighter.GetComponent<Animator>();
     }
     // Update is called once per frame
     void Update()
@@ -72,15 +82,16 @@ public class LanternWheelController : MonoBehaviour
             case 0: //nothing
                 break;
             case 1: //Standard Lantern Color
-                arm.SetTrigger("Reload");
-                flameColor.runtimeAnimatorController = flameYellow;
-                flameLight.color = Color.yellow;
+                UnequipLighter();
+                armAnim.SetBool("Reload", true);
+                Invoke("ReloadYellow", 1f);
                 break;
             case 2: // Blue light
                 if (blueCollected == true)
                 {
-                    flameColor.runtimeAnimatorController = flameBlue;
-                    flameLight.color = Color.blue;
+                    UnequipLighter();
+                    armAnim.SetBool("Reload", true);
+                    Invoke("ReloadBlue", 1f);
                 }
                 break;
             case 3: // X light
@@ -89,8 +100,9 @@ public class LanternWheelController : MonoBehaviour
             case 4: // X light
 
                 break;
-            case 5: // X light
-
+            case 5: // Lighter
+                armAnim.SetBool("Reload", true);
+                Invoke("EquipLighter", 1f);
                 break;
             case 6: // X light
 
@@ -101,11 +113,58 @@ public class LanternWheelController : MonoBehaviour
             case 8: // Green light
                 if (greenCollected == true)
                 {
-                    flameColor.runtimeAnimatorController = flameGreen;
-                    flameLight.color = Color.green;
+                    UnequipLighter();
+                    armAnim.SetBool("Reload", true);
+                    Invoke("ReloadGreen", 1f);
                 }
                 break;
 
         }
+    }
+
+    void ReloadYellow()
+    {
+        flameColor.runtimeAnimatorController = flameYellow;
+        flameLight.color = Color.yellow;
+        armAnim.SetBool("Reload", false);
+    }
+
+    void ReloadBlue()
+    {
+        flameColor.runtimeAnimatorController = flameBlue;
+        flameLight.color = Color.blue;
+        armAnim.SetBool("Reload", false);
+    }
+
+    void ReloadGreen()
+    {
+        flameColor.runtimeAnimatorController = flameGreen;
+        flameLight.color = Color.green;
+        armAnim.SetBool("Reload", false);
+    }
+
+    void EquipLighter()
+    {
+        lighterEquipped = true;
+        arm.SetActive(false);
+        lighter.SetActive(true);
+        lighterAnim.SetBool("Equip", true);
+    }
+
+    void UnequipLighter()
+    {
+        if (lighterEquipped)
+        {
+            lighterEquipped = false;
+            lighterAnim.SetBool("Equip", false);
+            Invoke("LighterOff", 1f);
+            
+        }
+    }
+
+    void LighterOff()
+    {
+        lighter.SetActive(false);
+        arm.SetActive(true);
     }
 }
