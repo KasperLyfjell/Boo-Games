@@ -1518,9 +1518,10 @@ public class SUPERCharacterAIO : MonoBehaviour{
         }
         #endif
     }
-    #endif
-    #endregion
-    
+#endif
+        #endregion
+
+
     public void PausePlayer(PauseModes pauseMode){
         controllerPaused = true;
         switch(pauseMode){
