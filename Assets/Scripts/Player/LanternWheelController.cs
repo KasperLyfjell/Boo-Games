@@ -184,6 +184,7 @@ public class LanternWheelController : MonoBehaviour
     {
         lighter.SetActive(false);
         arm.SetActive(true);
+        GetComponent<AudioSource>().Play();
     }
 
     public void PickupLantern()
