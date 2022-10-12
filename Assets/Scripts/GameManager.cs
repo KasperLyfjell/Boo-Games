@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
 
     public SUPERCharacterAIO player;
 
-    public AudioSource Lighting;
+    public Animator Lighter;
 
     private void Start()
     {
@@ -37,9 +37,16 @@ public class GameManager : MonoBehaviour
     {
         Intro.Play();
     }
-    public void LightingStrike()
+    public void HideLighter()
     {
-        Lighting.Play();
+        //Lighter.SetBool("Equip", false);
+        Lighter.gameObject.SetActive(false);
+    }
+
+    public void ShowLighter()
+    {
+        Lighter.gameObject.SetActive(true);
+        Lighter.SetBool("Equip", true);
     }
 
     public void CutsceneEnd()

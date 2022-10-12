@@ -61,7 +61,6 @@ public class DynamicAudioZone : MonoBehaviour
         if (IsInside)
         {
             delay -= Time.deltaTime;
-            Debug.Log(delay);
 
             if(delay < 0)
             {
