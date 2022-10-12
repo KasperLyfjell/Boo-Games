@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 261.76038, g: 309.52954, b: 450.05078, a: 1}
+  m_IndirectSpecularColor: {r: 261.21472, g: 309.07056, b: 449.65186, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3525,6 +3525,11 @@ PrefabInstance:
       propertyPath: m_Spring.damper
       value: 30.8
       objectReference: {fileID: 0}
+    - target: {fileID: 1911938529932853799, guid: faecd2d5a650cd04e9da46d622034e1c,
+        type: 3}
+      propertyPath: m_UseGravity
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4565699149933289198, guid: faecd2d5a650cd04e9da46d622034e1c,
         type: 3}
       propertyPath: m_IsActive
@@ -4075,7 +4080,9 @@ PrefabInstance:
       propertyPath: m_BounceIntensity
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1911938529932853798, guid: faecd2d5a650cd04e9da46d622034e1c, type: 3}
+    - {fileID: 1911938529932853799, guid: faecd2d5a650cd04e9da46d622034e1c, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: faecd2d5a650cd04e9da46d622034e1c, type: 3}
 --- !u!4 &386402503 stripped
 Transform:
