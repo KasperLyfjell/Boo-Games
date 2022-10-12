@@ -45,8 +45,8 @@ public class GameManager : MonoBehaviour
 
     public void ShowLighter()
     {
-        Lighter.gameObject.SetActive(true);
         Lighter.SetBool("Equip", true);
+        Lighter.gameObject.SetActive(true);
     }
 
     public void CutsceneEnd()
@@ -54,5 +54,10 @@ public class GameManager : MonoBehaviour
         Debug.Log("you can walk now");
         player.enableCameraControl = true;
         player.enableMovementControl = true;
+
+        if(Lighter.gameObject.activeSelf == false)
+        {
+            ShowLighter();
+        }
     }
 }
