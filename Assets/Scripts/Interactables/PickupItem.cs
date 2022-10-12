@@ -8,6 +8,7 @@ public class PickupItem : MonoBehaviour
 
     public KeyCode InteractButton;
     public AudioSource SoundEffect;
+    public LanternWheelController LanternWheel;
 
     private GameObject player;
     private bool Inside;
@@ -59,7 +60,8 @@ public class PickupItem : MonoBehaviour
                 //Here put in the look-at code if we want one
                 break;
             case ObjectType.Lantern:
-                //Trigger the "swap to lantern" animation
+                LanternWheel.PickupLantern();
+                Destroy(gameObject);
                 break;
         }
 

@@ -4,6 +4,8 @@ using SUPERCharacter;
 
 public class LanternWheelController : MonoBehaviour
 {
+    public bool CanInteract;
+
     Animator anim;
     private bool lanternWheelSelected = false;
     public static int lanternID;
@@ -28,7 +30,7 @@ public class LanternWheelController : MonoBehaviour
 
     GameObject lighter;
     Animator lighterAnim;
-    bool lighterEquipped = false;
+    bool lighterEquipped = true;
 
     private void Start()
     {
@@ -46,27 +48,32 @@ public class LanternWheelController : MonoBehaviour
         lighter = GameObject.Find("PlayerLighter");
         lighter.SetActive(false);
         lighterAnim = lighter.GetComponent<Animator>();
+        arm.SetActive(false);
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q) && !played)
+        if (CanInteract)
         {
-            played = true;
-            charScript.enableCameraControl = false;
-            lanternWheelSelected = true;
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
+            if (Input.GetKeyDown(KeyCode.Q) && !played)
+            {
+                played = true;
+                charScript.enableCameraControl = false;
+                lanternWheelSelected = true;
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+            }
+
+            if (Input.GetKeyUp(KeyCode.Q) && played)
+            {
+                played = false;
+                charScript.enableCameraControl = true;
+                lanternWheelSelected = false;
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+            }
         }
 
-        if (Input.GetKeyUp(KeyCode.Q) && played)
-        {
-            played = false;
-            charScript.enableCameraControl = true;
-            lanternWheelSelected = false;
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
-        }
 
         if (lanternWheelSelected)
         {
@@ -166,5 +173,10 @@ public class LanternWheelController : MonoBehaviour
     {
         lighter.SetActive(false);
         arm.SetActive(true);
+    }
+
+    public void PickupLantern()
+    {
+        UnequipLighter();
     }
 }

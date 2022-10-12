@@ -45,8 +45,8 @@ public class GameManager : MonoBehaviour
 
     public void ShowLighter()
     {
-        Lighter.SetBool("Equip", true);
         Lighter.gameObject.SetActive(true);
+        Lighter.SetBool("Equip", true);
     }
 
     public void CutsceneEnd()
