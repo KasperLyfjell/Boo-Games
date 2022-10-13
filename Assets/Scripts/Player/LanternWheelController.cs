@@ -49,7 +49,7 @@ public class LanternWheelController : MonoBehaviour
         arm = GameObject.Find("LanternArms");
         armAnim = arm.GetComponent<Animator>();
 
-        lighter = GameObject.Find("PlayerLighter");
+        lighter = GameObject.Find("Lighter");
         lighter.SetActive(false);
         lighterAnim = lighter.GetComponent<Animator>();
         arm.SetActive(false);
