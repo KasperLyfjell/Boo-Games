@@ -101,7 +101,7 @@ public class temp_Door : MonoBehaviour
     IEnumerator Ending()
     {
         EndHasCome = true;
-        yield return new WaitForSeconds(4);
+        yield return new WaitForSeconds(6);
         voice.Play();
         yield return new WaitForSeconds(4);
         SceneManager.LoadScene("MainMenu");

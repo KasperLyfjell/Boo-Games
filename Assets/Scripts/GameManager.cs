@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour
 
     public Animator Lighter;
 
+    public Light LanternLight;
+
     private void Start()
     {
         EditorLightUp.SetActive(false);

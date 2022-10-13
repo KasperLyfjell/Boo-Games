@@ -32,7 +32,8 @@ public class FootprintScript : MonoBehaviour
 
     private void Start()
     {
-        lanternLightColor = GameObject.Find("PlayerLanternLight").GetComponent<Light>();
+        GameManager manager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        lanternLightColor = manager.LanternLight;
 
         switch (Lcolor)
         {
