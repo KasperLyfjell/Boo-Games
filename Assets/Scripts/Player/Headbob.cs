@@ -6,7 +6,7 @@ public class Headbob : MonoBehaviour
 {
     public float walkingBobbingSpeed = 14f;
     public float bobbingAmount = 0.05f;
-    public CharacterController controller;
+    Rigidbody playerRigidbody;
 
     float defaultPosY = 0;
     float timer = 0;
@@ -14,13 +14,14 @@ public class Headbob : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        playerRigidbody = GameObject.Find("Player").GetComponent<Rigidbody>();
         defaultPosY = transform.localPosition.y;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (controller.velocity.magnitude > 2f)
+        if (playerRigidbody.velocity.magnitude > 2f)
         {
             //Player is moving
             timer += Time.deltaTime * walkingBobbingSpeed;
