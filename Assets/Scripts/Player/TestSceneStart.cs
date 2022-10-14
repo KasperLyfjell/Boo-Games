@@ -12,11 +12,7 @@ public class TestSceneStart : MonoBehaviour
         wheelCon = GameObject.Find("LanternWheel").GetComponent<LanternWheelController>();
 
         wheelCon.CanInteract = true;
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        wheelCon.EquipLighter();
     }
 }

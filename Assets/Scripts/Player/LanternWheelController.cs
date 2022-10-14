@@ -30,7 +30,7 @@ public class LanternWheelController : MonoBehaviour
 
     GameObject lighter;
     Animator lighterAnim;
-    bool lighterEquipped = true;
+    public bool lighterEquipped = true;
 
     [HideInInspector]
     public bool tutorial;
@@ -161,7 +161,7 @@ public class LanternWheelController : MonoBehaviour
         armAnim.SetBool("Reload", false);
     }
 
-    void EquipLighter()
+    public void EquipLighter()
     {
         lighterEquipped = true;
         arm.SetActive(false);
