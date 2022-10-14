@@ -11,8 +11,8 @@ public class Painting : MonoBehaviour
 
     bool close = false;
     DecalProjector dp;
-    Light lanternLightColor;
-    LanternWheelController wheelCon;
+    public Light lanternLight;
+    public LanternWheelController lanternWheel;
 
     public Material normalMaterial;
     public Material creepyMaterial;
@@ -22,8 +22,8 @@ public class Painting : MonoBehaviour
     void Start()
     {
         dp = GetComponent<DecalProjector>();
-        lanternLightColor = GameObject.Find("PlayerLanternLight").GetComponent<Light>();
-        wheelCon = GameObject.Find("LanternWheel").GetComponent<LanternWheelController>();
+        //lanternLightColor = GameObject.Find("PlayerLanternLight").GetComponent<Light>();
+        //wheelCon = GameObject.Find("LanternWheel").GetComponent<LanternWheelController>();
 
         switch (reactToColor)
         {
@@ -44,7 +44,7 @@ public class Painting : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (wheelCon.lighterEquipped == false && close == true && lanternLightColor.color == color)
+        if (lanternWheel.lighterEquipped == false && close == true && lanternLight.color == color)
         {
             dp.material = creepyMaterial;
         }
