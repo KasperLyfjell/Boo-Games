@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 18.020103, g: 30.727798, b: 79.0155, a: 1}
+  m_IndirectSpecularColor: {r: 18.01786, g: 30.724762, b: 79.00818, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -742,6 +742,7 @@ MonoBehaviour:
   iconBlue: {fileID: 965213678}
   buttonGreen: {fileID: 894278653}
   iconGreen: {fileID: 507857233}
+  lighterEquipped: 1
   tutorial: 0
   tutorialUI: {fileID: 750717307}
 --- !u!82 &69305813
@@ -2168,7 +2169,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-175108
+  m_Name: pb_Mesh-17300
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2938,7 +2939,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-160462
+  m_Name: pb_Mesh-2654
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -3365,6 +3366,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 679528568}
     m_Modifications:
+    - target: {fileID: 2900931107182421457, guid: a90f588d9a635ee4ab365e109cc52bca,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 2900931107182421457, guid: a90f588d9a635ee4ab365e109cc52bca,
+        type: 3}
+      propertyPath: m_Center.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2900931107182421457, guid: a90f588d9a635ee4ab365e109cc52bca,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2900931107182421457, guid: a90f588d9a635ee4ab365e109cc52bca,
+        type: 3}
+      propertyPath: m_Center.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6740326714959900738, guid: a90f588d9a635ee4ab365e109cc52bca,
         type: 3}
       propertyPath: m_RootOrder
@@ -3435,6 +3456,11 @@ PrefabInstance:
       propertyPath: m_FadeDistance
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 6740326714959900739, guid: a90f588d9a635ee4ab365e109cc52bca,
+        type: 3}
+      propertyPath: m_VolumetricDimmer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6740326714959900740, guid: a90f588d9a635ee4ab365e109cc52bca,
         type: 3}
       propertyPath: m_Enabled
@@ -3449,6 +3475,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Lighter
+      objectReference: {fileID: 0}
+    - target: {fileID: 6740326714959900798, guid: a90f588d9a635ee4ab365e109cc52bca,
+        type: 3}
+      propertyPath: m_TagString
+      value: Light
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a90f588d9a635ee4ab365e109cc52bca, type: 3}
@@ -6905,7 +6936,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-160040
+  m_Name: pb_Mesh-2232
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -9003,6 +9034,8 @@ GameObject:
   m_Component:
   - component: {fileID: 818628400}
   - component: {fileID: 818628401}
+  - component: {fileID: 818628402}
+  - component: {fileID: 818628403}
   m_Layer: 0
   m_Name: '[Experimental] Super thick fog'
   m_TagString: Untagged
@@ -9044,9 +9077,9 @@ MonoBehaviour:
     volumeMask: {fileID: 0}
     textureScrollingSpeed: {x: 0, y: 0, z: 0}
     textureTiling: {x: 1, y: 1, z: 1}
-    positiveFade: {x: 0.01336541, y: 0.016722409, z: 0.01049979}
-    negativeFade: {x: 0.01336541, y: 0.016722409, z: 0.01049979}
-    m_EditorUniformFade: 0.5
+    positiveFade: {x: 0.02673082, y: 0.033444818, z: 0.02099958}
+    negativeFade: {x: 0.02673082, y: 0.033444818, z: 0.02099958}
+    m_EditorUniformFade: 1
     m_EditorPositiveFade: {x: 0, y: 0, z: 0}
     m_EditorNegativeFade: {x: 0, y: 0, z: 0}
     m_EditorAdvancedFade: 0
@@ -9057,6 +9090,37 @@ MonoBehaviour:
     textureOffset: {x: 0, y: 0, z: 0}
     falloffMode: 0
   m_Version: 2
+--- !u!65 &818628402
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 818628399}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 36.493996, y: 8.04286, z: 47.841732}
+  m_Center: {x: 0.22068787, y: -0.84718275, z: -0.06380273}
+--- !u!114 &818628403
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 818628399}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2377282cd62c64a44a685ea1193b56e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lighterData: {fileID: 1930548208}
+  lightMultiplier: 0
+  lightMultiplierValue: 0
+  lightMultiplierMax: 1
+  lightMultiplierMin: 0.25
+  transitionSpeed: 0.05
 --- !u!65 &819200420
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9529,7 +9593,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-175122
+  m_Name: pb_Mesh-17314
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -10462,7 +10526,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-160108
+  m_Name: pb_Mesh-2300
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -12124,7 +12188,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-175136
+  m_Name: pb_Mesh-17328
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -16637,7 +16701,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-175080
+  m_Name: pb_Mesh-17272
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -19791,7 +19855,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-175066
+  m_Name: pb_Mesh-17258
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -20353,7 +20417,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-160054
+  m_Name: pb_Mesh-2246
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -21695,7 +21759,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-175094
+  m_Name: pb_Mesh-17286
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -24404,6 +24468,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walkingBobbingSpeed: 14
   bobbingAmount: 5
+--- !u!54 &1930548207
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 80102844}
+  serializedVersion: 2
+  m_Mass: 0.1
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
+--- !u!114 &1930548208 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6740326714959900739, guid: a90f588d9a635ee4ab365e109cc52bca,
+    type: 3}
+  m_PrefabInstance: {fileID: 304634789}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 80102844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a68c43fe1f2a47cfa234b5eeaa98012, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1947743521
 GameObject:
   m_ObjectHideFlags: 0
@@ -25871,7 +25963,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-160122
+  m_Name: pb_Mesh-2314
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
