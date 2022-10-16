@@ -1,4 +1,6 @@
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.UI;
 using SUPERCharacter;
 
@@ -36,8 +38,15 @@ public class LanternWheelController : MonoBehaviour
     public bool tutorial;
     public GameObject tutorialUI;
 
+    public List<AudioClip> SoundEffects = new List<AudioClip>();
+    private AudioSource Source;
+
+    public AudioClip OpenUI;
+    public AudioClip CloseUI;
+
     private void Start()
     {
+        Source = GetComponent<AudioSource>();
         buttonBlue.interactable = false;
         iconBlue.SetActive(false);
         buttonGreen.interactable = false;
@@ -68,6 +77,8 @@ public class LanternWheelController : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.Q) && !played)
             {
+                Source.clip = OpenUI;
+                Source.Play();
                 played = true;
                 charScript.enableCameraControl = false;
                 lanternWheelSelected = true;
@@ -77,6 +88,8 @@ public class LanternWheelController : MonoBehaviour
 
             if (Input.GetKeyUp(KeyCode.Q) && played)
             {
+                Source.clip = CloseUI;
+                Source.Play();
                 played = false;
                 charScript.enableCameraControl = true;
                 lanternWheelSelected = false;
@@ -119,6 +132,7 @@ public class LanternWheelController : MonoBehaviour
 
                 break;
             case 5: // Lighter
+                StartCoroutine(PlaySound(SoundEffects[3], 0.15f));
                 armAnim.SetBool("Reload", true);
                 Invoke("EquipLighter", 1f);
                 break;
@@ -167,6 +181,8 @@ public class LanternWheelController : MonoBehaviour
         arm.SetActive(false);
         lighter.SetActive(true);
         lighterAnim.SetBool("Equip", true);
+
+        StartCoroutine(PlaySound(SoundEffects[0], 1));
     }
 
     void UnequipLighter()
@@ -175,20 +191,30 @@ public class LanternWheelController : MonoBehaviour
         {
             lighterEquipped = false;
             lighterAnim.SetBool("Equip", false);
+            StartCoroutine(PlaySound(SoundEffects[1], 0.2f));
             Invoke("LighterOff", 1f);
             
         }
     }
 
+
     void LighterOff()
     {
+        StartCoroutine(PlaySound(SoundEffects[2], 0.3f));
         lighter.SetActive(false);
         arm.SetActive(true);
-        GetComponent<AudioSource>().Play();
     }
 
     public void PickupLantern()
     {
         UnequipLighter();
+    }
+
+    IEnumerator PlaySound(AudioClip clip, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        Source.clip = clip;
+        Source.Play();
     }
 }

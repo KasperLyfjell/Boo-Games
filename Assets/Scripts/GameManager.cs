@@ -6,6 +6,8 @@ using UnityEngine.Playables;
 
 public class GameManager : MonoBehaviour
 {
+    public LanternWheelController Wheel;
+
     public bool PlayIntro;
 
     public GameObject EditorLightUp;
@@ -47,8 +49,11 @@ public class GameManager : MonoBehaviour
 
     public void ShowLighter()
     {
+        Wheel.EquipLighter();
+        /*
         Lighter.gameObject.SetActive(true);
         Lighter.SetBool("Equip", true);
+        */
     }
 
     public void CutsceneEnd()
