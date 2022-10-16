@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     public SUPERCharacterAIO player;
 
     public Animator Lighter;
+    public Animator Photograph;
 
     public Light LanternLight;
 
@@ -66,5 +67,15 @@ public class GameManager : MonoBehaviour
         {
             ShowLighter();
         }
+    }
+
+    public void ShowPhotograph()
+    {
+        Photograph.SetBool("Equipped", true);
+    }
+
+    public void HidePhotograph()
+    {
+        Photograph.SetBool("Equipped", false);
     }
 }

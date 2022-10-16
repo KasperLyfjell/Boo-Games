@@ -156,6 +156,7 @@ public class LanternWheelController : MonoBehaviour
 
     void ReloadYellow()
     {
+        StartCoroutine(PlaySound(SoundEffects[2], 0.3f));
         flameColor.runtimeAnimatorController = flameYellow;
         flameLight.color = Color.yellow;
         armAnim.SetBool("Reload", false);
@@ -163,6 +164,7 @@ public class LanternWheelController : MonoBehaviour
 
     void ReloadBlue()
     {
+        StartCoroutine(PlaySound(SoundEffects[2], 0.3f));
         flameColor.runtimeAnimatorController = flameBlue;
         flameLight.color = Color.blue;
         armAnim.SetBool("Reload", false);
@@ -200,7 +202,7 @@ public class LanternWheelController : MonoBehaviour
 
     void LighterOff()
     {
-        StartCoroutine(PlaySound(SoundEffects[2], 0.3f));
+        //StartCoroutine(PlaySound(SoundEffects[2], 0.3f));
         lighter.SetActive(false);
         arm.SetActive(true);
     }
