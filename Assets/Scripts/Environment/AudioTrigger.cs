@@ -38,16 +38,16 @@ public class AudioTrigger : MonoBehaviour
             if (!FadeIn)
             {
                 AudioToFade.volume -= Time.deltaTime / delay;
-                Source.volume += Time.deltaTime / delay;
+                Source.volume += 1.5f * Time.deltaTime / delay;
             }
             else
             {
                 if (FadeOut)
                 {
-                    AudioToFade.volume -= 0.4f * Time.deltaTime;
+                    AudioToFade.volume -= 0.5f * Time.deltaTime;
                 }
 
-                Source.volume += 0.4f * Time.deltaTime;
+                Source.volume += 0.5f * Time.deltaTime;
 
                 
                 if (Source.volume >= FadeTo)
@@ -92,7 +92,6 @@ public class AudioTrigger : MonoBehaviour
 
     private void PlaySound()
     {
-        Source.Play();
 
         if (FadeOutAudio)
             StartCoroutine(Fadeout(2.5f));
@@ -105,14 +104,17 @@ public class AudioTrigger : MonoBehaviour
             fade = true;
         }
 
+        Source.Play();
     }
 
     IEnumerator Fadeout(float duration)
     {
         delay = duration;
         Source.volume = 0;
-        if(Source.clip.length <= AudioToFade.time)
+
+        //if(Source.clip.length <= AudioToFade.time)
             Source.time = AudioToFade.time;
+
         fade = true;
 
         yield return new WaitForSeconds(duration);

@@ -20,6 +20,12 @@ public class GameManager : MonoBehaviour
 
     public Light LanternLight;
 
+    public GameObject MenuCanvas;
+
+
+    private bool MenuOpen;
+    private KeyCode MenuOpenButton;
+
     private void Start()
     {
         EditorLightUp.SetActive(false);
@@ -29,12 +35,27 @@ public class GameManager : MonoBehaviour
             NewGameStart();
         else
             CutsceneEnd();
+
+        MenuOpenButton = KeyCode.Tab;
 #endif
 
 #if !UNITY_EDITOR //Build options
         NewGameStart();
         player.canSprint = false;
+
+        MenuOpenButton = KeyCode.Escape;
 #endif
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(MenuOpenButton))
+        {
+            if (MenuOpen)
+                CloseMenu();
+            else
+                OpenMenu();
+        }
     }
 
 
@@ -77,5 +98,27 @@ public class GameManager : MonoBehaviour
     public void HidePhotograph()
     {
         Photograph.SetBool("Equipped", false);
+    }
+
+    public void OpenMenu()
+    {
+        MenuOpen = true;
+
+        player.enableMovementControl = false;
+        player.enableCameraControl = false;
+        Cursor.lockState = CursorLockMode.None;
+        //player.lockAndHideMouse = false;
+        MenuCanvas.SetActive(true);
+    }
+
+    public void CloseMenu()
+    {
+        MenuOpen = false;
+
+        player.enableMovementControl = true;
+        player.enableCameraControl = true;
+        Cursor.lockState = CursorLockMode.Locked;
+        //player.lockAndHideMouse = true;
+        MenuCanvas.SetActive(false);
     }
 }

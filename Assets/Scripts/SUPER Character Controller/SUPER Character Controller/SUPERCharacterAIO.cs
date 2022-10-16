@@ -1566,6 +1566,10 @@ public class SUPERCharacterAIO : MonoBehaviour{
         p_Rigidbody.isKinematic = false;
     }
 
+        public void SpeedUp(float multiplier)
+        {
+            walkingSpeed *= multiplier;
+        }
 }
 
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using SUPERCharacter;
 
 public class temp_Door : MonoBehaviour
 {
@@ -22,6 +23,7 @@ public class temp_Door : MonoBehaviour
     private bool EndHasCome;
     public GameObject Dimmer;
     public AudioSource voice;
+    public SUPERCharacterAIO PlayerChar;
 
     private void Start()
     {
@@ -100,10 +102,13 @@ public class temp_Door : MonoBehaviour
 
     IEnumerator Ending()
     {
+        PlayerChar.enableCameraControl = false;
+        PlayerChar.enableMovementControl = false;
         EndHasCome = true;
         yield return new WaitForSeconds(6);
         voice.Play();
         yield return new WaitForSeconds(4);
+        PlayerChar.lockAndHideMouse = false;
         SceneManager.LoadScene("MainMenu");
     }
 }
