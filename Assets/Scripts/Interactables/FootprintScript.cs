@@ -15,7 +15,7 @@ public class FootprintScript : MonoBehaviour
 
     MeshRenderer Mesh;
 
-
+    public LanternWheelController wheelController;
 
     enum ObjectType
     {
@@ -64,7 +64,7 @@ public class FootprintScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (close == true && lanternLightColor.color == color)
+        if (wheelController.lighterEquipped == false && close == true && lanternLightColor.color == color)
         {
             switch (Type)
             {

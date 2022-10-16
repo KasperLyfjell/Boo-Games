@@ -33,6 +33,7 @@ public class LanternWheelController : MonoBehaviour
     GameObject lighter;
     Animator lighterAnim;
     public bool lighterEquipped = true;
+    bool lighterOn = false;
 
     [HideInInspector]
     public bool tutorial;
@@ -179,6 +180,7 @@ public class LanternWheelController : MonoBehaviour
 
     public void EquipLighter()
     {
+        lighterOn = true;
         lighterEquipped = true;
         arm.SetActive(false);
         lighter.SetActive(true);
@@ -189,9 +191,9 @@ public class LanternWheelController : MonoBehaviour
 
     void UnequipLighter()
     {
-        if (lighterEquipped)
+        if (lighterOn)
         {
-            lighterEquipped = false;
+            lighterOn = false;
             lighterAnim.SetBool("Equip", false);
             StartCoroutine(PlaySound(SoundEffects[1], 0.2f));
             Invoke("LighterOff", 1f);
@@ -202,6 +204,7 @@ public class LanternWheelController : MonoBehaviour
 
     void LighterOff()
     {
+        lighterEquipped = false;
         //StartCoroutine(PlaySound(SoundEffects[2], 0.3f));
         lighter.SetActive(false);
         arm.SetActive(true);
