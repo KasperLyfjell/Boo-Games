@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using SUPERCharacter;
 using UnityEngine.Playables;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -120,5 +121,10 @@ public class GameManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         //player.lockAndHideMouse = true;
         MenuCanvas.SetActive(false);
+    }
+
+    public void MainMenuBack()
+    {
+        SceneManager.LoadScene(0);
     }
 }
