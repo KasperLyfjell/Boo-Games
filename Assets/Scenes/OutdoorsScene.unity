@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 20.51931, g: 34.989594, b: 89.97827, a: 1}
+  m_IndirectSpecularColor: {r: 20.519402, g: 34.989227, b: 89.97705, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -12596,6 +12596,12 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 758549624}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &763965927 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8744945246459126801, guid: fd1c0bfef044824419905e864880c00e,
+    type: 3}
+  m_PrefabInstance: {fileID: 1110480750540105483}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &768629690
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18869,8 +18875,7 @@ PrefabInstance:
         type: 3}
       propertyPath: crosshairSprite
       value: 
-      objectReference: {fileID: 21300000, guid: 4138965da8e13c046abe79809fe827a5,
-        type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 6817638361354391145, guid: 32fce1012f8c24c43af86f00f457f500,
         type: 3}
       propertyPath: drawPrimitiveUI
@@ -32866,7 +32871,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1.8
+  m_Radius: 2.5
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &1838444990
 PrefabInstance:
@@ -36596,7 +36601,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Collectable_LanternColorVial_Blue
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8744945246459126813, guid: fd1c0bfef044824419905e864880c00e, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: fd1c0bfef044824419905e864880c00e, type: 3}
 --- !u!4 &1110480750540105484 stripped
 Transform:
@@ -36604,6 +36610,19 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1110480750540105483}
   m_PrefabAsset: {fileID: 0}
+--- !u!135 &1110480750540105489
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 763965927}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.7
+  m_Center: {x: 9.313225e-10, y: -0.000000004190952, z: 0.005122769}
 --- !u!1001 &1578718222759017384
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -36611,6 +36630,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 951159008}
     m_Modifications:
+    - target: {fileID: 252862421, guid: 46ba56c2fda05674991802d76c5d0138, type: 3}
+      propertyPath: m_Name
+      value: LanternFlame
+      objectReference: {fileID: 0}
     - target: {fileID: 1328246921, guid: 46ba56c2fda05674991802d76c5d0138, type: 3}
       propertyPath: SFXListener
       value: 
@@ -36619,6 +36642,10 @@ PrefabInstance:
       propertyPath: LanternWheel
       value: 
       objectReference: {fileID: 69305812}
+    - target: {fileID: 1328246922, guid: 46ba56c2fda05674991802d76c5d0138, type: 3}
+      propertyPath: m_Radius
+      value: 2.5
+      objectReference: {fileID: 0}
     - target: {fileID: 1578356144522604337, guid: 46ba56c2fda05674991802d76c5d0138,
         type: 3}
       propertyPath: m_RootOrder
