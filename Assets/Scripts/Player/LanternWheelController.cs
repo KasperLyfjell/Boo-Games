@@ -45,6 +45,8 @@ public class LanternWheelController : MonoBehaviour
     public AudioClip OpenUI;
     public AudioClip CloseUI;
 
+    Color defaultColor = new Color(0.945098f, 0.6392157f, 0.09411765f, 1f);
+
     private void Start()
     {
         Source = GetComponent<AudioSource>();
@@ -159,7 +161,7 @@ public class LanternWheelController : MonoBehaviour
     {
         StartCoroutine(PlaySound(SoundEffects[2], 0.3f));
         flameColor.runtimeAnimatorController = flameYellow;
-        flameLight.color = Color.yellow;
+        flameLight.color = defaultColor;
         armAnim.SetBool("Reload", false);
     }
 
