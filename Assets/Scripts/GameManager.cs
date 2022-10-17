@@ -27,9 +27,12 @@ public class GameManager : MonoBehaviour
     private bool MenuOpen;
     private KeyCode MenuOpenButton;
 
+    private bool playingCutscene;
+
     private void Start()
     {
         EditorLightUp.SetActive(false);
+        playingCutscene = true;
 
 #if UNITY_EDITOR
         if (PlayIntro)
@@ -50,7 +53,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(MenuOpenButton))
+        if (Input.GetKeyDown(MenuOpenButton) && !playingCutscene)
         {
             if (MenuOpen)
                 CloseMenu();
@@ -82,6 +85,7 @@ public class GameManager : MonoBehaviour
     public void CutsceneEnd()
     {
         Debug.Log("you can walk now");
+        playingCutscene = false;
         player.enableCameraControl = true;
         player.enableMovementControl = true;
 

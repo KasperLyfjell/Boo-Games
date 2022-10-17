@@ -47,6 +47,8 @@ public class MenuController : MonoBehaviour
     [SerializeField] private Toggle invertYToggle = null;
 
     public Image blackOutSquare;
+    public GameObject StayTuned;
+    public static bool CompletedGame;
 
     public static Action OnBeforeRebind { get; internal set; }
     public static Action OnAfterRebind { get; internal set; }
@@ -55,6 +57,12 @@ public class MenuController : MonoBehaviour
 
     private void Start()
     {
+        if (CompletedGame)
+            StayTuned.SetActive(true);
+
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+
         StartCoroutine(FadeBlackOutSquare(false));
         blackOutSquare.raycastTarget = false;
         resolutions = Screen.resolutions;
