@@ -53,6 +53,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        /*
         if (Input.GetKeyDown(MenuOpenButton) && !playingCutscene)
         {
             if (MenuOpen)
@@ -60,6 +61,7 @@ public class GameManager : MonoBehaviour
             else
                 OpenMenu();
         }
+        */
     }
 
 

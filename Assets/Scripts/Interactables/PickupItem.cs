@@ -13,6 +13,7 @@ public class PickupItem : MonoBehaviour
     public AudioClip SoundEffect;
 
     private bool Inside;
+    public GameObject tooltip;
 
     [Header("Only for Collectable")]
     public GameObject Tutorial;
@@ -53,11 +54,16 @@ public class PickupItem : MonoBehaviour
     {
         if (Inside)
         {
+            if(tooltip != null)
+                tooltip.SetActive(true);
+
             if (Input.GetKeyDown(InteractButton))
             {
                 PickUp();
             }
         }
+        else if (tooltip != null)
+            tooltip.SetActive(false);
     }
 
 
@@ -69,6 +75,9 @@ public class PickupItem : MonoBehaviour
 
         if (Voiceline != null)
             Voiceline.Play();
+
+        if(tooltip != null)
+            Destroy(tooltip);
 
         switch (Type)
         {
