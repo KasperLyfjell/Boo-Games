@@ -977,7 +977,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab58b8da9a533374b91c3ed0213aaadd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CanInteract: 1
+  CanInteract: 0
   charScript: {fileID: 973860289}
   flameYellow: {fileID: 9100000, guid: afdc6e8bcd57e9e42a64978e5ea081e9, type: 2}
   flameBlue: {fileID: 9100000, guid: e13ea6e950164bc4699082df462930d0, type: 2}
