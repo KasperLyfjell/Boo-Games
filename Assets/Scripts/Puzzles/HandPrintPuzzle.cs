@@ -5,11 +5,25 @@ using UnityEngine;
 public class HandPrintPuzzle : MonoBehaviour
 {
     public GameObject door;
-    private void OnTriggerStay(Collider other)
+    bool isClose;
+
+    private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (isClose)
         {
-            Destroy(door);
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                Destroy(door);
+            }
         }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        isClose = true;
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        isClose = false;
     }
 }

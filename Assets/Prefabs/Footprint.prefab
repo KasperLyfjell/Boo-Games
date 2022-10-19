@@ -25,7 +25,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5902010337710405359}
-  m_LocalRotation: {x: 0.70710707, y: -0, z: -0, w: 0.70710653}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0.282, y: 0.139, z: 8.77}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -33,7 +33,7 @@ Transform:
   - {fileID: 5902010338260138553}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!135 &5902010337710405353
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -59,6 +59,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cb1a583e1776a545ae45962ee0a753a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Type: 0
+  Lcolor: 0
+  lanternLightColor: {fileID: 0}
+  wheelController: {fileID: 0}
 --- !u!1 &5902010338260138552
 GameObject:
   m_ObjectHideFlags: 0

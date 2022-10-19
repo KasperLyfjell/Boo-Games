@@ -9,7 +9,7 @@ public class FootprintScript : MonoBehaviour
     [SerializeField] LanternColor Lcolor = new LanternColor();
     private Color color;
 
-    Light lanternLightColor;
+    public Light lanternLightColor;
     bool close = false;
     DecalProjector dp;
 
@@ -32,8 +32,8 @@ public class FootprintScript : MonoBehaviour
 
     private void Start()
     {
-        GameManager manager = GameObject.Find("GameManager").GetComponent<GameManager>();
-        lanternLightColor = manager.LanternLight;
+        //GameManager manager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        //lanternLightColor = manager.LanternLight;
 
         switch (Lcolor)
         {

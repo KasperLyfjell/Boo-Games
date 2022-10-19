@@ -16,7 +16,7 @@ public class LanternWheelController : MonoBehaviour
 
     public RuntimeAnimatorController flameYellow, flameBlue, flameGreen;
     Animator flameColor;
-    Light flameLight;
+    public Light flameLight;
     GameObject arm;
     Animator armAnim;
 
