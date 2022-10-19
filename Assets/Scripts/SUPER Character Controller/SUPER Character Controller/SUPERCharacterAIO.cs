@@ -134,7 +134,7 @@ public class SUPERCharacterAIO : MonoBehaviour{
     float jumpBlankingPeriod;
 
     //Sliding
-    public bool isSliding, canSlide = true;
+    public bool isSliding, canSlide = false;
     public float slidingDeceleration = 150.0f, slidingTransitionSpeed=4, maxFlatSlideDistance =10;
     
 
@@ -1569,6 +1569,7 @@ public class SUPERCharacterAIO : MonoBehaviour{
         public void SpeedUp(float multiplier)
         {
             walkingSpeed *= multiplier;
+            currentGroundSpeed *= multiplier;
         }
 }
 

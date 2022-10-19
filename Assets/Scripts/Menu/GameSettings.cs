@@ -17,7 +17,7 @@ public class GameSettings : MonoBehaviour
 
     #region Camera Settings
     [Range(0, 6)]
-    public static float HeadBobbing = 3;//3 as default for testing
+    public static float HeadBobbing = 4;//3 as default for testing
     [Range(1, 8)]
     public static float MouseSensitivity = 3;
     #endregion

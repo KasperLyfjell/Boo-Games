@@ -59,7 +59,13 @@ public class PickupItem : MonoBehaviour
 
             if (Input.GetKeyDown(InteractButton))
             {
-                PickUp();
+                if(GetComponent<MeshRenderer>() != null)
+                {
+                    if(GetComponent<MeshRenderer>().enabled)
+                        PickUp();
+                }
+                else
+                    PickUp();
             }
         }
         else if (tooltip != null)

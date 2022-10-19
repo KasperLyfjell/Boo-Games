@@ -57,6 +57,8 @@ public class MenuController : MonoBehaviour
 
     private void Start()
     {
+        blackOutSquare.gameObject.SetActive(true);
+
         if (CompletedGame)
             StayTuned.SetActive(true);
 

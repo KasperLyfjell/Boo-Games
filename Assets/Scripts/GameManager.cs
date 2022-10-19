@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public LanternWheelController Wheel;
 
     public bool PlayIntro;
+    public bool PreviewIngameSprint;
 
     public GameObject EditorLightUp;
     public PlayableDirector Intro;
@@ -41,6 +42,9 @@ public class GameManager : MonoBehaviour
             CutsceneEnd();
 
         MenuOpenButton = KeyCode.Tab;
+
+        if(!PreviewIngameSprint)
+            player.sprintingSpeed = 600;
 #endif
 
 #if !UNITY_EDITOR //Build options
