@@ -685,6 +685,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: f9d30bb489af6274b9bf2e2aba39572f, type: 3}
   OpenUI: {fileID: 0}
   CloseUI: {fileID: 0}
+  defaultColor: {r: 0.945098, g: 0.6392157, b: 0.09411765, a: 1}
 --- !u!82 &204960234
 AudioSource:
   m_ObjectHideFlags: 0

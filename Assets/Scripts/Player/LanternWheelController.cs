@@ -45,7 +45,7 @@ public class LanternWheelController : MonoBehaviour
     public AudioClip OpenUI;
     public AudioClip CloseUI;
 
-    Color defaultColor = new Color(0.945098f, 0.6392157f, 0.09411765f, 1f);
+    public Color defaultColor = new Color(0.945098f, 0.6392157f, 0.09411765f, 1f);
 
     private void Start()
     {

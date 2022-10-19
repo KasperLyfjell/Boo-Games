@@ -28,7 +28,7 @@ public class Painting : MonoBehaviour
         switch (reactToColor)
         {
             case Type.YellowLight:
-                color = Color.yellow;
+                color = lanternWheel.defaultColor;
                 break;
 
             case Type.BlueLight:

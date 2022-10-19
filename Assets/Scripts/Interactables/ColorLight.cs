@@ -19,6 +19,7 @@ public class ColorLight : MonoBehaviour
     LanternWheelController lwController;
 
     bool playedBlue, playedGreen;
+    Color defaultLight;
 
     // Start is called before the first frame update
     void Start()
@@ -26,6 +27,7 @@ public class ColorLight : MonoBehaviour
         lanternFlameColor = GameObject.Find("PlayerLanternFlame").GetComponent<Animator>();
         lanternLightColor = GameObject.Find("PlayerLanternLight").GetComponent<Light>();
         lwController = GameObject.Find("LanternWheel").GetComponent<LanternWheelController>();
+        defaultLight = lwController.defaultColor;
 
         colorSelf = GetComponentInChildren<Light>();
         flameSelf = GetComponentInChildren<Animator>();
@@ -34,7 +36,7 @@ public class ColorLight : MonoBehaviour
         switch (lightType)
         {
             case Type.YellowLight:
-                colorSelf.color = Color.yellow;
+                colorSelf.color = defaultLight;
                 flameSelf.runtimeAnimatorController = lightFlameColors[0];
                 break;
 
@@ -57,7 +59,7 @@ public class ColorLight : MonoBehaviour
         {
             if (!Input.GetMouseButton(1))
             { 
-             if (colorSelf.color == Color.yellow)
+             if (colorSelf.color == defaultLight)
                 {
                     LanternYellow();
                 }
@@ -90,9 +92,9 @@ public class ColorLight : MonoBehaviour
     void LanternYellow()
     {
         lanternFlameColor.runtimeAnimatorController = lightFlameColors[0];
-        lanternLightColor.color = Color.yellow;
+        lanternLightColor.color = defaultLight;
         var main = poofEffect.main;
-        main.startColor = Color.yellow;
+        main.startColor = defaultLight;
         poofEffect.Play();
     }
 
