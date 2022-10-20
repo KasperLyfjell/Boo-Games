@@ -18,7 +18,7 @@ public class ColorLight : MonoBehaviour
     public RuntimeAnimatorController[] lightFlameColors;
     LanternWheelController lwController;
 
-    bool playedBlue, playedGreen;
+    bool playedBlue, playedGreen, playedRed;
     Color defaultLight;
 
     // Start is called before the first frame update
@@ -49,6 +49,10 @@ public class ColorLight : MonoBehaviour
                 colorSelf.color = Color.green;
                 flameSelf.runtimeAnimatorController = lightFlameColors[2];
                 break;
+            case Type.RedLight:
+                colorSelf.color = Color.red;
+                flameSelf.runtimeAnimatorController = lightFlameColors[0];
+                break;
         }
             
     }
@@ -59,7 +63,7 @@ public class ColorLight : MonoBehaviour
         {
             if (!Input.GetMouseButton(1))
             { 
-             if (colorSelf.color == defaultLight)
+                if (colorSelf.color == defaultLight)
                 {
                     LanternYellow();
                 }
@@ -72,6 +76,11 @@ public class ColorLight : MonoBehaviour
                 if (colorSelf.color == Color.green)
                 {
                     LanternGreen();
+                }
+
+                if (colorSelf.color == Color.red)
+                {
+                    LanternRed();
                 }
             }
 
@@ -132,10 +141,28 @@ public class ColorLight : MonoBehaviour
         }
     }
 
+    void LanternRed()
+    {
+        lanternFlameColor.runtimeAnimatorController = lightFlameColors[0];
+        lanternLightColor.color = Color.red;
+        var main = poofEffect.main;
+        main.startColor = Color.red;
+        poofEffect.Play();
+
+        if (playedRed == false)
+        {
+            playedRed = true;
+            lwController.redCollected = true;
+            lwController.buttonRed.interactable = true;
+            lwController.iconRed.SetActive(true);
+        }
+    }
+
     enum Type
     {
         YellowLight,
         BlueLight,
-        GreenLight
+        GreenLight,
+        RedLight
     };
 }

@@ -22,11 +22,14 @@ public class LanternWheelController : MonoBehaviour
 
     public bool blueCollected = false;
     public bool greenCollected = false;
+    public bool redCollected = false;
 
     public Button buttonBlue;
     public GameObject iconBlue;
     public Button buttonGreen;
     public GameObject iconGreen;
+    public Button buttonRed;
+    public GameObject iconRed;
 
     bool played = false;
 
@@ -54,6 +57,8 @@ public class LanternWheelController : MonoBehaviour
         iconBlue.SetActive(false);
         buttonGreen.interactable = false;
         iconGreen.SetActive(false);
+        buttonRed.interactable = false;
+        iconRed.SetActive(false);
 
         anim = GetComponent<Animator>();
         flameLight = GameObject.Find("PlayerLanternLight").GetComponent<Light>();
@@ -128,8 +133,13 @@ public class LanternWheelController : MonoBehaviour
                     Invoke("ReloadBlue", 1f);
                 }
                 break;
-            case 3: // X light
-                
+            case 3: // Red light
+                if (redCollected == true)
+                {
+                    UnequipLighter();
+                    armAnim.SetBool("Reload", true);
+                    Invoke("ReloadRed", 1f);
+                }
                 break;
             case 4: // X light
 
@@ -177,6 +187,14 @@ public class LanternWheelController : MonoBehaviour
     {
         flameColor.runtimeAnimatorController = flameGreen;
         flameLight.color = Color.green;
+        armAnim.SetBool("Reload", false);
+    }
+
+    void ReloadRed()
+    {
+        StartCoroutine(PlaySound(SoundEffects[2], 0.3f));
+        flameColor.runtimeAnimatorController = flameYellow;
+        flameLight.color = Color.red;
         armAnim.SetBool("Reload", false);
     }
 
