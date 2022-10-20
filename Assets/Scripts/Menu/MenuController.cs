@@ -61,6 +61,8 @@ public class MenuController : MonoBehaviour
 
         if (CompletedGame)
             StayTuned.SetActive(true);
+        else
+            StayTuned.SetActive(false);
 
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;

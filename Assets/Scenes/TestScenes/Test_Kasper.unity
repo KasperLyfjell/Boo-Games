@@ -136,6 +136,11 @@ PrefabInstance:
       propertyPath: wheelController
       value: 
       objectReference: {fileID: 204960233}
+    - target: {fileID: 5902010337710405352, guid: fcb6b1e7f129bb54b907af3307a1bd18,
+        type: 3}
+      propertyPath: lanternLightColor
+      value: 
+      objectReference: {fileID: 885468181}
     - target: {fileID: 5902010337710405354, guid: fcb6b1e7f129bb54b907af3307a1bd18,
         type: 3}
       propertyPath: m_RootOrder
@@ -484,6 +489,11 @@ PrefabInstance:
       propertyPath: wheelController
       value: 
       objectReference: {fileID: 204960233}
+    - target: {fileID: 5902010337710405352, guid: fcb6b1e7f129bb54b907af3307a1bd18,
+        type: 3}
+      propertyPath: lanternLightColor
+      value: 
+      objectReference: {fileID: 885468181}
     - target: {fileID: 5902010337710405354, guid: fcb6b1e7f129bb54b907af3307a1bd18,
         type: 3}
       propertyPath: m_RootOrder
@@ -953,6 +963,11 @@ PrefabInstance:
       propertyPath: wheelController
       value: 
       objectReference: {fileID: 204960233}
+    - target: {fileID: 5902010337710405352, guid: fcb6b1e7f129bb54b907af3307a1bd18,
+        type: 3}
+      propertyPath: lanternLightColor
+      value: 
+      objectReference: {fileID: 885468181}
     - target: {fileID: 5902010337710405354, guid: fcb6b1e7f129bb54b907af3307a1bd18,
         type: 3}
       propertyPath: m_RootOrder
@@ -1975,6 +1990,11 @@ PrefabInstance:
       propertyPath: wheelController
       value: 
       objectReference: {fileID: 204960233}
+    - target: {fileID: 5902010337710405352, guid: fcb6b1e7f129bb54b907af3307a1bd18,
+        type: 3}
+      propertyPath: lanternLightColor
+      value: 
+      objectReference: {fileID: 885468181}
     - target: {fileID: 5902010337710405354, guid: fcb6b1e7f129bb54b907af3307a1bd18,
         type: 3}
       propertyPath: m_RootOrder
@@ -2207,6 +2227,11 @@ PrefabInstance:
       propertyPath: wheelController
       value: 
       objectReference: {fileID: 204960233}
+    - target: {fileID: 8355126445296054259, guid: 20b000ea4d4d64d4abf991f2e2ecb7a8,
+        type: 3}
+      propertyPath: lanternLightColor
+      value: 
+      objectReference: {fileID: 885468181}
     - target: {fileID: 8355126445296054260, guid: 20b000ea4d4d64d4abf991f2e2ecb7a8,
         type: 3}
       propertyPath: m_Name
@@ -2344,6 +2369,11 @@ PrefabInstance:
       propertyPath: wheelController
       value: 
       objectReference: {fileID: 204960233}
+    - target: {fileID: 5902010337710405352, guid: fcb6b1e7f129bb54b907af3307a1bd18,
+        type: 3}
+      propertyPath: lanternLightColor
+      value: 
+      objectReference: {fileID: 885468181}
     - target: {fileID: 5902010337710405354, guid: fcb6b1e7f129bb54b907af3307a1bd18,
         type: 3}
       propertyPath: m_RootOrder
@@ -2490,6 +2520,11 @@ PrefabInstance:
       propertyPath: wheelController
       value: 
       objectReference: {fileID: 204960233}
+    - target: {fileID: 5902010337710405352, guid: fcb6b1e7f129bb54b907af3307a1bd18,
+        type: 3}
+      propertyPath: lanternLightColor
+      value: 
+      objectReference: {fileID: 885468181}
     - target: {fileID: 5902010337710405354, guid: fcb6b1e7f129bb54b907af3307a1bd18,
         type: 3}
       propertyPath: m_RootOrder
@@ -2882,6 +2917,11 @@ PrefabInstance:
       propertyPath: wheelController
       value: 
       objectReference: {fileID: 204960233}
+    - target: {fileID: 5902010337710405352, guid: fcb6b1e7f129bb54b907af3307a1bd18,
+        type: 3}
+      propertyPath: lanternLightColor
+      value: 
+      objectReference: {fileID: 885468181}
     - target: {fileID: 5902010337710405354, guid: fcb6b1e7f129bb54b907af3307a1bd18,
         type: 3}
       propertyPath: m_RootOrder
@@ -3269,6 +3309,11 @@ PrefabInstance:
       propertyPath: wheelController
       value: 
       objectReference: {fileID: 204960233}
+    - target: {fileID: 5902010337710405352, guid: fcb6b1e7f129bb54b907af3307a1bd18,
+        type: 3}
+      propertyPath: lanternLightColor
+      value: 
+      objectReference: {fileID: 885468181}
     - target: {fileID: 5902010337710405354, guid: fcb6b1e7f129bb54b907af3307a1bd18,
         type: 3}
       propertyPath: m_RootOrder
@@ -3577,6 +3622,11 @@ PrefabInstance:
       propertyPath: wheelController
       value: 
       objectReference: {fileID: 204960233}
+    - target: {fileID: 5902010337710405352, guid: fcb6b1e7f129bb54b907af3307a1bd18,
+        type: 3}
+      propertyPath: lanternLightColor
+      value: 
+      objectReference: {fileID: 885468181}
     - target: {fileID: 5902010337710405354, guid: fcb6b1e7f129bb54b907af3307a1bd18,
         type: 3}
       propertyPath: m_RootOrder
@@ -4235,6 +4285,11 @@ PrefabInstance:
       propertyPath: wheelController
       value: 
       objectReference: {fileID: 204960233}
+    - target: {fileID: 5902010337710405352, guid: fcb6b1e7f129bb54b907af3307a1bd18,
+        type: 3}
+      propertyPath: lanternLightColor
+      value: 
+      objectReference: {fileID: 885468181}
     - target: {fileID: 5902010337710405354, guid: fcb6b1e7f129bb54b907af3307a1bd18,
         type: 3}
       propertyPath: m_RootOrder
@@ -5707,6 +5762,11 @@ PrefabInstance:
       propertyPath: wheelController
       value: 
       objectReference: {fileID: 204960233}
+    - target: {fileID: 5902010337710405352, guid: fcb6b1e7f129bb54b907af3307a1bd18,
+        type: 3}
+      propertyPath: lanternLightColor
+      value: 
+      objectReference: {fileID: 885468181}
     - target: {fileID: 5902010337710405354, guid: fcb6b1e7f129bb54b907af3307a1bd18,
         type: 3}
       propertyPath: m_RootOrder
@@ -6056,6 +6116,11 @@ PrefabInstance:
       propertyPath: wheelController
       value: 
       objectReference: {fileID: 204960233}
+    - target: {fileID: 5902010337710405352, guid: fcb6b1e7f129bb54b907af3307a1bd18,
+        type: 3}
+      propertyPath: lanternLightColor
+      value: 
+      objectReference: {fileID: 885468181}
     - target: {fileID: 5902010337710405354, guid: fcb6b1e7f129bb54b907af3307a1bd18,
         type: 3}
       propertyPath: m_RootOrder
@@ -6689,6 +6754,11 @@ PrefabInstance:
       propertyPath: wheelController
       value: 
       objectReference: {fileID: 204960233}
+    - target: {fileID: 5902010337710405352, guid: fcb6b1e7f129bb54b907af3307a1bd18,
+        type: 3}
+      propertyPath: lanternLightColor
+      value: 
+      objectReference: {fileID: 885468181}
     - target: {fileID: 5902010337710405354, guid: fcb6b1e7f129bb54b907af3307a1bd18,
         type: 3}
       propertyPath: m_RootOrder
@@ -7494,6 +7564,11 @@ PrefabInstance:
       propertyPath: wheelController
       value: 
       objectReference: {fileID: 204960233}
+    - target: {fileID: 5902010337710405352, guid: fcb6b1e7f129bb54b907af3307a1bd18,
+        type: 3}
+      propertyPath: lanternLightColor
+      value: 
+      objectReference: {fileID: 885468181}
     - target: {fileID: 5902010337710405354, guid: fcb6b1e7f129bb54b907af3307a1bd18,
         type: 3}
       propertyPath: m_RootOrder
@@ -8554,6 +8629,11 @@ PrefabInstance:
       propertyPath: wheelController
       value: 
       objectReference: {fileID: 204960233}
+    - target: {fileID: 5902010337710405352, guid: fcb6b1e7f129bb54b907af3307a1bd18,
+        type: 3}
+      propertyPath: lanternLightColor
+      value: 
+      objectReference: {fileID: 885468181}
     - target: {fileID: 5902010337710405354, guid: fcb6b1e7f129bb54b907af3307a1bd18,
         type: 3}
       propertyPath: m_RootOrder

@@ -49,7 +49,7 @@ public class GameManager : MonoBehaviour
 
 #if !UNITY_EDITOR //Build options
         NewGameStart();
-        player.canSprint = false;
+        //player.canSprint = false;
 
         MenuOpenButton = KeyCode.Escape;
 #endif
