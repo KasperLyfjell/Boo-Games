@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 262.1853, g: 324.85815, b: 429.9668, a: 1}
+  m_IndirectSpecularColor: {r: 262.3369, g: 325.0498, b: 430.21924, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1639,7 +1639,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1038398968}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.22, y: 1.41, z: 2.42}
+  m_LocalPosition: {x: -2.22, y: 1.601, z: 2.42}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1807,6 +1807,7 @@ MonoBehaviour:
   OpeningSpeed: 15
   OpeningForce: 300
   SlamThreshold: 0
+  StandardVolume: 0
   InteractCue: {fileID: 1363291057}
   OpeningFX: {fileID: 8300000, guid: 2f05389fd8f219f4091b910a66575d9a, type: 3}
   SlowOpeningFX: {fileID: 8300000, guid: 8d52bf53c1a8ae44886354e392233cb7, type: 3}
@@ -2803,14 +2804,15 @@ MonoBehaviour:
   OpeningSpeed: 15
   OpeningForce: 300
   SlamThreshold: 80
+  StandardVolume: 1
   InteractCue: {fileID: 1363291057}
   OpeningFX: {fileID: 8300000, guid: 2f05389fd8f219f4091b910a66575d9a, type: 3}
   SlowOpeningFX: {fileID: 8300000, guid: 8d52bf53c1a8ae44886354e392233cb7, type: 3}
-  ClosingFX: {fileID: 0}
-  SlowClosingFX: {fileID: 0}
-  SlamOpen: {fileID: 0}
-  SlamClose: {fileID: 0}
-  QuietClose: {fileID: 0}
+  ClosingFX: {fileID: 8300000, guid: 2f05389fd8f219f4091b910a66575d9a, type: 3}
+  SlowClosingFX: {fileID: 8300000, guid: 8d52bf53c1a8ae44886354e392233cb7, type: 3}
+  SlamOpen: {fileID: 8300000, guid: e23005ee66d46f3448115044487ab9f2, type: 3}
+  SlamClose: {fileID: 8300000, guid: e23005ee66d46f3448115044487ab9f2, type: 3}
+  QuietClose: {fileID: 8300000, guid: 78cabb5d807c6ba42a273be8fbb0dfb1, type: 3}
 --- !u!135 &1973143706
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -2834,7 +2836,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 8d52bf53c1a8ae44886354e392233cb7, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1

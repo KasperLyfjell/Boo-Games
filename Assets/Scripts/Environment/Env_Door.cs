@@ -23,6 +23,8 @@ public class Env_Door: MonoBehaviour
     public float OpeningForce;
     [Tooltip("How much force is required to slam the door open/close (Recommend ~80)")]
     public float SlamThreshold;
+    [Tooltip("The volume of the door opening and closing (does not impact the slamming and closing of the door sounds)")]
+    public float StandardVolume;
 
     public TextMeshProUGUI InteractCue;
 
@@ -66,7 +68,6 @@ public class Env_Door: MonoBehaviour
     public AudioClip SlamOpen;
     public AudioClip SlamClose;
     public AudioClip QuietClose;
-    //public AudioClip ClosingFX;//Same audio file but in reverse
 
     private float clipLength;
     private float startTime;
@@ -84,7 +85,7 @@ public class Env_Door: MonoBehaviour
         DoorInteract = KeyCode.Mouse0;//This is a test function that's modifiable later on
 
         SFX = GetComponent<AudioSource>();
-        clipLength = SFX.clip.length;
+        SFX.volume = StandardVolume;
 
         RotationalPosition = transform.localRotation;
         soundChangeThreshold = OpeningSpeed + (OpeningForce / 10);//Should be hopefully around 40
@@ -126,12 +127,15 @@ public class Env_Door: MonoBehaviour
 
             if (transform.EulerAsInspector().y > MaxRotation && RotationalAngle.y > transform.EulerAsInspector().y)//Slamming door open
             {
-                SFX.Stop();
-
                 if (!OutOfBoundries)
                 {
+                    SFX.Stop();
+
                     if (force > SlamThreshold)
-                        Debug.Log("I slam the door open");
+                    {
+                        SFX.volume = (0.3f + force / 350);
+                        SlamSound(SlamOpen);
+                    }
 
                     OutOfBoundries = true;
                 }
@@ -141,14 +145,20 @@ public class Env_Door: MonoBehaviour
             }
             else if (transform.EulerAsInspector().y < MinRotation && RotationalAngle.y  < transform.EulerAsInspector().y)//Locking the door
             {
-                SFX.Stop();
-
                 if (!OutOfBoundries)
                 {
+                    SFX.Stop();
+
                     if (force > SlamThreshold)
-                        Debug.Log("I slam the door close");
+                    {
+                        SFX.volume = (0.3f + force / 350);
+                        SlamSound(SlamClose);
+                    }
                     else
-                        Debug.Log("I gently close the door");
+                    {
+                        SFX.volume = (0.2f + force / 100);
+                        SlamSound(QuietClose);
+                    }
 
                     OutOfBoundries = true;
                 }
@@ -220,44 +230,49 @@ public class Env_Door: MonoBehaviour
 
         if (RotationalPosition.eulerAngles.y > transform.eulerAngles.y)//The door is opening
         {
-            SFX.clip = OpeningFX;
+            //SFX.clip = OpeningFX;
         }
         else if (RotationalPosition.eulerAngles.y < transform.eulerAngles.y)//The door is closing
         {
             OpeningPercentage = 1 - OpeningPercentage;
-            SFX.clip = ClosingFX;
+            //SFX.clip = ClosingFX;
         }
 
         startTime = clipLength * OpeningPercentage;
 
-        if (!SFX.isPlaying)
+        if(startTime <= clipLength && startTime >= 0)//removes annoying errors in editor, however the script works fine without this line
         {
-            PlaySound(startTime);
+            if (!SFX.isPlaying)
+            {
+                PlaySound(startTime);
+            }
+            if (force < soundChangeThreshold)//Slow sfx
+            {
+                if (RotationalPosition.eulerAngles.y > transform.eulerAngles.y && SFX.clip != SlowOpeningFX)//opening
+                {
+                    ChangeSound(SlowOpeningFX);
+                }
+                else if (RotationalPosition.eulerAngles.y < transform.eulerAngles.y && SFX.clip != SlowClosingFX)//closing
+                {
+                    ChangeSound(SlowClosingFX);
+                }
+            }
+            else if (force > soundChangeThreshold)//Fast sfx
+            {
+                if (RotationalPosition.eulerAngles.y > transform.eulerAngles.y && SFX.clip != OpeningFX)//opening
+                {
+                    ChangeSound(OpeningFX);
+                }
+                else if (RotationalPosition.eulerAngles.y < transform.eulerAngles.y && SFX.clip != ClosingFX)//closing
+                {
+                    ChangeSound(ClosingFX);
+                }
+            }
         }
-        else if (force < soundChangeThreshold)//Slow sfx
-        {
-            if (RotationalPosition.eulerAngles.y > transform.eulerAngles.y && SFX.clip != SlowOpeningFX)//opening
-            {
-                ChangeSound(SlowOpeningFX);
-            }
-            else if(RotationalPosition.eulerAngles.y < transform.eulerAngles.y && SFX.clip != SlowClosingFX)//closing
-            {
-                ChangeSound(SlowClosingFX);
-            }
-        }
-        else if (force > soundChangeThreshold)//Fast sfx
-        {
-            if (RotationalPosition.eulerAngles.y > transform.eulerAngles.y && SFX.clip != OpeningFX)//opening
-            {
-                ChangeSound(OpeningFX);
-            }
-            else if (RotationalPosition.eulerAngles.y < transform.eulerAngles.y && SFX.clip != ClosingFX)//closing
-            {
-                ChangeSound(ClosingFX);
-            }
-        }
+        
+
         /*
-        else if (force < soundChangeThreshold && SFX.clip != SlowOpeningFX)
+        if (force < soundChangeThreshold && SFX.clip != SlowOpeningFX)
         {
             ChangeSound(SlowOpeningFX);
         }
@@ -270,6 +285,7 @@ public class Env_Door: MonoBehaviour
 
     private void PlaySound(float start)
     {
+        SFX.volume = StandardVolume;
         SFX.time = start;
         SFX.Play();
     }
@@ -281,5 +297,11 @@ public class Env_Door: MonoBehaviour
         clipLength = SFX.clip.length;
         startTime = clipLength * OpeningPercentage;
         PlaySound(startTime);
+    }
+
+    private void SlamSound(AudioClip sound)
+    {
+        SFX.clip = sound;
+        SFX.Play();
     }
 }
