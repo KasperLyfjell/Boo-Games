@@ -50,6 +50,10 @@ public class LanternWheelController : MonoBehaviour
 
     public Color defaultColor = new Color(0.945098f, 0.6392157f, 0.09411765f, 1f);
 
+    public GameObject Pointer;
+    private Vector3 MousePos;
+    private Vector3 ScreenCenter;
+
     private void Start()
     {
         Source = GetComponent<AudioSource>();
@@ -76,6 +80,8 @@ public class LanternWheelController : MonoBehaviour
     {
         if (CanInteract)
         {
+            PointerMovement();
+
             if(tutorial && Input.GetKeyDown(KeyCode.Q))
             {
                 tutorialUI.SetActive(false);
@@ -221,7 +227,6 @@ public class LanternWheelController : MonoBehaviour
         }
     }
 
-
     void LighterOff()
     {
         lighterEquipped = false;
@@ -241,5 +246,17 @@ public class LanternWheelController : MonoBehaviour
 
         Source.clip = clip;
         Source.Play();
+    }
+
+    private void PointerMovement()
+    {
+        ScreenCenter = new Vector3(Screen.width, Screen.height, 0) / 2;
+        MousePos = Input.mousePosition - ScreenCenter;
+        MousePos.Normalize();
+
+        float rotation_z = Mathf.Atan2(MousePos.y, MousePos.x) * Mathf.Rad2Deg;
+        Quaternion Target = Quaternion.Euler(0, 0, rotation_z);
+
+        Pointer.transform.rotation = Quaternion.RotateTowards(Pointer.transform.rotation, Target, Time.deltaTime * 700);
     }
 }
