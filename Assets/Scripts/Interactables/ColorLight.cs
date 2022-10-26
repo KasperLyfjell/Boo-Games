@@ -61,41 +61,35 @@ public class ColorLight : MonoBehaviour
     {
         if (lwController.lighterEquipped == false)
         {
-            if (!Input.GetMouseButton(1))
-            { 
-                if (colorSelf.color == defaultLight)
-                {
-                    LanternYellow();
-                }
+            colorSelf.color = lanternLightColor.color;
+            var main = poofEffect.main;
+            main.startColor = lanternLightColor.color;
+            poofEffect.Play();
+            flameSelf.runtimeAnimatorController = lanternFlameColor.runtimeAnimatorController;
 
-                if (colorSelf.color == Color.blue)
-                {
-                    LanternBlue();
-                }
+            //if (!Input.GetMouseButton(1))
+            //{ 
+            //    if (colorSelf.color == defaultLight)
+            //    {
+            //        LanternYellow();
+            //    }
 
-                if (colorSelf.color == Color.green)
-                {
-                    LanternGreen();
-                }
+            //    if (colorSelf.color == Color.blue)
+            //    {
+            //        LanternBlue();
+            //    }
 
-                if (colorSelf.color == Color.red)
-                {
-                    LanternRed();
-                }
-            }
+            //    if (colorSelf.color == Color.green)
+            //    {
+            //        LanternGreen();
+            //    }
 
-           else if (Input.GetMouseButton(1))
-            {
-                colorSelf.color = lanternLightColor.color;
-                var main = poofEffect.main;
-             main.startColor = lanternLightColor.color;
-                poofEffect.Play();
-                flameSelf.runtimeAnimatorController = lanternFlameColor.runtimeAnimatorController;
-            }
-
+            //    if (colorSelf.color == Color.red)
+            //    {
+            //        LanternRed();
+            //    }
+            //}
         }
-
-
     }
 
     void LanternYellow()
