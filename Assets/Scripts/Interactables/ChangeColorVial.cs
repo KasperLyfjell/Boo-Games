@@ -7,11 +7,12 @@ public class ChangeColorVial : MonoBehaviour
     [SerializeField]
     Type lightType = new Type();
 
-    Animator lanternFlameColor;
-    Light lanternLightColor;
+    //Animator lanternFlameColor;
+    //Light lanternLightColor;
 
     int vialColor;
-    Animator armAnim;
+    Light vialLight;
+    public Animator lanternArms;
     MeshRenderer meshRend;
 
     public RuntimeAnimatorController[] lightFlameColors;
@@ -23,24 +24,28 @@ public class ChangeColorVial : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        lanternFlameColor = GameObject.Find("PlayerLanternFlame").GetComponent<Animator>();
-        lanternLightColor = GameObject.Find("PlayerLanternLight").GetComponent<Light>();
+        //lanternFlameColor = GameObject.Find("PlayerLanternFlame").GetComponent<Animator>();
+        //lanternLightColor = GameObject.Find("PlayerLanternLight").GetComponent<Light>();
         lwController = GameObject.Find("LanternWheel").GetComponent<LanternWheelController>();
-        armAnim = GameObject.Find("LanternArms").GetComponent<Animator>();
+        //lanternArms = GameObject.Find("LanternArms").GetComponent<Animator>();
         meshRend = GetComponent<MeshRenderer>();
+        vialLight = GetComponent<Light>();
         defaultLight = lwController.defaultColor;
 
         switch (lightType)
         {
             case Type.BlueVial:
                 vialColor = 1;
+                vialLight.color = Color.blue;
                 break;
 
             case Type.GreenVial:
                 vialColor = 2;
+                vialLight.color = Color.green;
                 break;
             case Type.RedVial:
                 vialColor = 3;
+                vialLight.color = Color.red;
                 break;
         }
 
@@ -49,6 +54,7 @@ public class ChangeColorVial : MonoBehaviour
     public void ChangePlayerLanternColor()
     {
         meshRend.enabled = false;
+        vialLight.enabled = false;
 
         if (vialColor == 1)
         {
@@ -69,7 +75,7 @@ public class ChangeColorVial : MonoBehaviour
     void LanternBlue()
     {
         lwController.UnequipLighter();
-        armAnim.SetBool("Reload", true);
+        lanternArms.SetBool("Reload", true);
         Invoke("ReloadBlue", 1f);
 
         if (playedBlue == false)
@@ -89,7 +95,7 @@ public class ChangeColorVial : MonoBehaviour
     void LanternGreen()
     {
         lwController.UnequipLighter();
-        armAnim.SetBool("Reload", true);
+        lanternArms.SetBool("Reload", true);
         Invoke("ReloadGreen", 1f);
 
         if (playedGreen == false)
@@ -110,7 +116,7 @@ public class ChangeColorVial : MonoBehaviour
     void LanternRed()
     {
         lwController.UnequipLighter();
-        armAnim.SetBool("Reload", true);
+        lanternArms.SetBool("Reload", true);
         Invoke("ReloadRed", 1f);
 
         if (playedRed == false)
