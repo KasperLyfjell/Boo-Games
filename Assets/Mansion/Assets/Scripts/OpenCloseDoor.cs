@@ -7,13 +7,17 @@ public class OpenCloseDoor : MonoBehaviour
     public Animator anim;
     public AudioSource aud;
     public AudioClip[] audClips;
-
+    // Start is called before the first frame update
     void Start()
     {
         anim = gameObject.GetComponent<Animator>();
     }
 
-
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
     //the Player gameobject entered the trigger zone
     void OnTriggerEnter(Collider col)
     {
@@ -24,10 +28,8 @@ public class OpenCloseDoor : MonoBehaviour
             anim.SetBool("open", true);
             //if the AudioSource is addigned - play first (open) sound
             if (aud != null)
-            {
                 aud.clip = audClips[0];
                 aud.Play();
-            }
         }
     }
     //the Player gameobject left the trigger zone
@@ -40,10 +42,8 @@ public class OpenCloseDoor : MonoBehaviour
             anim.SetBool("open", false);
             //if the AudioSource is addigned - play second (close) sound
             if (aud != null)
-            {
                 aud.clip = audClips[1];
                 aud.Play();
-            }
         }
     }
 }
