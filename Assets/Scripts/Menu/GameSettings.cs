@@ -12,7 +12,7 @@ public class GameSettings : MonoBehaviour
 
 
     #region Overlay
-    public static bool FPScounter;
+    public static bool FPScounter = true;
     #endregion
 
     #region Camera Settings
