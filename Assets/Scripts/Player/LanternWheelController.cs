@@ -15,9 +15,9 @@ public class LanternWheelController : MonoBehaviour
     public SUPERCharacterAIO charScript;
 
     public RuntimeAnimatorController flameYellow, flameBlue, flameGreen;
-    Animator flameColor;
+    public Animator flameColor;
     public Light flameLight;
-    GameObject arm;
+    public GameObject arm;
     Animator armAnim;
 
     public bool blueCollected = false;
@@ -33,7 +33,7 @@ public class LanternWheelController : MonoBehaviour
 
     bool played = false;
 
-    GameObject lighter;
+    public GameObject lighter;
     Animator lighterAnim;
     public bool lighterEquipped = true;
     bool lighterOn = false;
@@ -65,12 +65,16 @@ public class LanternWheelController : MonoBehaviour
         iconRed.SetActive(false);
 
         anim = GetComponent<Animator>();
-        flameLight = GameObject.Find("PlayerLanternLight").GetComponent<Light>();
-        flameColor = GameObject.Find("PlayerLanternFlame").GetComponent<Animator>();
-        arm = GameObject.Find("LanternArms");
+        if(flameLight == null)
+            flameLight = GameObject.Find("PlayerLanternLight").GetComponent<Light>();
+        if(flameColor == null)
+            flameColor = GameObject.Find("PlayerLanternFlame").GetComponent<Animator>();
+        if(arm == null)
+            arm = GameObject.Find("LanternArms");
         armAnim = arm.GetComponent<Animator>();
 
-        lighter = GameObject.Find("Lighter");
+        if(lighter == null)
+            lighter = GameObject.Find("Lighter");
         lighter.SetActive(false);
         lighterAnim = lighter.GetComponent<Animator>();
         arm.SetActive(false);

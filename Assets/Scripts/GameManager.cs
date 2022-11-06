@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour
     {
         EditorLightUp.SetActive(false);
         playingCutscene = true;
+        //Lighter.gameObject.SetActive(false);
 
 #if UNITY_EDITOR
         if (PlayIntro)
@@ -90,10 +91,10 @@ public class GameManager : MonoBehaviour
 
     public void CutsceneEnd()
     {
-        Debug.Log("you can walk now");
         playingCutscene = false;
         player.enableCameraControl = true;
         player.enableMovementControl = true;
+
 
         if(Lighter.gameObject.activeSelf == false)
         {
