@@ -40,7 +40,10 @@ public class GameManager : MonoBehaviour
         if (PlayIntro)
             NewGameStart();
         else
+        {
             CutsceneEnd();
+            StartCoroutine(EditorGameStart());
+        }
 
         MenuOpenButton = KeyCode.Tab;
 
@@ -95,7 +98,6 @@ public class GameManager : MonoBehaviour
         player.enableCameraControl = true;
         player.enableMovementControl = true;
 
-
         if(Lighter.gameObject.activeSelf == false)
         {
             ShowLighter();
@@ -137,5 +139,12 @@ public class GameManager : MonoBehaviour
     public void MainMenuBack()
     {
         SceneManager.LoadScene(0);
+    }
+
+    IEnumerator EditorGameStart()
+    {
+        yield return new WaitForSeconds(1);
+
+        ShowLighter();
     }
 }
