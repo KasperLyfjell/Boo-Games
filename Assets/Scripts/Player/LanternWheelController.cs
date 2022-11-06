@@ -264,4 +264,9 @@ public class LanternWheelController : MonoBehaviour
 
         Pointer.transform.rotation = Quaternion.RotateTowards(Pointer.transform.rotation, Target, Time.deltaTime * 700);
     }
+
+    public void CollectBlue()
+    {
+        blueCollected = true;
+    }
 }
