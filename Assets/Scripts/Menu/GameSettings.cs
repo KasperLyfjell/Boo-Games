@@ -12,7 +12,8 @@ public class GameSettings : MonoBehaviour
 
 
     #region Overlay
-    public static bool FPScounter = true;
+    public bool TestFPScoutner;
+    public static bool FPScounter;
     #endregion
 
     #region Camera Settings
@@ -29,6 +30,11 @@ public class GameSettings : MonoBehaviour
     {
         if (FPScounter && FPSOverlay != null)
             FPSOverlay.gameObject.SetActive(true);
+
+#if UNITY_EDITOR
+        if(TestFPScoutner)
+            FPSOverlay.gameObject.SetActive(true);
+#endif
     }
 
     private void Update()
