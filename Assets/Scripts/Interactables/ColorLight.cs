@@ -13,6 +13,7 @@ public class ColorLight : MonoBehaviour
 
     Light colorSelf;
     Animator flameSelf;
+    SpriteRenderer spriteSelf;
     ParticleSystem poofEffect;
 
     public RuntimeAnimatorController[] lightFlameColors;
@@ -31,6 +32,7 @@ public class ColorLight : MonoBehaviour
 
         colorSelf = GetComponentInChildren<Light>();
         flameSelf = GetComponentInChildren<Animator>();
+        spriteSelf = GetComponentInChildren<SpriteRenderer>();
         poofEffect = GetComponentInChildren<ParticleSystem>();
 
         switch (lightType)
@@ -53,6 +55,10 @@ public class ColorLight : MonoBehaviour
                 colorSelf.color = Color.red;
                 flameSelf.runtimeAnimatorController = lightFlameColors[0];
                 break;
+            case Type.Off:
+                colorSelf.enabled = false;
+                spriteSelf.enabled = false;
+                break;
         }
             
     }
@@ -61,6 +67,8 @@ public class ColorLight : MonoBehaviour
     {
         if (lwController.lighterEquipped == false)
         {
+            colorSelf.enabled = true;
+            spriteSelf.enabled = true;
             colorSelf.color = lanternLightColor.color;
             var main = poofEffect.main;
             main.startColor = lanternLightColor.color;
@@ -157,6 +165,7 @@ public class ColorLight : MonoBehaviour
         YellowLight,
         BlueLight,
         GreenLight,
-        RedLight
+        RedLight,
+        Off
     };
 }

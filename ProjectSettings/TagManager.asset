@@ -8,6 +8,7 @@ TagManager:
   - Water
   - Zombie
   - Light
+  - LanternWheel
   layers:
   - Default
   - TransparentFX
