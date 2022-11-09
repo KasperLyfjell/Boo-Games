@@ -8,8 +8,9 @@ public class ColorLight : MonoBehaviour
     [SerializeField]
     Type lightType = new Type();
 
-    Animator lanternFlameColor;
-    Light lanternLightColor;
+    public Animator lanternFlameColor;
+    public Light lanternLightColor;
+    public LanternWheelController lwController;
 
     Light colorSelf;
     Animator flameSelf;
@@ -17,7 +18,6 @@ public class ColorLight : MonoBehaviour
     ParticleSystem poofEffect;
 
     public RuntimeAnimatorController[] lightFlameColors;
-    LanternWheelController lwController;
 
     bool playedBlue, playedGreen, playedRed;
     Color defaultLight;
@@ -25,9 +25,9 @@ public class ColorLight : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        lanternFlameColor = GameObject.Find("PlayerLanternFlame").GetComponent<Animator>();
-        lanternLightColor = GameObject.Find("PlayerLanternLight").GetComponent<Light>();
-        lwController = GameObject.Find("LanternWheel").GetComponent<LanternWheelController>();
+        //lanternFlameColor = GameObject.FindWithTag("LanternFlame").GetComponent<Animator>();
+        //lanternLightColor = GameObject.FindWithTag("LanternLight").GetComponent<Light>();
+        //lwController = GameObject.FindWithTag("LanternWheel").GetComponent<LanternWheelController>();
         defaultLight = lwController.defaultColor;
 
         colorSelf = GetComponentInChildren<Light>();

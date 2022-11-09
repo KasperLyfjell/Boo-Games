@@ -9,6 +9,8 @@ TagManager:
   - Zombie
   - Light
   - LanternWheel
+  - LanternFlame
+  - LanternLight
   layers:
   - Default
   - TransparentFX

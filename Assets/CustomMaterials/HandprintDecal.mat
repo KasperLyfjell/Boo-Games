@@ -151,7 +151,7 @@ Material:
     - _CullMode: 2
     - _CullModeForward: 2
     - _Cutoff: 0.5
-    - _DecalBlend: 0.35
+    - _DecalBlend: 1
     - _DecalColorMask0: 0
     - _DecalColorMask1: 0
     - _DecalColorMask2: 11
@@ -177,7 +177,7 @@ Material:
     - _DrawOrder: 0
     - _DstBlend: 0
     - _EmissiveColorMode: 1
-    - _EmissiveExposureWeight: 0.3
+    - _EmissiveExposureWeight: 0
     - _EmissiveIntensity: 7
     - _EmissiveIntensityUnit: 0
     - _EnableBlendModePreserveSpecularLighting: 1
