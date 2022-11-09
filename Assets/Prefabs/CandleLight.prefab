@@ -261,6 +261,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lightType: 2
+  lanternFlameColor: {fileID: 0}
+  lanternLightColor: {fileID: 0}
+  lwController: {fileID: 0}
   lightFlameColors:
   - {fileID: 9100000, guid: afdc6e8bcd57e9e42a64978e5ea081e9, type: 2}
   - {fileID: 9100000, guid: e13ea6e950164bc4699082df462930d0, type: 2}
@@ -550,7 +553,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.2
+      scalar: 0.04
       minScalar: 1
       maxCurve:
         serializedVersion: 2
