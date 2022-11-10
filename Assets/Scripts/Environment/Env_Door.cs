@@ -212,7 +212,7 @@ public class Env_Door: MonoBehaviour
     {
         OpeningPercentage = ((transform.EulerAsInspector().y - MinRotation) / (MaxRotation - MinRotation));//Calculates how wide the door is opened in percentages from closed (0%) to fully open (100%)
 
-        if (RotationalPosition.eulerAngles.y < transform.eulerAngles.y)//The door is closing
+        if (RotationalPosition.eulerAngles.y < transform.localEulerAngles.y)//The door is closing
         {
             OpeningPercentage = 1 - OpeningPercentage;
         }
@@ -227,22 +227,22 @@ public class Env_Door: MonoBehaviour
             }
             if (force < soundChangeThreshold)//Slow sfx
             {
-                if (RotationalPosition.eulerAngles.y > transform.eulerAngles.y && SFX.clip != SlowOpeningFX)//opening
+                if (RotationalPosition.eulerAngles.y > transform.localEulerAngles.y && SFX.clip != SlowOpeningFX)//opening
                 {
                     ChangeSound(SlowOpeningFX);
                 }
-                else if (RotationalPosition.eulerAngles.y < transform.eulerAngles.y && SFX.clip != SlowClosingFX)//closing
+                else if (RotationalPosition.eulerAngles.y < transform.localEulerAngles.y && SFX.clip != SlowClosingFX)//closing
                 {
                     ChangeSound(SlowClosingFX);
                 }
             }
             else if (force > soundChangeThreshold)//Fast sfx
             {
-                if (RotationalPosition.eulerAngles.y > transform.eulerAngles.y && SFX.clip != OpeningFX)//opening
+                if (RotationalPosition.eulerAngles.y > transform.localEulerAngles.y && SFX.clip != OpeningFX)//opening
                 {
                     ChangeSound(OpeningFX);
                 }
-                else if (RotationalPosition.eulerAngles.y < transform.eulerAngles.y && SFX.clip != ClosingFX)//closing
+                else if (RotationalPosition.eulerAngles.y < transform.localEulerAngles.y && SFX.clip != ClosingFX)//closing
                 {
                     ChangeSound(ClosingFX);
                 }
