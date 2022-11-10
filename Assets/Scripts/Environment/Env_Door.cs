@@ -135,7 +135,7 @@ public class Env_Door: MonoBehaviour
                     OutOfBoundries = true;
                 }
 
-                RotationalPosition = Quaternion.Euler(new Vector3(transform.rotation.x, transform.rotation.y, transform.rotation.z));
+                RotationalPosition = Quaternion.Euler(new Vector3(transform.localRotation.x, transform.localRotation.y, transform.localRotation.z));
 
             }
             else if (transform.EulerAsInspector().y < MinRotation && RotationalAngle.y  < transform.EulerAsInspector().y)//Locking the door
@@ -158,7 +158,7 @@ public class Env_Door: MonoBehaviour
                     OutOfBoundries = true;
                 }
 
-                RotationalPosition = Quaternion.Euler(new Vector3(transform.rotation.x, transform.rotation.y, transform.rotation.z));
+                RotationalPosition = Quaternion.Euler(new Vector3(transform.localRotation.x, transform.localRotation.y, transform.localRotation.z));
             }
             else
             {
@@ -203,7 +203,7 @@ public class Env_Door: MonoBehaviour
         opening *= MaxRotation * 2;
 
 
-        RotationalAngle = new Vector3(transform.rotation.x, CurrentRotation + opening, transform.localRotation.z);
+        RotationalAngle = new Vector3(transform.localRotation.x, CurrentRotation + opening, transform.localRotation.z);
         RotationalPosition = Quaternion.Euler(RotationalAngle);
     }
 
