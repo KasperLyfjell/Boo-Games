@@ -29,5 +29,7 @@ public class GateLightPuzzle : MonoBehaviour
     void OpenDoor()
     {
         gateDoorAnim.SetBool("Open", true);
+        //-Bartosz-: Added the play sound function as well as an audiosource on the game with the correct SFX
+        GetComponent<AudioSource>().Play();
     }
 }

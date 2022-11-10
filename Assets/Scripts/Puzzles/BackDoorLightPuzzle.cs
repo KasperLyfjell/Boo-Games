@@ -29,6 +29,8 @@ public class BackDoorLightPuzzle : MonoBehaviour
 
     void OpenDoor()
     {
-        gateDoorAnim.SetBool("Open", true);
+        //-Bartosz-: Swapped out the functionality to unlock the door script instead of triggering an animation
+        GetComponent<Env_Door>().IsLocked = false;
+        //gateDoorAnim.SetBool("Open", true);
     }
 }
