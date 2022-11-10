@@ -4,22 +4,32 @@ using UnityEngine;
 
 public class MatchLightsPuzzle : MonoBehaviour
 {
+    public LanternWheelController lwController;
     public Light[] candleLightColors;
-    LanternWheelController lwController;
-
+    Animator anim;
+    bool played;
 
     private void Start()
     {
-        lwController = GameObject.Find("LanternWheel").GetComponent<LanternWheelController>();
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (candleLightColors[0].color == Color.green && candleLightColors[1].color == Color.blue && candleLightColors[2].color == lwController.defaultColor)
+        if(played == false)
         {
-            //Put whatever is supposed to happen when puzzle is complete here
-            Destroy(gameObject);
+            if (candleLightColors[0].color == lwController.defaultColor && candleLightColors[1].color == Color.green && candleLightColors[2].color == Color.blue)
+            {
+                //Put whatever is supposed to happen when puzzle is complete here
+                played = true;
+                Open();
+            }
         }
+    }
+
+    void Open()
+    {
+        anim.SetBool("Open", true);
     }
 }
