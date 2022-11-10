@@ -45,7 +45,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 3
+  m_Radius: 7
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &8355126445296054259
 MonoBehaviour:
@@ -59,6 +59,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cb1a583e1776a545ae45962ee0a753a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Type: 0
+  Lcolor: 0
+  lanternLightColor: {fileID: 0}
+  wheelController: {fileID: 0}
 --- !u!1 &8355126446405277508
 GameObject:
   m_ObjectHideFlags: 0
