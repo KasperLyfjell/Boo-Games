@@ -1803,6 +1803,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55c1825c812b2364f83eeb397b9c0578, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsLocked: 0
   MaximumOpenRange: 90
   OpeningSpeed: 15
   OpeningForce: 300
@@ -2800,18 +2801,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55c1825c812b2364f83eeb397b9c0578, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsLocked: 0
   MaximumOpenRange: 90
   OpeningSpeed: 15
   OpeningForce: 300
   SlamThreshold: 80
   StandardVolume: 1
   InteractCue: {fileID: 1363291057}
-  OpeningFX: {fileID: 8300000, guid: 2f05389fd8f219f4091b910a66575d9a, type: 3}
-  SlowOpeningFX: {fileID: 8300000, guid: 8d52bf53c1a8ae44886354e392233cb7, type: 3}
-  ClosingFX: {fileID: 8300000, guid: 2f05389fd8f219f4091b910a66575d9a, type: 3}
-  SlowClosingFX: {fileID: 8300000, guid: 8d52bf53c1a8ae44886354e392233cb7, type: 3}
-  SlamOpen: {fileID: 8300000, guid: e23005ee66d46f3448115044487ab9f2, type: 3}
-  SlamClose: {fileID: 8300000, guid: e23005ee66d46f3448115044487ab9f2, type: 3}
+  OpeningFX: {fileID: 8300000, guid: 297eff219ebb1884a9233579471e7f67, type: 3}
+  SlowOpeningFX: {fileID: 8300000, guid: c63b4543139898d4bb82f6eea03b5a13, type: 3}
+  ClosingFX: {fileID: 8300000, guid: 297eff219ebb1884a9233579471e7f67, type: 3}
+  SlowClosingFX: {fileID: 8300000, guid: c63b4543139898d4bb82f6eea03b5a13, type: 3}
+  SlamOpen: {fileID: 8300000, guid: ac8131f5a76629e4082c3ce293827d47, type: 3}
+  SlamClose: {fileID: 8300000, guid: 8d92f0e7562c69e418f6dadf5113824d, type: 3}
   QuietClose: {fileID: 8300000, guid: 78cabb5d807c6ba42a273be8fbb0dfb1, type: 3}
 --- !u!135 &1973143706
 SphereCollider:

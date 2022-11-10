@@ -6,14 +6,9 @@ using SUPERCharacter;
 
 public class Env_Door: MonoBehaviour
 {
-    [Header("DONT CHILD THIS OBJECT TO ANYTHING")]
-    /* The door is sensitive to its own rotation and needs to accurately
-     * read its current euler angles to function. Note that the door can
-     * be childed to a parent ONLY IF the parent has a 0,0,0 position and 0,0,0 rotation.
-     * Recommend to child the door to a specific 'doors' parent to keep the hierarchy clean.
-     */
-
     #region Public variables
+    public bool IsLocked;
+
     [Tooltip("How wide should the door open? (Recommend 90*)")]
     public float MaximumOpenRange;
 
@@ -93,7 +88,7 @@ public class Env_Door: MonoBehaviour
 
     private void Update()
     {
-        if (CanInteract)
+        if (CanInteract && !IsLocked)
         {
             InteractCue.text = "Press " + DoorInteract;
 
@@ -168,7 +163,8 @@ public class Env_Door: MonoBehaviour
             else
             {
                 transform.localRotation = Quaternion.RotateTowards(transform.localRotation, RotationalPosition, force * Time.deltaTime);
-                AudioSetup();
+                if(force >= 16)
+                    AudioSetup();
                 OutOfBoundries = false;
             }
         }
@@ -207,18 +203,6 @@ public class Env_Door: MonoBehaviour
         opening *= MaxRotation * 2;
 
 
-
-        /*
-        if (CurrentRotation + opening > MaxRotation)
-        {
-            opening = MaxRotation - CurrentRotation;
-        }
-        if (CurrentRotation + opening < MinRotation)
-        {
-            opening = MinRotation - CurrentRotation;
-        }
-        */
-
         RotationalAngle = new Vector3(transform.rotation.x, CurrentRotation + opening, transform.localRotation.z);
         RotationalPosition = Quaternion.Euler(RotationalAngle);
     }
@@ -228,16 +212,11 @@ public class Env_Door: MonoBehaviour
     {
         OpeningPercentage = ((transform.EulerAsInspector().y - MinRotation) / (MaxRotation - MinRotation));//Calculates how wide the door is opened in percentages from closed (0%) to fully open (100%)
 
-        if (RotationalPosition.eulerAngles.y > transform.eulerAngles.y)//The door is opening
-        {
-            //SFX.clip = OpeningFX;
-        }
-        else if (RotationalPosition.eulerAngles.y < transform.eulerAngles.y)//The door is closing
+        if (RotationalPosition.eulerAngles.y < transform.eulerAngles.y)//The door is closing
         {
             OpeningPercentage = 1 - OpeningPercentage;
-            //SFX.clip = ClosingFX;
         }
-
+        Debug.Log(OpeningPercentage);
         startTime = clipLength * OpeningPercentage;
 
         if(startTime <= clipLength && startTime >= 0)//removes annoying errors in editor, however the script works fine without this line
@@ -269,18 +248,6 @@ public class Env_Door: MonoBehaviour
                 }
             }
         }
-        
-
-        /*
-        if (force < soundChangeThreshold && SFX.clip != SlowOpeningFX)
-        {
-            ChangeSound(SlowOpeningFX);
-        }
-        else if (force > soundChangeThreshold && SFX.clip == SlowOpeningFX)
-        {
-            ChangeSound(OpeningFX);
-        }
-        */
     }
 
     private void PlaySound(float start)
