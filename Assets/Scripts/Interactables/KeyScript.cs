@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class KeyScript : MonoBehaviour
 {
+    public Env_Door DoorToUnlock;
+
     public void PickUpKey()
     {
+        DoorToUnlock.Unlock();
         Destroy(this.gameObject);
     }
 }

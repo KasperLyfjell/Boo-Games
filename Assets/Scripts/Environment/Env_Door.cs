@@ -64,6 +64,9 @@ public class Env_Door: MonoBehaviour
     public AudioClip SlamClose;
     public AudioClip QuietClose;
 
+    public AudioClip LockedDoorFX;
+    public AudioClip UnlockFX;
+
     private float clipLength;
     private float startTime;
     private float soundChangeThreshold;
@@ -107,6 +110,14 @@ public class Env_Door: MonoBehaviour
                 Cursor.lockState = CursorLockMode.Locked;
                 InteractCue.gameObject.SetActive(true);
                 CurrentRotation = transform.EulerAsInspector().y;
+            }
+        }
+        else if(CanInteract && IsLocked)
+        {
+            if (Input.GetKeyDown(DoorInteract))
+            {
+                SFX.clip = LockedDoorFX;
+                PlaySound(0);
             }
         }
 
@@ -174,7 +185,7 @@ public class Env_Door: MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player")
+        if (other.tag == "Player" && !IsLocked)
         {
             CanInteract = true;
             player = other.gameObject;
@@ -184,7 +195,7 @@ public class Env_Door: MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.tag == "Player")
+        if (other.tag == "Player" && !IsLocked)
         {
             CanInteract = false;
             InteractCue.gameObject.SetActive(false);
@@ -270,5 +281,23 @@ public class Env_Door: MonoBehaviour
     {
         SFX.clip = sound;
         SFX.Play();
+    }
+
+    public void Unlock()
+    {
+        IsLocked = false;
+        SFX.clip = UnlockFX;
+        PlaySound(0);
+    }
+
+    public void ShutDoor()//Closes the door without player input, like in the events of a wind gust
+    {
+        if (CanInteract)
+        {
+            InteractCue.gameObject.SetActive(false);
+            CanInteract = false;
+        }
+        IsLocked = true;//maybe shouldnt be but this can be changed
+        RotationalAngle = new Vector3(transform.localRotation.x, MinRotation, transform.localRotation.z);
     }
 }
