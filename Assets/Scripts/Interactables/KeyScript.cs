@@ -4,11 +4,17 @@ using UnityEngine;
 
 public class KeyScript : MonoBehaviour
 {
-    public Env_Door DoorToUnlock;
+    public GameObject DoorToUnlock;
+
+    public bool LastKey;//This is only temporary thing 
 
     public void PickUpKey()
     {
-        DoorToUnlock.Unlock();
+        if (LastKey)
+            DoorToUnlock.GetComponent<temp_Door>().HasKey = true;
+        else
+            DoorToUnlock.GetComponent<Env_Door>().Unlock();
+
         Destroy(this.gameObject);
     }
 }
