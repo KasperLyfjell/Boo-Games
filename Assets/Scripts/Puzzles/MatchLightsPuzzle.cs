@@ -9,9 +9,13 @@ public class MatchLightsPuzzle : MonoBehaviour
     Animator anim;
     bool played;
 
+    AudioSource au;
+    public AudioClip audioClip;
+
     private void Start()
     {
         anim = GetComponent<Animator>();
+        au = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -31,5 +35,6 @@ public class MatchLightsPuzzle : MonoBehaviour
     void Open()
     {
         anim.SetBool("Open", true);
+        au.PlayOneShot(audioClip);
     }
 }

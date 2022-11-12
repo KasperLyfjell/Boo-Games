@@ -93,7 +93,7 @@ public class Env_Door: MonoBehaviour
     {
         if (CanInteract && !IsLocked)
         {
-            InteractCue.text = "Press " + DoorInteract;
+            InteractCue.text = "Press & Hold Left Click"; //+ DoorInteract;
 
             if (Input.GetKeyDown(DoorInteract))
             {

@@ -5,6 +5,8 @@ using UnityEngine;
 public class LivingRoomPuzzle : MonoBehaviour
 {
     Animator anim;
+    public AudioClip audioClip;
+    AudioSource au;
 
     public GameObject topPaint;
     public GameObject leftPaint;
@@ -21,6 +23,7 @@ public class LivingRoomPuzzle : MonoBehaviour
         leftP = leftPaint.GetComponent<RotatePainting>();
 
         anim = GetComponent<Animator>();
+        au = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -39,5 +42,6 @@ public class LivingRoomPuzzle : MonoBehaviour
     void Open()
     {
         anim.SetBool("Interact", true);
+        au.PlayOneShot(audioClip);
     }
 }

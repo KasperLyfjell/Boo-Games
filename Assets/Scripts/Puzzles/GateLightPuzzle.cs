@@ -8,6 +8,7 @@ public class GateLightPuzzle : MonoBehaviour
     LanternWheelController lwController;
     Animator gateDoorAnim;
     bool played = false;
+    public GameObject tutorialText;
 
     private void Start()
     {
@@ -31,5 +32,6 @@ public class GateLightPuzzle : MonoBehaviour
         gateDoorAnim.SetBool("Open", true);
         //-Bartosz-: Added the play sound function as well as an audiosource on the game with the correct SFX
         GetComponent<AudioSource>().Play();
+        Destroy(tutorialText);
     }
 }
