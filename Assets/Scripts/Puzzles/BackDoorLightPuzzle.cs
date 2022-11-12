@@ -10,10 +10,14 @@ public class BackDoorLightPuzzle : MonoBehaviour
     Animator gateDoorAnim;
     bool played = false;
 
+    AudioSource au;
+    public AudioClip audioClip;
+
     private void Start()
     {
         lwController = GameObject.FindWithTag("LanternWheel").GetComponent<LanternWheelController>();
         gateDoorAnim = GetComponent<Animator>();
+        au = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -23,7 +27,7 @@ public class BackDoorLightPuzzle : MonoBehaviour
         {
             //Put whatever is supposed to happen when puzzle is complete here
             played = true;
-            Invoke("OpenDoor", 2f);
+            Invoke("OpenDoor", 1f);
         }
     }
 
@@ -31,6 +35,7 @@ public class BackDoorLightPuzzle : MonoBehaviour
     {
         //-Bartosz-: Swapped out the functionality to unlock the door script instead of triggering an animation
         GetComponent<Env_Door>().Unlock();
+        au.PlayOneShot(audioClip);
         //gateDoorAnim.SetBool("Open", true);
     }
 }
