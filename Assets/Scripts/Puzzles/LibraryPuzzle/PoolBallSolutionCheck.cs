@@ -4,15 +4,19 @@ using UnityEngine;
 
 public class PoolBallSolutionCheck : MonoBehaviour
 {
+    public AudioClip openSound;
+
     public BallButton[] ballButtons;
     public BallButton[] fakeBallButtons;
     bool played;
 
     Animator anim;
+    AudioSource au;
 
     private void Start()
     {
         anim = GetComponent<Animator>();
+        au = GetComponent<AudioSource>();
     }
 
 
@@ -40,6 +44,6 @@ public class PoolBallSolutionCheck : MonoBehaviour
     void Open()
     {
         anim.SetBool("Open", true);
-        //au.PlayOneShot(audioClip);
+        au.PlayOneShot(openSound);
     }
 }

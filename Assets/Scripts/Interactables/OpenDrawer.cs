@@ -8,7 +8,10 @@ public class OpenDrawer : MonoBehaviour
     bool open;
     bool inAnimation;
     AudioSource au;
-    public AudioClip audioClip;
+
+    public bool isLocked;
+    public AudioClip openDoor;
+    public AudioClip doorLocked;
 
     // Start is called before the first frame update
     void Start()
@@ -19,7 +22,7 @@ public class OpenDrawer : MonoBehaviour
 
     public void InteractDrawer()
     {
-        if(inAnimation == false)
+        if(inAnimation == false && isLocked == false)
         {
             if (open == false)
             {
@@ -27,7 +30,7 @@ public class OpenDrawer : MonoBehaviour
                 inAnimation = true;
                 Invoke("FinishedAnimation", 1f);
                 anim.SetBool("Open", true);
-                au.PlayOneShot(audioClip);
+                au.PlayOneShot(openDoor);
             }
             else
             {
@@ -35,8 +38,12 @@ public class OpenDrawer : MonoBehaviour
                 inAnimation = true;
                 Invoke("FinishedAnimation", 1f);
                 anim.SetBool("Open", false);
-                au.PlayOneShot(audioClip);
+                au.PlayOneShot(openDoor);
             }
+        }
+        else
+        {
+            au.PlayOneShot(doorLocked);
         }
     }
 
