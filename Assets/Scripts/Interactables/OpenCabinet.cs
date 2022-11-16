@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OpenDrawer : MonoBehaviour
+public class OpenCabinet : MonoBehaviour
 {
     Animator anim;
     bool open;
@@ -13,11 +13,11 @@ public class OpenDrawer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        anim = GetComponentInParent<Animator>();
+        anim = GetComponent<Animator>();
         au = GetComponent<AudioSource>();
     }
 
-    public void InteractDrawer()
+    public void InteractCabinet()
     {
         if(inAnimation == false)
         {
