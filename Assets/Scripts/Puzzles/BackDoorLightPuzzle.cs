@@ -13,6 +13,8 @@ public class BackDoorLightPuzzle : MonoBehaviour
     AudioSource au;
     public AudioClip audioClip;
 
+    public GameObject MansionInsides;
+
     private void Start()
     {
         lwController = GameObject.FindWithTag("LanternWheel").GetComponent<LanternWheelController>();
@@ -36,6 +38,7 @@ public class BackDoorLightPuzzle : MonoBehaviour
         //-Bartosz-: Swapped out the functionality to unlock the door script instead of triggering an animation
         GetComponent<Env_Door>().Unlock();
         au.PlayOneShot(audioClip);
+        MansionInsides.SetActive(true);//Attempts to fix the performance issue by spawning the inside of the mansion only after unlocking the kitchen door
         //gateDoorAnim.SetBool("Open", true);
     }
 }

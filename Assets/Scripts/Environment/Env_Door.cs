@@ -292,12 +292,13 @@ public class Env_Door: MonoBehaviour
 
     public void ShutDoor()//Closes the door without player input, like in the events of a wind gust
     {
+        RotationalAngle = new Vector3(transform.localRotation.x, 0, transform.localRotation.z);
+
         if (CanInteract)
         {
             InteractCue.gameObject.SetActive(false);
             CanInteract = false;
         }
         IsLocked = true;//maybe shouldnt be but this can be changed
-        RotationalAngle = new Vector3(transform.localRotation.x, MinRotation, transform.localRotation.z);
     }
 }
