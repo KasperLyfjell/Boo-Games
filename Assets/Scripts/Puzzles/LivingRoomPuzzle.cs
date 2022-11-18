@@ -5,7 +5,7 @@ using UnityEngine;
 public class LivingRoomPuzzle : MonoBehaviour
 {
     Animator anim;
-    public AudioClip audioClip;
+    //public AudioClip audioClip;
     AudioSource au;
 
     public GameObject topPaint;
@@ -42,6 +42,7 @@ public class LivingRoomPuzzle : MonoBehaviour
     void Open()
     {
         anim.SetBool("Interact", true);
-        au.PlayOneShot(audioClip);
+        au.Play();
+        //au.PlayOneShot(audioClip);
     }
 }

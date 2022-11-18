@@ -24,6 +24,8 @@ public class GameManager : MonoBehaviour
 
     public GameObject MenuCanvas;
 
+    public GameObject MansionInside;
+
 
     private bool MenuOpen;
     private KeyCode MenuOpenButton;
@@ -32,6 +34,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        MansionInside.SetActive(false);
         EditorLightUp.SetActive(false);
         playingCutscene = true;
         //Lighter.gameObject.SetActive(false);

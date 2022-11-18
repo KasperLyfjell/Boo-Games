@@ -30,7 +30,7 @@ public class OpenDrawer : MonoBehaviour
                 inAnimation = true;
                 Invoke("FinishedAnimation", 1f);
                 anim.SetBool("Open", true);
-                au.PlayOneShot(openDoor);
+                PlayAudio(openDoor);
             }
             else
             {
@@ -38,18 +38,24 @@ public class OpenDrawer : MonoBehaviour
                 inAnimation = true;
                 Invoke("FinishedAnimation", 1f);
                 anim.SetBool("Open", false);
-                au.PlayOneShot(openDoor);
+                PlayAudio(openDoor);
             }
         }
         else
         {
-            au.PlayOneShot(doorLocked);
+            PlayAudio(doorLocked);
         }
     }
 
     void FinishedAnimation()
     {
         inAnimation = false;
+    }
+
+    private void PlayAudio(AudioClip clip)
+    {
+        au.clip = clip;
+        au.Play();
     }
 
 }
