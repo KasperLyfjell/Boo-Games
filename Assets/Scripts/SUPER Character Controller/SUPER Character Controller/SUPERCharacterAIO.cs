@@ -23,6 +23,7 @@ namespace SUPERCharacter{
 public class SUPERCharacterAIO : MonoBehaviour{
 
         public bool GameStarted;
+        private float startingMovespeed;
     #region Variables
 
     public bool controllerPaused = false;
@@ -1571,7 +1572,22 @@ public class SUPERCharacterAIO : MonoBehaviour{
             walkingSpeed *= multiplier;
             currentGroundSpeed *= multiplier;
         }
-}
+
+        public void BeginFlashback()
+        {
+            canSprint = false;
+            startingMovespeed = walkingSpeed;
+            walkingSpeed = 80;
+            currentGroundSpeed = 80;
+        }
+
+        public void EndFlashback()
+        {
+            canSprint = true;
+            walkingSpeed = startingMovespeed;
+            currentGroundSpeed = startingMovespeed;
+        }
+    }
 
 
 #region Classes and Enums

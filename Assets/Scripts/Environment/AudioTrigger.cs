@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class AudioTrigger : MonoBehaviour
 {
@@ -28,6 +29,9 @@ public class AudioTrigger : MonoBehaviour
 
     private bool fade;
     private float delay;
+
+    public TextMeshProUGUI SubtitleObj;
+    public List<string> Subtitles = new List<string>();
 
 
 
@@ -105,6 +109,10 @@ public class AudioTrigger : MonoBehaviour
         }
 
         Source.Play();
+
+        if(SubtitleObj != null && Subtitles[0] != null)
+            StartCoroutine(DisplaySubtitles(Subtitles[0], Source.clip.length));
+
     }
 
     IEnumerator Fadeout(float duration)
@@ -127,5 +135,18 @@ public class AudioTrigger : MonoBehaviour
         yield return new WaitForSeconds(delay);
 
         followAudio.Play();
+
+        if (Subtitles[1] != null)
+            StartCoroutine(DisplaySubtitles(Subtitles[1], followAudio.clip.length));
+    }
+
+    IEnumerator DisplaySubtitles(string text, float duration)
+    {
+        SubtitleObj.text = text;
+        SubtitleObj.gameObject.SetActive(true);
+
+        yield return new WaitForSeconds(duration + 0.2f);
+
+        SubtitleObj.gameObject.SetActive(false);
     }
 }

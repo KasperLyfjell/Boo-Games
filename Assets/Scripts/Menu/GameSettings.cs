@@ -14,6 +14,7 @@ public class GameSettings : MonoBehaviour
     #region Overlay
     public bool TestFPScoutner;
     public static bool FPScounter;
+    public static bool DisplaySubtitles;
     #endregion
 
     #region Camera Settings
