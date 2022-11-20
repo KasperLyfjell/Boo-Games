@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
     public Light LanternLight;
 
     public GameObject MenuCanvas;
+    public List<GameObject> CanvasItems = new List<GameObject>();
 
     public GameObject MansionInside;
 
@@ -140,13 +141,18 @@ public class GameManager : MonoBehaviour
         Cursor.visible = false;
         //player.lockAndHideMouse = true;
         MenuCanvas.SetActive(false);
+        foreach(GameObject item in CanvasItems)
+        {
+            item.SetActive(false);
+        }
         Time.timeScale = 1;
     }
 
     public void MainMenuBack()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene("MainMenu");
     }
+
 
     IEnumerator EditorGameStart()
     {

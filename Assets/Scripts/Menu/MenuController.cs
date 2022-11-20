@@ -46,6 +46,7 @@ public class MenuController : MonoBehaviour
     [Header("Toggle Settings")]
     [SerializeField] private Toggle invertYToggle = null;
 
+    [Header("Other")]
     public Image blackOutSquare;
     public GameObject StayTuned;
     public static bool CompletedGame;
@@ -57,20 +58,25 @@ public class MenuController : MonoBehaviour
 
     private void Start()
     {
-        blackOutSquare.gameObject.SetActive(true);
+        if(blackOutSquare != null)
+            blackOutSquare.gameObject.SetActive(true);
 
-        if (CompletedGame)
+        if (CompletedGame && StayTuned != null)
             StayTuned.SetActive(true);
-        else
+        else if(StayTuned != null)
             StayTuned.SetActive(false);
 
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
 
-        StartCoroutine(FadeBlackOutSquare(false));
-        blackOutSquare.raycastTarget = false;
+        if (blackOutSquare != null)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+            StartCoroutine(FadeBlackOutSquare(false));
+            blackOutSquare.raycastTarget = false;
+        }
         resolutions = Screen.resolutions;
-        resolutionDropdown.ClearOptions();
+        if(resolutionDropdown != null)
+            resolutionDropdown.ClearOptions();
 
         List<string> options = new List<string>();
 
@@ -87,9 +93,12 @@ public class MenuController : MonoBehaviour
             }
         }
 
-        resolutionDropdown.AddOptions(options);
-        resolutionDropdown.value = currentResolutionIndex;
-        resolutionDropdown.RefreshShownValue();
+        if (resolutionDropdown != null)
+        {
+            resolutionDropdown.AddOptions(options);
+            resolutionDropdown.value = currentResolutionIndex;
+            resolutionDropdown.RefreshShownValue();
+        }
     }
 
     public void SetResolution(int resolutionIndex)
