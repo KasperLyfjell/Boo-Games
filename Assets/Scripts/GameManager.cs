@@ -64,7 +64,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        /*
+        
         if (Input.GetKeyDown(MenuOpenButton) && !playingCutscene)
         {
             if (MenuOpen)
@@ -72,7 +72,7 @@ public class GameManager : MonoBehaviour
             else
                 OpenMenu();
         }
-        */
+        
     }
 
 
@@ -124,8 +124,10 @@ public class GameManager : MonoBehaviour
         player.enableMovementControl = false;
         player.enableCameraControl = false;
         Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         //player.lockAndHideMouse = false;
         MenuCanvas.SetActive(true);
+        Time.timeScale = 0;
     }
 
     public void CloseMenu()
@@ -135,8 +137,10 @@ public class GameManager : MonoBehaviour
         player.enableMovementControl = true;
         player.enableCameraControl = true;
         Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
         //player.lockAndHideMouse = true;
         MenuCanvas.SetActive(false);
+        Time.timeScale = 1;
     }
 
     public void MainMenuBack()
