@@ -253,10 +253,12 @@ public class MenuController : MonoBehaviour
         comfirmationPrompt.SetActive(false);
     }
 
-    public IEnumerator FadeBlackOutSquare(bool fadeToBlack = true, int fadeSpeed = 1)
+    public IEnumerator FadeBlackOutSquare(bool fadeToBlack, int fadeSpeed = 1)
     {
         Color objectColor = blackOutSquare.GetComponent<Image>().color;
         float fadeAmount;
+
+        Debug.Log("I started coroutine");
 
         if (fadeToBlack)
         {
@@ -271,6 +273,7 @@ public class MenuController : MonoBehaviour
         }
         else
         {
+            Debug.Log("I start fading out");
             while (blackOutSquare.GetComponent<Image>().color.a > 0)
             {
                 fadeAmount = objectColor.a - (fadeSpeed * Time.deltaTime);
