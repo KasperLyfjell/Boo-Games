@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 262.3369, g: 325.0498, b: 430.21924, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -598,12 +598,12 @@ GameObject:
   - component: {fileID: 509897675}
   - component: {fileID: 509897674}
   m_Layer: 5
-  m_Name: QuitButton
+  m_Name: BackButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &509897673
 RectTransform:
   m_ObjectHideFlags: 0
@@ -668,33 +668,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
-        m_MethodName: Play
+      - m_Target: {fileID: 1831543245}
+        m_TargetAssemblyTypeName: NewMenuController, Assembly-CSharp
+        m_MethodName: MenuMain
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -724,7 +700,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Quit
+  m_text: Back
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e4233b138ef09204d98a355469f5dcf9, type: 2}
   m_sharedMaterial: {fileID: -5296677674075598286, guid: e4233b138ef09204d98a355469f5dcf9,
@@ -1479,12 +1455,12 @@ PrefabInstance:
     - target: {fileID: 311049376975287033, guid: 5ef2bcca2a96f38498a8dcf52868e53e,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 311111659097716589, guid: 5ef2bcca2a96f38498a8dcf52868e53e,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 311184656859670933, guid: 5ef2bcca2a96f38498a8dcf52868e53e,
         type: 3}
@@ -1495,6 +1471,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 311510802518898131, guid: 5ef2bcca2a96f38498a8dcf52868e53e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 311575968329493933, guid: 5ef2bcca2a96f38498a8dcf52868e53e,
         type: 3}
@@ -1509,7 +1490,7 @@ PrefabInstance:
     - target: {fileID: 311806616660161049, guid: 5ef2bcca2a96f38498a8dcf52868e53e,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 361733967469472213, guid: 5ef2bcca2a96f38498a8dcf52868e53e,
         type: 3}
@@ -1589,12 +1570,12 @@ PrefabInstance:
     - target: {fileID: 415041330959768631, guid: 5ef2bcca2a96f38498a8dcf52868e53e,
         type: 3}
       propertyPath: currentPageNumber
-      value: 2
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 415041330959768631, guid: 5ef2bcca2a96f38498a8dcf52868e53e,
         type: 3}
       propertyPath: pageData.Array.size
-      value: 4
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5ef2bcca2a96f38498a8dcf52868e53e, type: 3}
@@ -2446,6 +2427,7 @@ MonoBehaviour:
   _newGameLevel: 
   mainMenu: {fileID: 266591608}
   Options: {fileID: 853859015}
+  delayValue: 1
 --- !u!4 &1831543246
 Transform:
   m_ObjectHideFlags: 0
