@@ -4,12 +4,15 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using echo17.EndlessBook;
+using TMPro;
+using UnityEngine.Audio;
 
 public class NewMenuController : MonoBehaviour
 {
     [Header("Endless Book")]
     public EndlessBook book;
-    public Animator pages;
+    public Animator pageOne;
+    public Animator pageTwo;
 
     [Header("Levels To Load")]
     public string _newGameLevel;
@@ -17,13 +20,48 @@ public class NewMenuController : MonoBehaviour
 
     [Header("MainMenuFolders")]
     public GameObject mainMenu;
-    public GameObject Options;
+    public GameObject options;
+    public GameObject soundOptions;
 
     public float delayValue = 2;
 
-    public void NewGameDialog()
+    [Header("Volume Setting")]
+    public TMP_Text masterVolumeTextValue = null;
+    public Slider masterVolumeSilder = null;
+    public float defaultVolume = 100f;
+
+    [Header("Volume Masters")]
+    public AudioMixer ambienceMixer;
+    public AudioMixer musicMixer;
+    public AudioMixer sFXMixer;
+    private void Start()
+    {
+        pageOne.Play("TurnForward");
+        StartCoroutine(DelayStart(delayValue));
+    }
+
+    IEnumerator DelayStart(float delayTime)
+    {
+        yield return new WaitForSeconds(delayValue);
+
+        //BlackScreen.SetActive(false);
+        mainMenu.SetActive(true);
+    }
+
+    private void Update()
+    {
+        masterVolumeTextValue.text = masterVolumeSilder.value.ToString("0");
+    }
+
+    public void StartGame()
     {
         SceneManager.LoadScene(_newGameLevel);
+    }
+
+    public void ExitButton()
+    {
+        Application.Quit();
+        Debug.Log("Quit");
     }
 
     public void MenuOptions()
@@ -31,7 +69,7 @@ public class NewMenuController : MonoBehaviour
         mainMenu.SetActive(false);
 
         book.SetPageNumber(3);
-        pages.Play("TurnForward");
+        pageTwo.Play("TurnForward");
 
         StartCoroutine(DelayOption(delayValue));
     }
@@ -40,15 +78,17 @@ public class NewMenuController : MonoBehaviour
     {
         yield return new WaitForSeconds(delayValue);
 
-        Options.SetActive(true);
+        options.SetActive(true);
+        soundOptions.SetActive(true);
     }
 
     public void MenuMain()
     {
-        Options.SetActive(false);
+        options.SetActive(false);
+        soundOptions.SetActive(false);
 
         book.SetPageNumber(2);
-        pages.Play("TurnBackward");
+        pageTwo.Play("TurnBackward");
 
         StartCoroutine(DelayMainMenu(delayValue));
     }
@@ -58,5 +98,17 @@ public class NewMenuController : MonoBehaviour
         yield return new WaitForSeconds(delayValue);
 
         mainMenu.SetActive(true);
+    }
+
+    public void SetVolume(float volume)
+    {
+        AudioListener.volume = volume;
+    }
+
+
+
+    public void VolumeApply()
+    {
+        PlayerPrefs.SetFloat("masterVolume", AudioListener.volume);
     }
 }
