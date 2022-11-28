@@ -110,6 +110,6 @@ public class temp_Door : MonoBehaviour
         yield return new WaitForSeconds(4);
         MenuController.CompletedGame = true;
         PlayerChar.lockAndHideMouse = false;
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene("Test_MainMenu");
     }
 }

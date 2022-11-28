@@ -150,7 +150,8 @@ public class GameManager : MonoBehaviour
 
     public void MainMenuBack()
     {
-        SceneManager.LoadScene("MainMenu");
+        Time.timeScale = 1;
+        SceneManager.LoadScene("Test_MainMenu");
     }
 
 
