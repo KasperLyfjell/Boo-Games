@@ -16,6 +16,7 @@ public class NewMenuController : MonoBehaviour
 
     [Header("Levels To Load")]
     public string _newGameLevel;
+    public string _testScene;
     private string levelToLoad;
 
     [Header("MainMenuFolders")]
@@ -56,6 +57,11 @@ public class NewMenuController : MonoBehaviour
     public void StartGame()
     {
         SceneManager.LoadScene(_newGameLevel);
+    }
+
+    public void LaunchTestScene()
+    {
+        SceneManager.LoadScene(_testScene);
     }
 
     public void ExitButton()
