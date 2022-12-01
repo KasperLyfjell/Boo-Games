@@ -163,7 +163,7 @@ Material:
     - _AORemapMin: 0
     - _ATDistance: 1
     - _AddPrecomputedVelocity: 0
-    - _AlbedoAffectEmissive: 0
+    - _AlbedoAffectEmissive: 1
     - _AlphaCutoff: 0.5
     - _AlphaCutoffEnable: 1
     - _AlphaCutoffPostpass: 0
@@ -196,7 +196,7 @@ Material:
     - _DstBlend: 0
     - _EmissiveColorMode: 1
     - _EmissiveExposureWeight: 1
-    - _EmissiveIntensity: 23.3
+    - _EmissiveIntensity: 115.97
     - _EmissiveIntensityUnit: 0
     - _EnableBlendModePreserveSpecularLighting: 1
     - _EnableFogOnTransparent: 1
@@ -239,7 +239,7 @@ Material:
     - _ReceivesSSRTransparent: 0
     - _RefractionModel: 0
     - _Smoothness: 0.5
-    - _SmoothnessRemapMax: 0.48960602
+    - _SmoothnessRemapMax: 0.4896062
     - _SmoothnessRemapMin: 0
     - _SmoothnessTextureChannel: 0
     - _SpecularAAScreenSpaceVariance: 0.1
@@ -280,14 +280,14 @@ Material:
     - _ZTestTransparent: 4
     - _ZWrite: 1
     m_Colors:
-    - _BaseColor: {r: 0.5188678, g: 0.5188678, b: 0.5188678, a: 1}
+    - _BaseColor: {r: 0.5943396, g: 0.5943396, b: 0.5943396, a: 1}
     - _BaseColorMap_MipInfo: {r: 0, g: 0, b: 0, a: 0}
-    - _Color: {r: 0.51886773, g: 0.51886773, b: 0.51886773, a: 1}
+    - _Color: {r: 0.5943396, g: 0.5943396, b: 0.5943396, a: 1}
     - _DiffusionProfileAsset: {r: 0, g: 0, b: 0, a: 0}
     - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
-    - _EmissiveColor: {r: 31.107332, g: 31.107332, b: 31.107332, a: 23.3}
-    - _EmissiveColorLDR: {r: 0, g: 1, b: 0.23062754, a: 1}
+    - _EmissiveColor: {r: 86.8638, g: 86.8638, b: 86.8638, a: 115.97}
+    - _EmissiveColorLDR: {r: 0.88031507, g: 0.88031507, b: 0.88031507, a: 1}
     - _InvPrimScale: {r: 1, g: 1, b: 0, a: 0}
     - _IridescenceThicknessRemap: {r: 0, g: 1, b: 0, a: 0}
     - _SpecularColor: {r: 1, g: 1, b: 1, a: 1}
