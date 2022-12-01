@@ -435,7 +435,9 @@ public class SUPERCharacterAIO : MonoBehaviour{
 
         void Update(){
 
-        if(!controllerPaused){
+            //p_Rigidbody.AddForce(new Vector3(0, -5, 0), ForceMode.Acceleration);
+
+        if (!controllerPaused){
         #region Input
         #if ENABLE_INPUT_SYSTEM
             MouseXY.x = Mouse.current.delta.y.ReadValue()/50;
@@ -819,6 +821,7 @@ public class SUPERCharacterAIO : MonoBehaviour{
     #endregion
 
     #region Movement Functions
+
     void MovePlayer(Vector3 Direction, float Speed){
        // GroundInfo gI = GetGroundInfo();
         isIdle = Direction.normalized.magnitude <=0;
@@ -857,7 +860,7 @@ public class SUPERCharacterAIO : MonoBehaviour{
                 }
             }
         }
-
+        
         
     }
     void Jump(float Force){
