@@ -29,6 +29,13 @@ public class MatchLightsPuzzle : MonoBehaviour
                 played = true;
                 Open();
             }
+
+            if (candleLightColors[0].color == Color.green && candleLightColors[1].color == Color.green && candleLightColors[2].color == Color.blue)
+            {
+                //Put whatever is supposed to happen when puzzle is complete here
+                played = true;
+                Open();
+            }
         }
     }
 
