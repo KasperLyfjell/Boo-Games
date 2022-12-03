@@ -7,7 +7,7 @@ public class KitchenDoorLock : MonoBehaviour
     public AudioSource WindGust;
     public Env_Door KitchenDoor;
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerExit(Collider other)
     {
         WindGust.Play();
         KitchenDoor.ShutDoor();

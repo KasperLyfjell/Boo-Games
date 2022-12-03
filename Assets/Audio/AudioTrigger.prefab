@@ -26,9 +26,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6745853467583915876}
-  m_LocalRotation: {x: -0, y: 0.118455924, z: -0, w: 0.9929593}
+  m_LocalRotation: {x: 0, y: 0.11845595, z: 0, w: 0.9929594}
   m_LocalPosition: {x: -112.21, y: 50.14, z: 146}
-  m_LocalScale: {x: 4, y: 4, z: 4}
+  m_LocalScale: {x: 24.585896, y: 5.4748, z: 4}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -69,3 +69,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Source: {fileID: 0}
   TriggerOnce: 0
+  TriggerOnEnter: 0
+  TriggerOnExit: 0
+  FadeOutAudio: 0
+  AudioToFade: {fileID: 0}
+  FollowUpAudio: 0
+  followAudio: {fileID: 0}
+  followDelay: 0
+  FadeIn: 0
+  FadeOut: 0
+  FadeTo: 1
+  SubtitleObj: {fileID: 0}
+  Subtitles: []
+  TransitionFlashback: {fileID: 0}
