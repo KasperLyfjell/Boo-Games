@@ -34,14 +34,18 @@ public class FlashbackTrigger : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.name == "Player" && CanTrigger)
+        player = other.gameObject.GetComponent<SUPERCharacterAIO>();
+
+        if (other.gameObject.name == "Player" && CanTrigger)
         {
-            //trigger the wibbly wobbly effect and transition to flashback
-            //propably could be done with another coroutine to transition into flashback mode, which then it starts the sound
-            player = other.gameObject.GetComponent<SUPERCharacterAIO>();
-            StartCoroutine(InitiateFlashback());
-            CanTrigger = false;
+            StartFlashback();
         }
+    }
+
+    public void StartFlashback()
+    {
+        StartCoroutine(InitiateFlashback());
+        CanTrigger = false;
     }
 
     IEnumerator InitiateFlashback()
@@ -52,13 +56,12 @@ public class FlashbackTrigger : MonoBehaviour
 
         player.BeginFlashback();
         ScreenDistortion.SetActive(true);
+        AU.Play();
         StartCoroutine(PlayFlashback());
     }
 
     IEnumerator PlayFlashback()
     {
-        //Propably add some initiation first to fade into flashback
-        AU.Play();
         SubtitleObj.text = Subtitles[playedAudios];
         SubtitleObj.gameObject.SetActive(true);
 
@@ -77,5 +80,11 @@ public class FlashbackTrigger : MonoBehaviour
     {
         ScreenDistortion.SetActive(false);
         player.EndFlashback();
+    }
+
+
+    public void Activate()
+    {
+        CanTrigger = true;
     }
 }

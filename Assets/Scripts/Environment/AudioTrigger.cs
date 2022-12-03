@@ -33,6 +33,8 @@ public class AudioTrigger : MonoBehaviour
     public TextMeshProUGUI SubtitleObj;
     public List<string> Subtitles = new List<string>();
 
+    public FlashbackTrigger TransitionFlashback;
+
 
 
     private void Update()
@@ -138,6 +140,13 @@ public class AudioTrigger : MonoBehaviour
 
         if (Subtitles[1] != null)
             StartCoroutine(DisplaySubtitles(Subtitles[1], followAudio.clip.length));
+
+        if(TransitionFlashback != null)
+        {
+            yield return new WaitForSeconds(followAudio.clip.length + 0.2f);
+
+            TransitionFlashback.StartFlashback();
+        }
     }
 
     IEnumerator DisplaySubtitles(string text, float duration)
@@ -148,5 +157,10 @@ public class AudioTrigger : MonoBehaviour
         yield return new WaitForSeconds(duration + 0.2f);
 
         SubtitleObj.gameObject.SetActive(false);
+
+        if (TransitionFlashback != null && !FollowUpAudio)
+        {
+            TransitionFlashback.StartFlashback();
+        }
     }
 }
