@@ -953,7 +953,14 @@ public class SUPERCharacterAIO : MonoBehaviour{
         if(Jumped && (Physics.Raycast(transform.position, Vector3.down, (capsule.height/2)+0.1f,whatIsGround)||Physics.CheckSphere(transform.position-(Vector3.up*((capsule.height/2)-(capsule.radius-0.05f))),capsule.radius,whatIsGround)) &&Time.time>(jumpBlankingPeriod+0.1f)){
             Jumped=false;
         }
+
+
+            //This should help forcing the player down and cancel out wierd hovering
+            //Debug.Log(currentGroundInfo.isInContactWithGround);
+            if (!currentGroundInfo.isInContactWithGround)
+                GetComponent<Rigidbody>().AddForce(new Vector3(0, -50, 0), ForceMode.Force);
         
+
         //if(Result.isGrounded){
             if(currentGroundInfo.groundFromSweep!=null&&currentGroundInfo.groundFromSweep.Length!=0){
                 currentGroundInfo.isGettingGroundInfo=true;
