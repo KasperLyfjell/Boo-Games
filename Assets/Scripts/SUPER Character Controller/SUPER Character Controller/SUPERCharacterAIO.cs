@@ -1597,6 +1597,33 @@ public class SUPERCharacterAIO : MonoBehaviour{
             walkingSpeed = startingMovespeed;
             currentGroundSpeed = startingMovespeed;
         }
+
+        public void BeginChase(float FOV, float Speed)
+        {
+            initialCameraFOV = FOV;
+
+            Component[] child = GetComponentsInChildren<Camera>();
+            foreach (Camera cam in child)
+                cam.fieldOfView = FOV;
+
+            canSprint = false;
+            walkingSpeed = Speed;
+            currentGroundSpeed = Speed;
+
+            ZTilt = 1.77f;
+            headbobSpeed = 3;
+            headbobPower = 5;
+
+            Component[] bobber = GetComponentsInChildren<Headbob>();
+            foreach (Headbob bob in bobber)
+            {
+                bob.bobbingAmount = 0.045f;
+                bob.walkingBobbingSpeed = 9;
+                bob.bobbingZaxis = true;
+                bob.bobbingAmountZ = 0.025f;
+                bob.walkingBobbingSpeedZ = 5f;
+            }
+        }
     }
 
 

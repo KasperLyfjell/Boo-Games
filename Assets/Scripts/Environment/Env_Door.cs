@@ -27,6 +27,7 @@ public class Env_Door: MonoBehaviour
 
     #region Private variables
     private bool CanInteract;
+    private bool isInside;
 
     private GameObject player;
 
@@ -91,9 +92,19 @@ public class Env_Door: MonoBehaviour
 
     private void Update()
     {
+        if (isInside && !Input.GetKey(KeyCode.Q))
+        {
+            CanInteract = true;
+        }
+        else
+        {
+            CanInteract = false;
+        }
+
+
         if (CanInteract && !IsLocked)
         {
-            InteractCue.text = "Press & Hold Left Click"; //+ DoorInteract;
+            //InteractCue.text = "Press & Hold Left Click"; //+ DoorInteract;
 
             if (Input.GetKeyDown(DoorInteract))
             {
@@ -108,7 +119,7 @@ public class Env_Door: MonoBehaviour
             {
                 player.GetComponent<SUPERCharacterAIO>().enableCameraControl = true;
                 Cursor.lockState = CursorLockMode.Locked;
-                InteractCue.gameObject.SetActive(true);
+                //InteractCue.gameObject.SetActive(true);
                 CurrentRotation = transform.EulerAsInspector().y;
             }
         }
@@ -185,20 +196,20 @@ public class Env_Door: MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player" && !IsLocked)
+        if (other.tag == "Player")
         {
-            CanInteract = true;
             player = other.gameObject;
-            InteractCue.gameObject.SetActive(true);
+            isInside = true;
+
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.tag == "Player" && !IsLocked)
+        if (other.tag == "Player")
         {
-            CanInteract = false;
-            InteractCue.gameObject.SetActive(false);
+            isInside = false;
+
         }
     }
 
@@ -292,13 +303,13 @@ public class Env_Door: MonoBehaviour
 
     public void ShutDoor()//Closes the door without player input, like in the events of a wind gust
     {
-        RotationalAngle = new Vector3(transform.localRotation.x, 0, transform.localRotation.z);
+        RotationalAngle = new Vector3(transform.localRotation.x, MinRotation, transform.localRotation.z);
 
+        IsLocked = true;//maybe shouldnt be but this can be changed
         if (CanInteract)
         {
-            InteractCue.gameObject.SetActive(false);
+            //InteractCue.gameObject.SetActive(false);
             CanInteract = false;
         }
-        IsLocked = true;//maybe shouldnt be but this can be changed
     }
 }
