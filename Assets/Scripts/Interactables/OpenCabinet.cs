@@ -11,6 +11,7 @@ public class OpenCabinet : MonoBehaviour
 
     public bool isLocked;
     public AudioClip openDoor;
+    public AudioClip closeDoor;
     public AudioClip doorLocked;
 
     // Start is called before the first frame update
@@ -38,7 +39,7 @@ public class OpenCabinet : MonoBehaviour
                 inAnimation = true;
                 Invoke("FinishedAnimation", 1f);
                 anim.SetBool("Open", false);
-                au.PlayOneShot(openDoor);
+                au.PlayOneShot(closeDoor);
             }
         }
         else

@@ -11,6 +11,7 @@ public class OpenDrawer : MonoBehaviour
 
     public bool isLocked;
     public AudioClip openDoor;
+    public AudioClip closenDoor;
     public AudioClip doorLocked;
 
     // Start is called before the first frame update
@@ -38,7 +39,7 @@ public class OpenDrawer : MonoBehaviour
                 inAnimation = true;
                 Invoke("FinishedAnimation", 1f);
                 anim.SetBool("Open", false);
-                PlayAudio(openDoor);
+                PlayAudio(closenDoor);
             }
         }
         else
