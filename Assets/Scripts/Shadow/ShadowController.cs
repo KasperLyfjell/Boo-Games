@@ -6,6 +6,8 @@ public class ShadowController : MonoBehaviour
 {
     public GameObject Player;
 
+    [Header("Variables")]
+    public bool LookAtPlayer;
 
     public void Emerge()
     {
@@ -14,9 +16,7 @@ public class ShadowController : MonoBehaviour
 
     private void Update()
     {
-        if (Player != null)
+        if (Player != null && LookAtPlayer)
             transform.LookAt(Player.transform.position, Vector3.up);
-        else
-            Debug.LogError("Player not assigned to shadow script");
     }
 }
