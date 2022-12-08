@@ -1486,7 +1486,22 @@ public class SUPERCharacterAIO : MonoBehaviour{
             }
             return ((interactable != null)? interactable.Interact() : false);
             
-        }else{
+        }else
+            {
+                RaycastHit[] h = Physics.SphereCastAll(playerCamera.transform.position, 0.1f, playerCamera.transform.forward, interactRange / 2, interactableLayer, QueryTriggerInteraction.Ignore);
+                Debug.DrawRay(playerCamera.transform.position, playerCamera.transform.forward, Color.red, 5);
+
+                foreach (RaycastHit hit in h)
+                {
+                    IInteractable i = hit.collider.GetComponent<IInteractable>();
+                    if (i != null)
+                    {
+                        return i.Interact();
+                    }
+                }
+
+
+                /*
             RaycastHit h;
             if(Physics.SphereCast(playerCamera.transform.position,0.25f,playerCamera.transform.forward,out h,interactRange,interactableLayer,QueryTriggerInteraction.Ignore)){
                 IInteractable i = h.collider.GetComponent<IInteractable>();
@@ -1494,7 +1509,8 @@ public class SUPERCharacterAIO : MonoBehaviour{
                     return i.Interact();
                 }
             }
-        }
+                */
+            }
         return false;
     }
     #endregion
