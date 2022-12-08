@@ -605,7 +605,9 @@ public class SUPERCharacterAIO : MonoBehaviour{
             if(cameraPerspective == PerspectiveModes._3rdPerson){
                 UpdateCameraPosition_3rdPerson();
             }
-            #endregion
+                #endregion
+
+                UpdateCrosshair();
         }
     }
     private void OnTriggerEnter(Collider other){
@@ -1489,7 +1491,6 @@ public class SUPERCharacterAIO : MonoBehaviour{
         }else
             {
                 RaycastHit[] h = Physics.SphereCastAll(playerCamera.transform.position, 0.1f, playerCamera.transform.forward, interactRange / 2, interactableLayer, QueryTriggerInteraction.Ignore);
-                Debug.DrawRay(playerCamera.transform.position, playerCamera.transform.forward, Color.red, 5);
 
                 foreach (RaycastHit hit in h)
                 {
@@ -1592,6 +1593,29 @@ public class SUPERCharacterAIO : MonoBehaviour{
         p_Rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
         p_Rigidbody.isKinematic = false;
     }
+
+        public void UpdateCrosshair()
+        {
+            bool isHitting = false;
+            float growspeed = 10 * Time.deltaTime;
+
+            RaycastHit[] h = Physics.SphereCastAll(playerCamera.transform.position, 0.1f, playerCamera.transform.forward, interactRange / 2, interactableLayer, QueryTriggerInteraction.Ignore);
+            foreach (RaycastHit hit in h)
+            {
+                IInteractable i = hit.collider.GetComponent<IInteractable>();
+                if (i != null)
+                {
+                    isHitting = true;
+                }
+            }
+
+            if (isHitting && crosshairImg.transform.localScale.x < 3)
+            {
+                crosshairImg.transform.localScale += new Vector3(growspeed, growspeed, growspeed);
+            }
+            else if (crosshairImg.transform.localScale.x > 1)
+                crosshairImg.transform.localScale -= new Vector3(growspeed, growspeed, growspeed);
+        }
 
         public void SpeedUp(float multiplier)
         {
