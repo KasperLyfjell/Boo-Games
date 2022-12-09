@@ -11,7 +11,6 @@ public class ChaseTransition : MonoBehaviour
         if(other.gameObject.name == "Player")
         {
             other.GetComponent<SUPERCharacterAIO>().BeginChase(75, 300);
-
             //Disable lantern wheel
         }
     }

@@ -82,6 +82,8 @@ public class LanternWheelController : MonoBehaviour
 
     void Update()
     {
+        Debug.Log(lanternID);
+
         if (CanInteract)
         {
             PointerMovement();

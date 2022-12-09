@@ -44,7 +44,7 @@ public class Painting : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (lanternWheel.lighterEquipped == false && close == true && lanternLight.color == color)
+        if (lanternWheel.lighterEquipped == false && lanternLight.color == color)
         {
             dp.material = creepyMaterial;
         }
