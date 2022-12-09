@@ -22,9 +22,11 @@ public class ShadowController : MonoBehaviour
     private bool isChasing;
     private float fadingDelay;
     private string alpha = "AlphaChange";
+    private float standardSpeed;
 
     private void Start()
     {
+        standardSpeed = MovementSpeed;
         ResetValues();
     }
     public void Emerge()//Shadow starts walking out of the wall, but doesn't go into chase yet
@@ -83,6 +85,7 @@ public class ShadowController : MonoBehaviour
     private void TakeDamage()//When shining the red light on the Shadow
     {
         fadingDelay -= Time.deltaTime;
+        MovementSpeed = standardSpeed / 2;
         Smoke.SetFloat(alpha, TimeToDestroy - fadingDelay);
         //Play take damage sound
 
@@ -106,7 +109,13 @@ public class ShadowController : MonoBehaviour
     {
         fadingDelay = TimeToDestroy;
         Smoke.SetFloat(alpha, 0);
+        MovementSpeed = standardSpeed;
         //Smoke.Play();
         ShadowBody.SetActive(true);
+    }
+
+    private void KillPlayer()
+    {
+        //Kill the player
     }
 }
