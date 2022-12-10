@@ -12,6 +12,8 @@ public class FlashbackTrigger : MonoBehaviour
 
     public bool CanTrigger;
 
+    public AudioTrigger TriggerDialogue;
+
     [Header("Distortion VFX")]
     public GameObject ScreenDistortion;
     public TextMeshProUGUI SubtitleObj;
@@ -34,11 +36,12 @@ public class FlashbackTrigger : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        player = other.gameObject.GetComponent<SUPERCharacterAIO>();
-
-        if (other.gameObject.name == "Player" && CanTrigger)
+        if (other.gameObject.name == "Player")
         {
-            StartFlashback();
+            player = other.gameObject.GetComponent<SUPERCharacterAIO>();
+
+            if(CanTrigger)
+                StartFlashback();
         }
     }
 
@@ -50,13 +53,12 @@ public class FlashbackTrigger : MonoBehaviour
 
     IEnumerator InitiateFlashback()
     {
+        AU.Play();
 
-
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
 
         player.BeginFlashback();
         ScreenDistortion.SetActive(true);
-        AU.Play();
         StartCoroutine(PlayFlashback());
     }
 
@@ -80,6 +82,11 @@ public class FlashbackTrigger : MonoBehaviour
     {
         ScreenDistortion.SetActive(false);
         player.EndFlashback();
+
+        if (TriggerDialogue != null)
+        {
+            TriggerDialogue.PlaySound();
+        }
     }
 
 

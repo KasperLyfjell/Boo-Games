@@ -34,8 +34,13 @@ public class AudioTrigger : MonoBehaviour
     public List<string> Subtitles = new List<string>();
 
     public FlashbackTrigger TransitionFlashback;
+    public float flashbackTransitionDelay;
 
+    public AudioTrigger AsyncAudio;
+    public float asyncaudioDelay;
 
+    public AudioTrigger PlayNewAfter;
+    public float newAfterDelay;
 
     private void Update()
     {
@@ -96,14 +101,25 @@ public class AudioTrigger : MonoBehaviour
         }
     }
 
-    private void PlaySound()
+    public void PlaySound()
     {
 
         if (FadeOutAudio)
             StartCoroutine(Fadeout(2.5f));
 
-        if(FollowUpAudio)
+        if (FollowUpAudio)
+        {
             StartCoroutine(FollowUp(Source.clip.length + followDelay));
+
+            if(PlayNewAfter != null)
+            {
+                StartCoroutine(AsyncPlayer(Source.clip.length + followDelay + followAudio.clip.length + newAfterDelay));
+            }
+        }
+        else if(PlayNewAfter != null)
+        {
+            StartCoroutine(AsyncPlayer(Source.clip.length + newAfterDelay));
+        }
 
         if (FadeIn)
         {
@@ -113,8 +129,10 @@ public class AudioTrigger : MonoBehaviour
         Source.Play();
 
         if(SubtitleObj != null && Subtitles[0] != null)
-            StartCoroutine(DisplaySubtitles(Subtitles[0], Source.clip.length));
+            StartCoroutine(DisplaySubtitles(Subtitles[0], Source.clip.length, true));
 
+        if (AsyncAudio != null)
+            StartCoroutine(AsyncPlayer(asyncaudioDelay));
     }
 
     IEnumerator Fadeout(float duration)
@@ -138,29 +156,54 @@ public class AudioTrigger : MonoBehaviour
 
         followAudio.Play();
 
-        if (Subtitles[1] != null)
-            StartCoroutine(DisplaySubtitles(Subtitles[1], followAudio.clip.length));
+        if (SubtitleObj != null && Subtitles[0] != null)
+        {
+            if (TransitionFlashback != null)
+            {
+                StartCoroutine(DisplaySubtitles(Subtitles[1], followAudio.clip.length, false));
+            }
+            else
+                StartCoroutine(DisplaySubtitles(Subtitles[1], followAudio.clip.length, true));
+        }
 
         if(TransitionFlashback != null)
         {
-            yield return new WaitForSeconds(followAudio.clip.length + 0.2f);
+            yield return new WaitForSeconds(followAudio.clip.length + flashbackTransitionDelay);
 
             TransitionFlashback.StartFlashback();
         }
     }
 
-    IEnumerator DisplaySubtitles(string text, float duration)
+    IEnumerator DisplaySubtitles(string text, float duration, bool disableSubtitles)
     {
         SubtitleObj.text = text;
         SubtitleObj.gameObject.SetActive(true);
 
-        yield return new WaitForSeconds(duration + 0.2f);
+        float delay = 0.2f;
+        if (TransitionFlashback != null && !FollowUpAudio)
+        {
+            delay = flashbackTransitionDelay;
+        }
 
-        SubtitleObj.gameObject.SetActive(false);
+        yield return new WaitForSeconds(duration + delay);
+
+        if(disableSubtitles)
+            SubtitleObj.gameObject.SetActive(false);
 
         if (TransitionFlashback != null && !FollowUpAudio)
         {
             TransitionFlashback.StartFlashback();
         }
+    }
+
+    IEnumerator AsyncPlayer(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        if (AsyncAudio != null)
+            AsyncAudio.PlaySound();
+        else if (PlayNewAfter != null)
+            PlayNewAfter.PlaySound();
+
     }
 }
