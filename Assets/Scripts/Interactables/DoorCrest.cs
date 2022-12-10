@@ -4,15 +4,22 @@ using UnityEngine;
 
 public class DoorCrest : MonoBehaviour
 {
-    public Animator crestAnim;
+    Animator crestAnim;
     public Animator smallCylAnim;
     public Animator bigCylAnim;
     public GameObject crest;
     public GameObject crestPlacement;
+    public GameObject textPopup;
+    MeshRenderer text;
+
+    bool played = false;
 
     // Start is called before the first frame update
     void Start()
     {
+        text = textPopup.GetComponent<MeshRenderer>();
+        text.enabled = false;
+        crestAnim = crestPlacement.GetComponent<Animator>();
         crestPlacement.SetActive(false);
     }
 
@@ -24,16 +31,21 @@ public class DoorCrest : MonoBehaviour
 
     public void InsertCrest()
     {
-        if(crest != null)
+        if(played == false)
         {
-            Debug.Log("YAS");
-        }
-        else
-        {
-            Debug.Log("NAIS");
-            crestPlacement.SetActive(true);
-            crestAnim.SetBool("Place", true);
-            Invoke("RotateCylinders", 1f);
+            if(crest != null)
+            {
+                played = true;
+                text.enabled = true;
+                Invoke("TextOff", 2f);
+            }
+            else
+            {
+                played = true;
+                crestPlacement.SetActive(true);
+                crestAnim.SetBool("Place", true);
+                Invoke("RotateCylinders", 1f);
+            }
         }
     }
 
@@ -47,5 +59,11 @@ public class DoorCrest : MonoBehaviour
     void MoveSmallCylinderIn()
     {
         smallCylAnim.SetBool("MoveIn", true);
+    }
+
+    void TextOff()
+    {
+        text.enabled = false;
+        played = false;
     }
 }
