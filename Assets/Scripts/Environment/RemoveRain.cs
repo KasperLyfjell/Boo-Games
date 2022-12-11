@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RemoveRain : MonoBehaviour
 {
-    public GameObject rain;
+    public List<GameObject> Deactivate;
 
     public List<AudioSource> KitchenAudio = new List<AudioSource>();
     public List<AudioLowPassFilter> InsideAtmos = new List<AudioLowPassFilter>();
@@ -21,7 +21,11 @@ public class RemoveRain : MonoBehaviour
             audio.Play();
         }
 
-        rain.SetActive(false);
-        Destroy(this.gameObject);
+        foreach (GameObject thing in Deactivate)
+        {
+            thing.SetActive(false);
+        }
+
+        Destroy(this);
     }
 }
