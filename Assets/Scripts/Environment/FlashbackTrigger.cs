@@ -41,16 +41,15 @@ public class FlashbackTrigger : MonoBehaviour
 
     private void Update()
     {
+
         if (AU.isPlaying)
         {
             if (fadeTo && Fade.color.a < 1)
             {
-                Debug.Log("Im fading in");
                 Fade.color += new Color(0, 0, 0, 1.5f * Time.deltaTime);
             }
             else if (!fadeTo && Fade.color.a > 0)
             {
-                Debug.Log("Im fading out");
                 Fade.color -= new Color(0, 0, 0, 1.5f * Time.deltaTime);
             }
         }
@@ -76,6 +75,7 @@ public class FlashbackTrigger : MonoBehaviour
     IEnumerator InitiateFlashback()
     {
         AU.Play();
+        Fade.color = new Color(0, 0, 0, 0);
         fadeTo = true;
 
         yield return new WaitForSeconds(2);
@@ -83,7 +83,9 @@ public class FlashbackTrigger : MonoBehaviour
         ScreenDistortion.SetActive(true);
         player.BeginFlashback();
 
+        Fade.color = new Color(0, 0, 0, 1);
         fadeTo = false;
+        StartCoroutine(PlayingAudio());
         StartCoroutine(PlayFlashback());
     }
 
@@ -97,17 +99,23 @@ public class FlashbackTrigger : MonoBehaviour
         SubtitleObj.gameObject.SetActive(false);
         playedAudios++;
 
-        if (playedAudios == Subtitles.Count)
-            StartCoroutine(EndFlashback());
-        else
+        if (playedAudios != Subtitles.Count)
             StartCoroutine(PlayFlashback());
     }
 
-    IEnumerator EndFlashback()
+    IEnumerator PlayingAudio()
     {
+        yield return new WaitForSeconds(AU.clip.length - 2);
+
+        StartCoroutine(EndFlashback(2));
+    }
+
+    IEnumerator EndFlashback(float endDelay)
+    {
+        //Fade.color = new Color(0, 0, 0, 0);
         fadeTo = true;
 
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(endDelay);
 
         ScreenDistortion.SetActive(false);
         player.EndFlashback();
@@ -117,6 +125,7 @@ public class FlashbackTrigger : MonoBehaviour
             TriggerDialogue.PlaySound();
         }
 
+        //Fade.color = new Color(0, 0, 0, 1);
         fadeTo = false;
     }
 

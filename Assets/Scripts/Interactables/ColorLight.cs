@@ -75,6 +75,11 @@ public class ColorLight : MonoBehaviour
             poofEffect.Play();
             flameSelf.runtimeAnimatorController = lanternFlameColor.runtimeAnimatorController;
 
+            if(GetComponent<AudioSource>().isPlaying == false)
+            {
+                GetComponent<AudioSource>().Play();
+            }
+
             //if (!Input.GetMouseButton(1))
             //{ 
             //    if (colorSelf.color == defaultLight)

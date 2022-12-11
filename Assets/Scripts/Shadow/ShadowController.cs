@@ -29,6 +29,7 @@ public class ShadowController : MonoBehaviour
     private float standardSpeed;
 
     [Header("Audio")]
+    public AudioSource DamageAsyncSound;
     public List<AudioClip> AppearVoice;
     public AudioClip DamageSFX;
     public AudioClip DeathSFX;
@@ -68,12 +69,7 @@ public class ShadowController : MonoBehaviour
             }
             else
             {
-                if (Sound.clip == DamageSFX)
-                {
-                    Sound.Stop();
-                    Sound.clip = null;
-                }
-
+                DamageAsyncSound.volume -= Time.deltaTime * 1.7f;
                 MovementSpeed = standardSpeed;
 
                 if(fadingDelay < TimeToDestroy)
@@ -117,8 +113,11 @@ public class ShadowController : MonoBehaviour
         MovementSpeed = standardSpeed / 2;
         Smoke.SetFloat(alpha, TimeToDestroy - fadingDelay);
 
-        if (Sound.clip != DamageSFX)
-            PlaySound(DamageSFX);
+        if (DamageAsyncSound.volume != 1)
+        {
+            DamageAsyncSound.volume = 1;
+            DamageAsyncSound.Play();
+        }
 
         if(fadingDelay <= 0)
         {
