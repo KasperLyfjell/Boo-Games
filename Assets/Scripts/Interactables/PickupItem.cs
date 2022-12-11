@@ -74,7 +74,7 @@ public class PickupItem : MonoBehaviour
 
 
 
-    private void PickUp()
+    public void PickUp()
     {
         SFXListener.clip = SoundEffect;
         SFXListener.Play();
