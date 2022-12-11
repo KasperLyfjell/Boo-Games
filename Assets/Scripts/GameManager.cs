@@ -12,7 +12,6 @@ public class GameManager : MonoBehaviour
     public bool PlayIntro;
     public bool PreviewIngameSprint;
 
-    public GameObject EditorLightUp;
     public PlayableDirector Intro;
 
     public SUPERCharacterAIO player;
@@ -36,7 +35,6 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         MansionInside.SetActive(false);
-        EditorLightUp.SetActive(false);
         playingCutscene = true;
         //Lighter.gameObject.SetActive(false);
 

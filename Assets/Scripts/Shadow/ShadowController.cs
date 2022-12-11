@@ -5,6 +5,8 @@ using UnityEngine.VFX;
 
 public class ShadowController : MonoBehaviour
 {
+    private AudioSource Sound;
+
     [Header("Assigned Properties")]
     public GameObject Player;
     public GameObject ShadowBody;
@@ -12,9 +14,11 @@ public class ShadowController : MonoBehaviour
 
     [Header("Public Variables")]
     public bool LookAtPlayer;
+    public bool ShouldSpawn;
     public float TimeToDestroy;
     public float EmergeDuration;
     public float MovementSpeed;
+    public ShadowSpawnerManager ActiveSpawner;
 
     [Header("Other Variables")]
     public bool isFading;
@@ -24,8 +28,14 @@ public class ShadowController : MonoBehaviour
     private string alpha = "AlphaChange";
     private float standardSpeed;
 
+    [Header("Audio")]
+    public List<AudioClip> AppearVoice;
+    public AudioClip DamageSFX;
+    public AudioClip DeathSFX;
+
     private void Start()
     {
+        Sound = GetComponent<AudioSource>();
         standardSpeed = MovementSpeed;
         ResetValues();
     }
@@ -34,7 +44,7 @@ public class ShadowController : MonoBehaviour
         ResetValues();
         isChasing = false;
         isAlive = true;
-        Debug.Log("I spawn in now");
+        PlaySound(AppearVoice[Random.Range(0, AppearVoice.Count)]);
         StartCoroutine(Emerging());
     }
 
@@ -44,14 +54,34 @@ public class ShadowController : MonoBehaviour
             transform.LookAt(new Vector3(Player.transform.position.x, transform.position.y, Player.transform.position.z), Vector3.up);
 
         #region Fading Out
-
-        if (isFading && isAlive)
-        {
-            TakeDamage();
-        }
+        //TEST FUNCTION
+        if (Input.GetKey(KeyCode.F))
+            isFading = true;
         else
+            isFading = false;
+
+        if (isAlive)
         {
-            ResetValues();
+            if (isFading)
+            {
+                TakeDamage();
+            }
+            else
+            {
+                if (Sound.clip == DamageSFX)
+                {
+                    Sound.Stop();
+                    Sound.clip = null;
+                }
+
+                MovementSpeed = standardSpeed;
+
+                if(fadingDelay < TimeToDestroy)
+                {
+                    fadingDelay += Time.deltaTime;
+                    Smoke.SetFloat(alpha, TimeToDestroy - fadingDelay);
+                }
+            }
         }
 
         #endregion
@@ -77,7 +107,6 @@ public class ShadowController : MonoBehaviour
 
         if (isAlive)
         {
-            Debug.Log("Start chase");
             isChasing = true;
         }
     }
@@ -87,7 +116,9 @@ public class ShadowController : MonoBehaviour
         fadingDelay -= Time.deltaTime;
         MovementSpeed = standardSpeed / 2;
         Smoke.SetFloat(alpha, TimeToDestroy - fadingDelay);
-        //Play take damage sound
+
+        if (Sound.clip != DamageSFX)
+            PlaySound(DamageSFX);
 
         if(fadingDelay <= 0)
         {
@@ -97,12 +128,17 @@ public class ShadowController : MonoBehaviour
 
     public void Die()//When the Shadow is defeated
     {
-        Debug.Log("AM ded");
-        //Play death sound
-        Smoke.Stop();
-        isChasing = false;
-        ShadowBody.SetActive(false);
+        isFading = false;
         isAlive = false;
+        PlaySound(DeathSFX);
+        Smoke.Stop();
+        ShadowBody.SetActive(false);
+        isChasing = false;
+
+        if (ShouldSpawn)
+        {
+            ActiveSpawner.InitiateRoutine();
+        }
     }
 
     private void ResetValues()//Resets all local values to prepare for new spawn
@@ -110,12 +146,18 @@ public class ShadowController : MonoBehaviour
         fadingDelay = TimeToDestroy;
         Smoke.SetFloat(alpha, 0);
         MovementSpeed = standardSpeed;
-        //Smoke.Play();
+        Smoke.Play();
         ShadowBody.SetActive(true);
     }
 
     private void KillPlayer()
     {
         //Kill the player
+    }
+
+    private void PlaySound(AudioClip clip)
+    {
+        Sound.clip = clip;
+        Sound.Play();
     }
 }

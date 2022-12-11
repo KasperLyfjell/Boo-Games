@@ -1473,7 +1473,7 @@ public class SUPERCharacterAIO : MonoBehaviour{
     #region Interactables
     public bool TryInteract(){
         if(cameraPerspective == PerspectiveModes._3rdPerson){
-            Collider[] cols = Physics.OverlapBox(transform.position + (transform.forward*(interactRange/2)), Vector3.one*(interactRange/2),transform.rotation,interactableLayer,QueryTriggerInteraction.Ignore);
+            Collider[] cols = Physics.OverlapBox(transform.position + (transform.forward*(interactRange)), Vector3.one*(interactRange),transform.rotation,interactableLayer,QueryTriggerInteraction.Ignore);
             IInteractable interactable = null;
             float lastColestDist = 100;
             foreach(Collider c in cols){
@@ -1490,7 +1490,7 @@ public class SUPERCharacterAIO : MonoBehaviour{
             
         }else
             {
-                RaycastHit[] h = Physics.SphereCastAll(playerCamera.transform.position, 0.1f, playerCamera.transform.forward, interactRange / 2, interactableLayer, QueryTriggerInteraction.Ignore);
+                RaycastHit[] h = Physics.SphereCastAll(playerCamera.transform.position, 0.1f, playerCamera.transform.forward, interactRange, interactableLayer, QueryTriggerInteraction.Ignore);
 
                 foreach (RaycastHit hit in h)
                 {

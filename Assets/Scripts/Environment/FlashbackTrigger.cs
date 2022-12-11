@@ -4,11 +4,13 @@ using UnityEngine;
 using TMPro;
 using SUPERCharacter;
 using UnityEngine.Audio;
+using UnityEngine.VFX;
 
 public class FlashbackTrigger : MonoBehaviour
 {
     private int playedAudios;
     private AudioSource AU;
+    private bool fadeTo;
 
     public bool CanTrigger;
 
@@ -16,7 +18,9 @@ public class FlashbackTrigger : MonoBehaviour
 
     [Header("Distortion VFX")]
     public GameObject ScreenDistortion;
+    public SpriteRenderer Fade;
     public TextMeshProUGUI SubtitleObj;
+
     /*
     //This can be a way to easily switch between audio effects
     public AudioMixerGroup mixG;
@@ -34,6 +38,24 @@ public class FlashbackTrigger : MonoBehaviour
     {
         AU = GetComponent<AudioSource>();
     }
+
+    private void Update()
+    {
+        if (AU.isPlaying)
+        {
+            if (fadeTo && Fade.color.a < 1)
+            {
+                Debug.Log("Im fading in");
+                Fade.color += new Color(0, 0, 0, 1.5f * Time.deltaTime);
+            }
+            else if (!fadeTo && Fade.color.a > 0)
+            {
+                Debug.Log("Im fading out");
+                Fade.color -= new Color(0, 0, 0, 1.5f * Time.deltaTime);
+            }
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.name == "Player")
@@ -54,11 +76,14 @@ public class FlashbackTrigger : MonoBehaviour
     IEnumerator InitiateFlashback()
     {
         AU.Play();
+        fadeTo = true;
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2);
 
-        player.BeginFlashback();
         ScreenDistortion.SetActive(true);
+        player.BeginFlashback();
+
+        fadeTo = false;
         StartCoroutine(PlayFlashback());
     }
 
@@ -73,13 +98,17 @@ public class FlashbackTrigger : MonoBehaviour
         playedAudios++;
 
         if (playedAudios == Subtitles.Count)
-            EndFlashback();
+            StartCoroutine(EndFlashback());
         else
             StartCoroutine(PlayFlashback());
     }
 
-    private void EndFlashback()        //stop the wibbly wobbly effect and go transition to normal
+    IEnumerator EndFlashback()
     {
+        fadeTo = true;
+
+        yield return new WaitForSeconds(1);
+
         ScreenDistortion.SetActive(false);
         player.EndFlashback();
 
@@ -87,7 +116,10 @@ public class FlashbackTrigger : MonoBehaviour
         {
             TriggerDialogue.PlaySound();
         }
+
+        fadeTo = false;
     }
+
 
 
     public void Activate()
