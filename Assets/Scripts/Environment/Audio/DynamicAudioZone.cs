@@ -66,7 +66,8 @@ public class DynamicAudioZone : MonoBehaviour
             {
                 if (PreDefinedSource)//This is used when there are one or multiple, pre-defined source locations which are played procedurally
                 {
-                    //propably most useful for the house
+                    int randomSource = Random.Range(0, AudioSources.Count);
+                    PlaySound(AudioSources[randomSource], AudioSources[randomSource].clip);
                 }
                 else//This will play the sound in a random direction somewhere around the player. Used for playing sounds at random
                 {
