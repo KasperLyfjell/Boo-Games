@@ -1490,14 +1490,27 @@ public class SUPERCharacterAIO : MonoBehaviour{
             
         }else
             {
-                RaycastHit[] h = Physics.SphereCastAll(playerCamera.transform.position, 0.02f, playerCamera.transform.forward, interactRange, interactableLayer, QueryTriggerInteraction.Ignore);
-
-                foreach (RaycastHit hit in h)
+                RaycastHit g;
+                if(Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out g, interactRange, interactableLayer, QueryTriggerInteraction.Ignore))
                 {
-                    IInteractable i = hit.collider.GetComponent<IInteractable>();
+                    IInteractable i = g.collider.GetComponent<IInteractable>();
+
                     if (i != null)
                     {
                         return i.Interact();
+                    }
+                    else
+                    {
+                        RaycastHit[] h = Physics.SphereCastAll(playerCamera.transform.position, 0.02f, playerCamera.transform.forward, interactRange, interactableLayer, QueryTriggerInteraction.Ignore);
+
+                        foreach (RaycastHit hit in h)
+                        {
+                            i = hit.collider.GetComponent<IInteractable>();
+                            if (i != null)
+                            {
+                                return i.Interact();
+                            }
+                        }
                     }
                 }
 
@@ -1599,7 +1612,7 @@ public class SUPERCharacterAIO : MonoBehaviour{
             bool isHitting = false;
             float growspeed = 10 * Time.deltaTime;
 
-            RaycastHit[] h = Physics.SphereCastAll(playerCamera.transform.position, 0.02f, playerCamera.transform.forward, interactRange / 2, interactableLayer, QueryTriggerInteraction.Ignore);
+            RaycastHit[] h = Physics.SphereCastAll(playerCamera.transform.position, 0.02f, playerCamera.transform.forward, interactRange, interactableLayer, QueryTriggerInteraction.Ignore);
             foreach (RaycastHit hit in h)
             {
                 IInteractable i = hit.collider.GetComponent<IInteractable>();
