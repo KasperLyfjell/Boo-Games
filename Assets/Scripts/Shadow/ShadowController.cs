@@ -88,7 +88,6 @@ public class ShadowController : MonoBehaviour
         {
             transform.position += transform.forward * Time.deltaTime * MovementSpeed;
         }
-        Debug.Log(isChasing);
 
         #endregion
     }
