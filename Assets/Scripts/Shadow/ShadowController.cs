@@ -19,6 +19,7 @@ public class ShadowController : MonoBehaviour
     public float EmergeDuration;
     public float MovementSpeed;
     public ShadowSpawnerManager ActiveSpawner;
+    public Light effectLight;
 
     [Header("Other Variables")]
     public bool isFading;
@@ -27,6 +28,8 @@ public class ShadowController : MonoBehaviour
     private float fadingDelay;
     private string alpha = "AlphaChange";
     private float standardSpeed;
+    private bool Walking;
+    private Vector3 walkTo;
 
     [Header("Audio")]
     public AudioSource DamageAsyncSound;
@@ -52,7 +55,9 @@ public class ShadowController : MonoBehaviour
     private void Update()
     {
         if (Player != null && LookAtPlayer)
+        {
             transform.LookAt(new Vector3(Player.transform.position.x, transform.position.y, Player.transform.position.z), Vector3.up);
+        }
 
         #region Fading Out
         //TEST FUNCTION
@@ -90,6 +95,19 @@ public class ShadowController : MonoBehaviour
         }
 
         #endregion
+
+        if (Walking)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, walkTo, MovementSpeed * Time.deltaTime);
+
+            if (transform.position == walkTo)
+            {
+                Smoke.Stop();
+                ShadowBody.SetActive(false);
+                effectLight.gameObject.SetActive(false);
+                Walking = false;
+            }
+        }
     }
 
     IEnumerator Emerging()
@@ -104,6 +122,24 @@ public class ShadowController : MonoBehaviour
         {
             isChasing = true;
         }
+    }
+
+    public void WalkPath(Vector3 StartPos, Vector3 EndPos, float Speed, bool look)
+    {
+        LookAtPlayer = look;
+        transform.position = StartPos;
+        Vector3 relativePos = EndPos - transform.position;
+        Quaternion rotation = Quaternion.LookRotation(relativePos, Vector3.up);
+        transform.rotation = rotation;
+
+        MovementSpeed = Speed;
+        walkTo = EndPos;
+
+        Smoke.Play();
+        ShadowBody.SetActive(true);
+        effectLight.gameObject.SetActive(true);
+
+        Walking = true;
     }
 
     private void TakeDamage()//When shining the red light on the Shadow

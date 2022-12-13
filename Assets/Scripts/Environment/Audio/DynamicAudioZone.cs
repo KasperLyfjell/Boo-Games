@@ -32,6 +32,7 @@ public class DynamicAudioZone : MonoBehaviour
     private GameObject player;
     private bool IsInside;
     private float delay = 0;
+    private int previousSound;
     #endregion
 
     private void OnTriggerEnter(Collider collider)
@@ -66,8 +67,18 @@ public class DynamicAudioZone : MonoBehaviour
             {
                 if (PreDefinedSource)//This is used when there are one or multiple, pre-defined source locations which are played procedurally
                 {
-                    int randomSource = Random.Range(0, AudioSources.Count);
-                    PlaySound(AudioSources[randomSource], AudioSources[randomSource].clip);
+                    for(int i = 0; i < 1; i++)
+                    {
+                        int randomSource = Random.Range(0, AudioSources.Count);
+
+                        if (randomSource == previousSound)
+                            i--;
+                        else
+                        {
+                            previousSound = randomSource;
+                        }
+                    }
+                    PlaySound(AudioSources[previousSound], AudioSources[previousSound].clip);
                 }
                 else//This will play the sound in a random direction somewhere around the player. Used for playing sounds at random
                 {

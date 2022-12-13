@@ -21,6 +21,8 @@ public class ChangeColorVial : MonoBehaviour
     bool playedBlue, playedGreen, playedRed;
     Color defaultLight;
 
+    public AudioSource AudioToPlay;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -130,6 +132,7 @@ public class ChangeColorVial : MonoBehaviour
     void ReloadRed()
     {
         lwController.ReloadRed();
+        AudioToPlay.Play();
         Destroy(this.gameObject);
     }
 

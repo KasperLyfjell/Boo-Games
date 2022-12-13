@@ -37,6 +37,8 @@ public class NewMenuController : MonoBehaviour
     public AudioMixer sFXMixer;
     private void Start()
     {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
         pageOne.Play("TurnForward");
         StartCoroutine(DelayStart(delayValue));
     }
