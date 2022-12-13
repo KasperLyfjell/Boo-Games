@@ -31,7 +31,7 @@ public class DynamicAudioZone : MonoBehaviour
     #region Local Variables
     private GameObject player;
     private bool IsInside;
-    private float delay = 0;
+    [HideInInspector] public float delay = 0;
     private int previousSound;
     #endregion
 
