@@ -34,6 +34,6 @@ public class MoveShadow : MonoBehaviour
 
     void PlayNewAudio()
     {
-
+        PlayAudioAfter.PlaySound();
     }
 }
