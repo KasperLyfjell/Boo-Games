@@ -8,6 +8,7 @@ public class DoorCrest : MonoBehaviour
     public Animator smallCylAnim;
     public Animator bigCylAnim;
     public GameObject crest;
+    public GameObject crestIcon;
     public GameObject crestPlacement;
     public GameObject textPopup;
     MeshRenderer text;
@@ -42,6 +43,7 @@ public class DoorCrest : MonoBehaviour
             else
             {
                 played = true;
+                crestIcon.SetActive(false);
                 crestPlacement.SetActive(true);
                 crestAnim.SetBool("Place", true);
                 Invoke("RotateCylinders", 1f);
