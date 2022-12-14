@@ -112,6 +112,8 @@ public class ChangeColorVial : MonoBehaviour
     void ReloadGreen()
     {
         lwController.ReloadGreen();
+        if(AudioToPlay != null)
+            AudioToPlay.Play();
         Destroy(this.gameObject);
     }
 
@@ -132,7 +134,8 @@ public class ChangeColorVial : MonoBehaviour
     void ReloadRed()
     {
         lwController.ReloadRed();
-        AudioToPlay.Play();
+        if (AudioToPlay != null)
+            AudioToPlay.Play();
         Destroy(this.gameObject);
     }
 
