@@ -26,15 +26,27 @@ public class NewMenuController : MonoBehaviour
 
     public float delayValue = 2;
 
-    [Header("Volume Setting")]
+    [Header("Master Volume")]
     public TMP_Text masterVolumeTextValue = null;
     public Slider masterVolumeSilder = null;
-    public float defaultVolume = 100f;
+    //public float defaultVolume = 100f;
 
-    [Header("Volume Masters")]
-    public AudioMixer ambienceMixer;
+    [Header("Music Volume")]
     public AudioMixer musicMixer;
+    public TMP_Text musicVolumeTextValue = null;
+    public Slider musicVolumeSlider = null;
+    //public float musicDefaultVolume = 100f;
+    
+    [Header("Ambience Volume")]
+    public AudioMixer ambienceMixer;
+    public TMP_Text ambienceVolumeTextValue = null;
+    public Slider ambienceVolumeSlider = null;
+    
+    [Header("SFX Volume")]
     public AudioMixer sFXMixer;
+    public TMP_Text sFXVolumeTextValue = null;
+    public Slider sFXVolumeSlider = null;
+
     private void Start()
     {
         Cursor.visible = true;
@@ -54,6 +66,9 @@ public class NewMenuController : MonoBehaviour
     private void Update()
     {
         masterVolumeTextValue.text = masterVolumeSilder.value.ToString("0");
+        musicVolumeTextValue.text = musicVolumeSlider.value.ToString("0");
+        ambienceVolumeTextValue.text = ambienceVolumeSlider.value.ToString("0");
+        sFXVolumeTextValue.text = sFXVolumeSlider.value.ToString("0");
     }
 
     public void StartGame()
@@ -108,9 +123,24 @@ public class NewMenuController : MonoBehaviour
         mainMenu.SetActive(true);
     }
 
-    public void SetVolume(float volume)
+    public void MasterVolume(float volume)
     {
         AudioListener.volume = volume;
+    }
+
+    public void MusicVolume(float musicLvl)
+    {
+        musicMixer.SetFloat("MasterMusic", musicLvl);
+    }
+
+    public void AmbienceVolume(float ambienceLvl)
+    {
+        ambienceMixer.SetFloat("MasterAmbience", ambienceLvl);
+    }
+
+    public void SFXVolume(float sFXLvl)
+    {
+        sFXMixer.SetFloat("MasterSFX", sFXLvl);
     }
 
 
