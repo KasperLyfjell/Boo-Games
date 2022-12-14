@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 using echo17.EndlessBook;
 using TMPro;
 using UnityEngine.Audio;
+using HFPS.UI;
 
 public class NewMenuController : MonoBehaviour
 {
@@ -92,9 +93,9 @@ public class NewMenuController : MonoBehaviour
     private void Update()
     {
         masterVolumeTextValue.text = masterVolumeSilder.value.ToString("0");
-        musicVolumeTextValue.text = musicVolumeSlider.value.ToString("0");
-        ambienceVolumeTextValue.text = ambienceVolumeSlider.value.ToString("0");
-        sFXVolumeTextValue.text = sFXVolumeSlider.value.ToString("0");
+        musicVolumeTextValue.text = Mathf.Round(musicVolumeSlider.value * 100).ToString("0");
+        ambienceVolumeTextValue.text = Mathf.Round(ambienceVolumeSlider.value * 100).ToString("0");
+        sFXVolumeTextValue.text = Mathf.Round(sFXVolumeSlider.value * 100).ToString("0");
     }
 
     public void StartGame()
@@ -154,19 +155,19 @@ public class NewMenuController : MonoBehaviour
         AudioListener.volume = volume;
     }
 
-    public void MusicVolume(float musicLvl)
+    public void MusicVolume(float sliderValue)
     {
-        musicMixer.SetFloat("MasterMusic", musicLvl);
+        musicMixer.SetFloat("MasterMusic", Mathf.Log10(sliderValue) * 20);
     }
 
-    public void AmbienceVolume(float ambienceLvl)
+    public void AmbienceVolume(float sliderValue)
     {
-        ambienceMixer.SetFloat("MasterAmbience", ambienceLvl);
+        ambienceMixer.SetFloat("MasterAmbience", Mathf.Log10(sliderValue) * 20);
     }
 
-    public void SFXVolume(float sFXLvl)
+    public void SFXVolume(float sliderValue)
     {
-        sFXMixer.SetFloat("MasterSFX", sFXLvl);
+        sFXMixer.SetFloat("MasterSFX", Mathf.Log10(sliderValue) * 20);
     }
 
     public void VolumeApply()
