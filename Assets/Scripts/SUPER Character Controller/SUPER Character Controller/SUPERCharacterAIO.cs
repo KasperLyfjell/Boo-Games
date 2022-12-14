@@ -24,6 +24,7 @@ public class SUPERCharacterAIO : MonoBehaviour{
 
         public bool GameStarted;
         private float startingMovespeed;
+        private bool Flashbacking;
     #region Variables
 
     public bool controllerPaused = false;
@@ -1490,25 +1491,28 @@ public class SUPERCharacterAIO : MonoBehaviour{
             
         }else
             {
-                RaycastHit g;
-                if(Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out g, interactRange, interactableLayer, QueryTriggerInteraction.Ignore))
+                if (!Flashbacking)
                 {
-                    IInteractable i = g.collider.GetComponent<IInteractable>();
-
-                    if (i != null)
+                    RaycastHit g;
+                    if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out g, interactRange, interactableLayer, QueryTriggerInteraction.Ignore))
                     {
-                        return i.Interact();
-                    }
-                    else
-                    {
-                        RaycastHit[] h = Physics.SphereCastAll(playerCamera.transform.position, 0.02f, playerCamera.transform.forward, interactRange, interactableLayer, QueryTriggerInteraction.Ignore);
+                        IInteractable i = g.collider.GetComponent<IInteractable>();
 
-                        foreach (RaycastHit hit in h)
+                        if (i != null)
                         {
-                            i = hit.collider.GetComponent<IInteractable>();
-                            if (i != null)
+                            return i.Interact();
+                        }
+                        else
+                        {
+                            RaycastHit[] h = Physics.SphereCastAll(playerCamera.transform.position, 0.02f, playerCamera.transform.forward, interactRange, interactableLayer, QueryTriggerInteraction.Ignore);
+
+                            foreach (RaycastHit hit in h)
                             {
-                                return i.Interact();
+                                i = hit.collider.GetComponent<IInteractable>();
+                                if (i != null)
+                                {
+                                    return i.Interact();
+                                }
                             }
                         }
                     }
@@ -1638,6 +1642,7 @@ public class SUPERCharacterAIO : MonoBehaviour{
 
         public void BeginFlashback()
         {
+            Flashbacking = true;
             canSprint = false;
             startingMovespeed = walkingSpeed;
             walkingSpeed = 80;
@@ -1646,6 +1651,7 @@ public class SUPERCharacterAIO : MonoBehaviour{
 
         public void EndFlashback()
         {
+            Flashbacking = false;
             canSprint = true;
             walkingSpeed = startingMovespeed;
             currentGroundSpeed = startingMovespeed;

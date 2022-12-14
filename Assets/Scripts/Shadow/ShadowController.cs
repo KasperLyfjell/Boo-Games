@@ -22,14 +22,15 @@ public class ShadowController : MonoBehaviour
     public Light effectLight;
 
     [Header("Other Variables")]
-    public bool isFading;
-    public bool isAlive;
+    [HideInInspector] public bool isFading;
+    [HideInInspector] public bool isAlive;
     private bool isChasing;
     private float fadingDelay;
     private string alpha = "AlphaChange";
     private float standardSpeed;
     private bool Walking;
     private Vector3 walkTo;
+    private bool beginChase;
 
     [Header("Audio")]
     public AudioSource DamageAsyncSound;
@@ -43,13 +44,14 @@ public class ShadowController : MonoBehaviour
         standardSpeed = MovementSpeed;
         ResetValues();
     }
-    public void Emerge()//Shadow starts walking out of the wall, but doesn't go into chase yet
+    public void Emerge(Vector3 StartPos, Vector3 EndPos)//Shadow starts walking out of the wall, but doesn't go into chase yet
     {
         ResetValues();
         isChasing = false;
         isAlive = true;
         PlaySound(AppearVoice[Random.Range(0, AppearVoice.Count)]);
-        StartCoroutine(Emerging());
+
+        WalkPath(StartPos, EndPos, standardSpeed / 2, true, true);
     }
 
     private void Update()
@@ -102,19 +104,28 @@ public class ShadowController : MonoBehaviour
 
             if (transform.position == walkTo)
             {
-                Smoke.Stop();
-                ShadowBody.SetActive(false);
-                effectLight.gameObject.SetActive(false);
-                Walking = false;
+                if (beginChase)
+                {
+                    if (isAlive)
+                    {
+                        StartCoroutine(Emerging());
+                    }
+                }
+                else
+                {
+                    Smoke.Stop();
+                    ShadowBody.SetActive(false);
+                    effectLight.gameObject.SetActive(false);
+                    Walking = false;
+                }
             }
         }
     }
 
+    
     IEnumerator Emerging()
     {
-        //Move point A to point B
-        //begin soundtrack
-        //play emerging sound
+        Walking = false;
 
         yield return new WaitForSeconds(EmergeDuration);
 
@@ -123,14 +134,16 @@ public class ShadowController : MonoBehaviour
             isChasing = true;
         }
     }
+    
 
-    public void WalkPath(Vector3 StartPos, Vector3 EndPos, float Speed, bool look)
+    public void WalkPath(Vector3 StartPos, Vector3 EndPos, float Speed, bool look, bool chase)
     {
         LookAtPlayer = look;
         transform.position = StartPos;
         Vector3 relativePos = EndPos - transform.position;
         Quaternion rotation = Quaternion.LookRotation(relativePos, Vector3.up);
         transform.rotation = rotation;
+        beginChase = chase;
 
         MovementSpeed = Speed;
         walkTo = EndPos;

@@ -14,6 +14,7 @@ public class MoveShadow : MonoBehaviour
     bool hasTriggered;
 
     public AudioTrigger PlayAudioAfter;
+    public float playAfter;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -21,11 +22,11 @@ public class MoveShadow : MonoBehaviour
         {
             if (GetComponent<AudioSource>() != null)
                 GetComponent<AudioSource>().Play();
-            shadow.WalkPath(start, end, speed, tolook);
+            shadow.WalkPath(start, end, speed, tolook, false);
 
             if (PlayAudioAfter)
             {
-                Invoke("PlayNewAudio", 1f);
+                Invoke("PlayNewAudio", playAfter);
             }
 
             hasTriggered = true;

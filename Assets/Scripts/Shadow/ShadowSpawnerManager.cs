@@ -16,12 +16,15 @@ public class ShadowSpawnerManager : MonoBehaviour
 
     private float currentDelay;
     private GameObject currentSpawner;
-    private bool doSpawn;
+    private Transform WalkTo;
+    public bool doSpawn;
 
     private void Start()
     {
         csShadow = Shadow.GetComponent<ShadowController>();
-        InitiateRoutine();
+
+        if(doSpawn)
+            SpawnShadow(null);
     }
 
     public void SpawnShadow(GameObject SpawnPoint)//Instantly spawns shadow at location without waiting
@@ -40,9 +43,10 @@ public class ShadowSpawnerManager : MonoBehaviour
             currentSpawner = SpawnPoint;
         }
 
-        Shadow.transform.position = currentSpawner.transform.position;
+        //Shadow.transform.position = currentSpawner.transform.position;
+        WalkTo = currentSpawner.transform.GetChild(0);
 
-        csShadow.Emerge();
+        csShadow.Emerge(currentSpawner.transform.position, WalkTo.position);
     }
 
     public void InitiateRoutine()
@@ -60,19 +64,20 @@ public class ShadowSpawnerManager : MonoBehaviour
             randomSpawn = Random.Range(0, Spawners.Count);
         }
         currentSpawner = Spawners[randomSpawn];
+        WalkTo = currentSpawner.transform.GetChild(0);
 
         currentDelay = Random.Range(minDelay, maxDelay);
 
         yield return new WaitForSeconds(currentDelay);
 
 
-        csShadow.Emerge();
+        csShadow.Emerge(currentSpawner.transform.position, WalkTo.position);
 
-        Shadow.transform.position = currentSpawner.transform.position;
-
+        //Shadow.transform.position = currentSpawner.transform.position;
+        
         /*
         if (doSpawn)
-            StartCoroutine(SpawnRoutine());
+            StartCoroutine(SpawnRoutine());   
         */
     }
 
