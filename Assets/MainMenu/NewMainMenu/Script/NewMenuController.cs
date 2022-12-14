@@ -47,12 +47,38 @@ public class NewMenuController : MonoBehaviour
     public TMP_Text sFXVolumeTextValue = null;
     public Slider sFXVolumeSlider = null;
 
+    [Header("Resolution Settings")]
+    public TMP_Dropdown resolutionDropdown;
+    Resolution[] resolutions; 
+
     private void Start()
     {
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
         pageOne.Play("TurnForward");
         StartCoroutine(DelayStart(delayValue));
+
+        //Resolution Settings
+        resolutions = Screen.resolutions;
+
+        resolutionDropdown.ClearOptions();
+
+        List<string> options = new List<string>();
+
+        int currentResolutionIndex = 0;
+        for (int i = 0; i < resolutions.Length; i++)
+        {
+            string option = resolutions[i].width + "X" + resolutions[i].height;
+            options.Add(option);
+
+            if (resolutions[i].width == Screen.currentResolution.width && resolutions[i].height == resolutions[i].height)
+            {
+                currentResolutionIndex = i;
+            }
+        }
+        resolutionDropdown.AddOptions(options);
+        resolutionDropdown.value = currentResolutionIndex;
+        resolutionDropdown.RefreshShownValue();
     }
 
     IEnumerator DelayStart(float delayTime)
@@ -143,10 +169,24 @@ public class NewMenuController : MonoBehaviour
         sFXMixer.SetFloat("MasterSFX", sFXLvl);
     }
 
-
-
     public void VolumeApply()
     {
         PlayerPrefs.SetFloat("masterVolume", AudioListener.volume);
+    }
+
+    public void SetQuality (int qualityIndex)
+    {
+        QualitySettings.SetQualityLevel(qualityIndex);
+    }
+
+    public void SetFullscreen (bool isFullscreen)
+    {
+        Screen.fullScreen = isFullscreen;
+    }
+
+    public void SetResolution(int resolutionIndex)
+    {
+        Resolution resolution = resolutions[resolutionIndex];
+        Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
     }
 }
