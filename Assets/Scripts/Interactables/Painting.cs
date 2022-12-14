@@ -9,7 +9,7 @@ public class Painting : MonoBehaviour
     Type reactToColor = new Type();
     private Color color;
 
-    bool close = false;
+    //bool close = false;
     DecalProjector dp;
     public Light lanternLight;
     public LanternWheelController lanternWheel;
@@ -54,7 +54,7 @@ public class Painting : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    /*private void OnTriggerEnter(Collider other)
     {
         close = true;
     }
@@ -62,7 +62,7 @@ public class Painting : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         close = false;
-    }
+    }*/
 
     enum Type
     {
