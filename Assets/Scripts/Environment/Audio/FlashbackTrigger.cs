@@ -38,6 +38,8 @@ public class FlashbackTrigger : MonoBehaviour
     private float cutoffValue;
     private bool isEnding;
 
+    public EndingCinematic ending;
+
     private void Start()
     {
         AU = GetComponent<AudioSource>();
@@ -147,6 +149,11 @@ public class FlashbackTrigger : MonoBehaviour
         fadeTo = true;
 
         yield return new WaitForSeconds(endDelay);
+
+        if (ending != null)
+        {
+            ending.StartCinematic();
+        }
 
         ScreenDistortion.SetActive(false);
         player.EndFlashback();
