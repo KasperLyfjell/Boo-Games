@@ -15,6 +15,8 @@ public class DoorCrest : MonoBehaviour
 
     bool played = false;
 
+    public AudioClip MechanismSFX;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,6 +38,8 @@ public class DoorCrest : MonoBehaviour
             }
             else
             {
+                StartCoroutine(PlaySound());
+
                 played = true;
                 crestIcon.SetActive(false);
                 crestPlacement.SetActive(true);
@@ -67,5 +71,14 @@ public class DoorCrest : MonoBehaviour
     void UnlockDoor()
     {
         //HER BARTOSZ
+        GetComponentInParent<Env_Door>().Unlock();
+    }
+
+    IEnumerator PlaySound()
+    {
+        GetComponent<AudioSource>().Play();
+        yield return new WaitForSeconds(GetComponent<AudioSource>().clip.length);
+        GetComponent<AudioSource>().clip = MechanismSFX;
+        GetComponent<AudioSource>().Play();
     }
 }
