@@ -11,6 +11,8 @@ public class ShadowController : MonoBehaviour
     public GameObject Player;
     public GameObject ShadowBody;
     public VisualEffect Smoke;
+    public LanternWheelController LanternWheel;
+    public Light LanternLight;
 
     [Header("Public Variables")]
     public bool LookAtPlayer;
@@ -31,6 +33,7 @@ public class ShadowController : MonoBehaviour
     private bool Walking;
     private Vector3 walkTo;
     private bool beginChase;
+    private Camera cam;
 
     [Header("Audio")]
     public AudioSource DamageAsyncSound;
@@ -40,6 +43,7 @@ public class ShadowController : MonoBehaviour
 
     private void Start()
     {
+        cam = Camera.main;
         Sound = GetComponent<AudioSource>();
         standardSpeed = MovementSpeed;
         ResetValues();
@@ -62,11 +66,30 @@ public class ShadowController : MonoBehaviour
         }
 
         #region Fading Out
-        //TEST FUNCTION
-        if (Input.GetKey(KeyCode.F))
+#if UNITY_EDITOR
+
+        Vector3 viewpos = cam.WorldToViewportPoint(transform.position);
+
+        if (viewpos.x < 0.75f && viewpos.x > 0.25f && viewpos.y < 0.5f && viewpos.y > -0.3f && viewpos.z < 15)
+        {
+            if (LanternWheel != null)
+            {
+                if (LanternWheel.lighterEquipped && LanternLight.color == Color.red)
+                {
+                    isFading = true;
+                }
+            }
+            else
+                isFading = true;
+        }
+        else
+            isFading = false;
+#else
+        if (LanternWheel.lighterEquipped && LanternLight.color == Color.red)
             isFading = true;
         else
             isFading = false;
+#endif
 
         if (isAlive)
         {
@@ -87,16 +110,16 @@ public class ShadowController : MonoBehaviour
             }
         }
 
-        #endregion
+#endregion
 
-        #region Chase
+#region Chase
 
         if (isChasing)
         {
             transform.position += transform.forward * Time.deltaTime * MovementSpeed;
         }
 
-        #endregion
+#endregion
 
         if (Walking)
         {

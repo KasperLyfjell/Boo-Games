@@ -11,7 +11,15 @@ public class AmbientCrossfade : MonoBehaviour
     {
         if(other.gameObject.name == "Player")
         {
-            FadeTo = !FadeTo;
+            FadeTo = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.name == "Player")
+        {
+            FadeTo = false;
         }
     }
 
@@ -20,9 +28,9 @@ public class AmbientCrossfade : MonoBehaviour
     {
         if (FadeTo)
         {
-            if(Rain.volume > 0.2f)
+            if(Rain.volume > 0.3f)
             {
-                Rain.volume -= 0.282f * Time.deltaTime;
+                Rain.volume -= 0.182f * Time.deltaTime;
             }
 
             if (Rain.GetComponent<AudioLowPassFilter>().cutoffFrequency > 3975)
@@ -34,7 +42,7 @@ public class AmbientCrossfade : MonoBehaviour
         {
             if (Rain.volume < 0.482f)
             {
-                Rain.volume += 0.282f * Time.deltaTime;
+                Rain.volume += 0.182f * Time.deltaTime;
             }
 
             if (Rain.GetComponent<AudioLowPassFilter>().cutoffFrequency < 22000)
