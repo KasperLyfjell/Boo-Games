@@ -20,16 +20,21 @@ public class MoveShadow : MonoBehaviour
     {
         if (other.gameObject.name == "Player" && !hasTriggered)
         {
-            if (GetComponent<AudioSource>() != null)
-                GetComponent<AudioSource>().Play();
-            shadow.WalkPath(start, end, speed, tolook, false);
-
-            if (PlayAudioAfter)
-            {
-                Invoke("PlayNewAudio", playAfter);
-            }
+            TriggerEvent();
 
             hasTriggered = true;
+        }
+    }
+
+    public void TriggerEvent()
+    {
+        if (GetComponent<AudioSource>() != null)
+            GetComponent<AudioSource>().Play();
+        shadow.WalkPath(start, end, speed, tolook, false);
+
+        if (PlayAudioAfter)
+        {
+            Invoke("PlayNewAudio", playAfter);
         }
     }
 

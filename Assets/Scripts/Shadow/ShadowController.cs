@@ -117,6 +117,7 @@ public class ShadowController : MonoBehaviour
                     ShadowBody.SetActive(false);
                     effectLight.gameObject.SetActive(false);
                     Walking = false;
+                    Invoke("ResetShadow", 5);
                 }
             }
         }
@@ -148,11 +149,21 @@ public class ShadowController : MonoBehaviour
         MovementSpeed = Speed;
         walkTo = EndPos;
 
+        /*
         Smoke.Play();
         ShadowBody.SetActive(true);
         effectLight.gameObject.SetActive(true);
+        */
 
         Walking = true;
+    }
+
+    void ResetShadow()
+    {
+        transform.position = new Vector3(0, 0, 0);
+        Smoke.Play();
+        ShadowBody.SetActive(true);
+        effectLight.gameObject.SetActive(true);
     }
 
     private void TakeDamage()//When shining the red light on the Shadow
