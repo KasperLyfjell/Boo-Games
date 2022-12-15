@@ -24,6 +24,7 @@ public class NewMenuController : MonoBehaviour
     public GameObject mainMenu;
     public GameObject options;
     public GameObject soundOptions;
+    public GameObject graphicsOptions;
 
     public float delayValue = 2;
 
@@ -136,6 +137,7 @@ public class NewMenuController : MonoBehaviour
     {
         options.SetActive(false);
         soundOptions.SetActive(false);
+        graphicsOptions.SetActive(false);
 
         book.SetPageNumber(2);
         pageTwo.Play("TurnBackward");
