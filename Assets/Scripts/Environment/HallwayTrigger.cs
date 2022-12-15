@@ -6,6 +6,7 @@ public class HallwayTrigger : MonoBehaviour
 {
     public GameObject player;
     public GameObject SpecialLight;
+    public GameObject Shadow;
 
 
     public MoveShadow ShadowTrigger;
@@ -37,7 +38,8 @@ public class HallwayTrigger : MonoBehaviour
         if (other.gameObject.name == "Player")
         {
             KidsDoor.ShutDoor();
-            spawnShadow();
+            Shadow.transform.position = new Vector3(1.39999998f, 75.0699997f, 447.230011f);
+            //spawnShadow();
         }
     }
 
