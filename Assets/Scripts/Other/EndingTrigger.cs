@@ -10,20 +10,26 @@ public class EndingTrigger : MonoBehaviour
 
     private SUPERCharacterAIO player;
     public LanternWheelController LanternWheel;
+    public Light lanternlight;
+
+    public Env_Door BedroomDoor1;
+    public Env_Door BedroomDoor2;
 
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.name == "Player")
         {
             player = other.gameObject.GetComponent<SUPERCharacterAIO>();
-            IsInside = true;
 
-            /*
-            if(color red is equipped && !triggered)
+            if (!triggered)
             {
-                StartEnding();
+                if(lanternlight.color == Color.red)
+                {
+                    StartEnding();
+                }
+                else
+                    IsInside = true;
             }
-            */
         }
     }
 
@@ -46,6 +52,8 @@ public class EndingTrigger : MonoBehaviour
     private void StartEnding()
     {
         triggered = true;
-        gameObject.GetComponent<FlashbackTrigger>().StartFlashback();
+        BedroomDoor1.ShutDoor();
+        BedroomDoor2.ShutDoor();
+        GetComponent<FlashbackTrigger>().StartFlashback();
     }
 }
