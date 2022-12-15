@@ -24,12 +24,6 @@ public class DoorCrest : MonoBehaviour
         crestPlacement.SetActive(false);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void InsertCrest()
     {
         if(played == false)
@@ -61,11 +55,17 @@ public class DoorCrest : MonoBehaviour
     void MoveSmallCylinderIn()
     {
         smallCylAnim.SetBool("MoveIn", true);
+        Invoke("UnlockDoor", 1f);
     }
 
     void TextOff()
     {
         text.enabled = false;
         played = false;
+    }
+
+    void UnlockDoor()
+    {
+        //HER BARTOSZ
     }
 }

@@ -9,7 +9,7 @@ public class Crest : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        crestIcon.SetActive(false);
+        
     }
 
     // Update is called once per frame
