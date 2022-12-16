@@ -33,7 +33,18 @@ public class DynamicAudioZone : MonoBehaviour
     [HideInInspector] public bool IsInside;
     [HideInInspector] public float delay = 0;
     private int previousSound;
+
+    private AudioSource currentAudio;
+    private AudioClip currentClip;
     #endregion
+
+    public delegate void OnAudioTrigger();
+    public OnAudioTrigger onAudioTrigger;
+
+    private void Start()
+    {
+        onAudioTrigger += PlaySound;
+    }
 
     private void OnTriggerEnter(Collider collider)
     {
@@ -78,7 +89,9 @@ public class DynamicAudioZone : MonoBehaviour
                             previousSound = randomSource;
                         }
                     }
-                    PlaySound(AudioSources[previousSound], AudioSources[previousSound].clip);
+                    currentAudio = AudioSources[previousSound];
+                    currentClip = AudioSources[previousSound].clip;
+                    PlaySound();
                 }
                 else//This will play the sound in a random direction somewhere around the player. Used for playing sounds at random
                 {
@@ -86,25 +99,24 @@ public class DynamicAudioZone : MonoBehaviour
                     Vector3 offset = new Vector3(Random.Range(-20f, 20f), 0, Random.Range(-20f, 20f));
                     Source.transform.position += offset;
 
-                    //Source.panStereo = Random.Range(-1f, 1f);
-                    AudioClip RandomClip = Clips[Random.Range(0, Clips.Count)];
-
-                    PlaySound(Source, RandomClip);
+                    currentAudio = Source;
+                    currentClip = Clips[Random.Range(0, Clips.Count)];
+                    PlaySound();
                 }
             }
         }
     }
 
-    private void PlaySound(AudioSource source, AudioClip audioclip)
+    void PlaySound()
     {
         if (RandomVolume)
-            source.volume = Random.Range(minVolume, maxVolume);
+            currentAudio.volume = Random.Range(minVolume, maxVolume);
 
         if (RandomPitch)
-            source.pitch = Random.Range(minPitch, maxPitch);
+            currentAudio.pitch = Random.Range(minPitch, maxPitch);
 
-        source.clip = audioclip;
-        source.Play();
+        currentAudio.clip = currentClip;
+        currentAudio.Play();
 
         delay = Random.Range(minDelay, maxDelay);
     }
