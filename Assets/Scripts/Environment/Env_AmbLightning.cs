@@ -26,7 +26,7 @@ public class Env_AmbLightning : MonoBehaviour
     
     void Update()
     {
-        if (dynAudio.IsInside == false)
+        if (dynAudio.IsInside == true)
         {
 
             if(dynAudio.delay < 0.2) 
