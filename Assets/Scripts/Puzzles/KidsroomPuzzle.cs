@@ -37,16 +37,15 @@ public class KidsroomPuzzle : MonoBehaviour
             if (leftP.correct == true && midP.correct == false && rightP.correct == true)
             {
                 played = true;
-                Invoke("Open", 1f);
+                Invoke("RevealDoor", 1f);
             }
         }
     }
 
-    void Open()
+    void RevealDoor()
     {
-        Debug.Log("YAYYY");
-        //anim.SetBool("Interact", true);
-        //au.Play();
+        anim.SetBool("Move", true);
+        au.Play();
         //au.PlayOneShot(audioClip);
     }
 }
