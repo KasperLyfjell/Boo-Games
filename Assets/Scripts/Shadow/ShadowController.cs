@@ -27,6 +27,7 @@ public class ShadowController : MonoBehaviour
     [HideInInspector] public bool isFading;
     [HideInInspector] public bool isAlive;
     [HideInInspector] public bool doResetOnWalk;
+    [HideInInspector] public bool Immune;
     private bool isChasing;
     private float fadingDelay;
     private string alpha = "AlphaChange";
@@ -92,7 +93,7 @@ public class ShadowController : MonoBehaviour
             isFading = false;
 #endif
 
-        if (isAlive)
+        if (isAlive && !Immune)
         {
             if (isFading)
             {

@@ -41,6 +41,7 @@ public class EndingCinematic : MonoBehaviour
         player.enableCameraControl = false;
         player.enableMovementControl = false;
 
+        Shadow.Immune = true;
         shadowTrigger.TriggerEvent();
         ShadowLight.color = shadowRed;
         Cinematic.Play();
@@ -48,9 +49,9 @@ public class EndingCinematic : MonoBehaviour
 
     public void EndCinematic()
     {
-        player.gameObject.transform.rotation = Quaternion.Euler(new Vector3(0, 192.6449f, 0));
         player.enableCameraControl = true;
         player.enableMovementControl = true;
+        player.gameObject.transform.rotation = Quaternion.Euler(new Vector3(0, 192.6449f, 0));
         player.BeginChase(75, 300);
 
         ChaseBGM.Play();
