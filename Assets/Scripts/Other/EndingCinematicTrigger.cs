@@ -10,15 +10,21 @@ public class EndingCinematicTrigger : MonoBehaviour
     public ShadowController Shadow;
 
     public SUPERCharacterAIO player;
-    public Vector3 StartingPosition;
+    private GameObject PlayerObj;
+    public Headbob bobbing;
+    public Camera cam;
+    private Vector3 StartingPosition;
+    public GameObject WalkToPos;
     //public Vector3 StartingRotation;
 
     public PlayableDirector Cinematic;
 
-    public AudioSource ChaseBGM;
-    //public AudioSource Breathing;
+    //public AudioSource ChaseBGM;
 
-    //public List<DynamicAudioZone> Voices;
+    public List<Vector3> SingleCutAnimationPositions;
+    private int MoveTo;
+
+    private bool movePlayer;
 
 
     private void OnTriggerEnter(Collider other)
@@ -31,6 +37,40 @@ public class EndingCinematicTrigger : MonoBehaviour
 
     void triggerCinematic()
     {
+        PlayerObj = player.gameObject;
+        StartingPosition = player.transform.position;
+        player.enableCameraControl = false;
+        player.enableMovementControl = false;
 
+        bobbing.OverrideBobbing = true;
+
+        movePlayer = true;
+    }
+
+    private void Update()
+    {
+#if UNITY_EDITOR
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            triggerCinematic();
+        }
+#endif
+
+        
+        if (movePlayer)
+        {
+            /*
+            Vector3 target = Vector3.RotateTowards(player.gameObject.transform.position, WalkToPos.transform.position, 1 * Time.deltaTime, 0);
+            //player.gameObject.transform.rotation = Quaternion.LookRotation(new Vector3(player.gameObject.transform.rotation.x, target.y, player.gameObject.transform.rotation.z));
+            player.gameObject.transform.rotation = Quaternion.LookRotation(target);
+
+            player.MovePlayer(Vector3.forward, player.currentGroundSpeed);
+            */
+
+
+            cam.transform.rotation = Quaternion.Lerp(cam.transform.rotation, WalkToPos.transform.rotation, 2 * Time.deltaTime);
+            PlayerObj.transform.position = Vector3.MoveTowards(PlayerObj.transform.position, SingleCutAnimationPositions[MoveTo], 2 * Time.deltaTime);
+        }
+        
     }
 }

@@ -147,7 +147,7 @@ public class SUPERCharacterAIO : MonoBehaviour{
     //Walking/Sprinting/Crouching
     public GroundInfo currentGroundInfo = new GroundInfo();
     float standingHeight;
-    float currentGroundSpeed;
+    [HideInInspector]public float currentGroundSpeed;
     Vector3 InputDir;
     float HeadRotDirForInput;
     Vector2 MovInput;
@@ -825,7 +825,7 @@ public class SUPERCharacterAIO : MonoBehaviour{
 
     #region Movement Functions
 
-    void MovePlayer(Vector3 Direction, float Speed){
+    public void MovePlayer(Vector3 Direction, float Speed){
        // GroundInfo gI = GetGroundInfo();
         isIdle = Direction.normalized.magnitude <=0;
         _2DVelocity = Vector2.right * p_Rigidbody.velocity.x + Vector2.up * p_Rigidbody.velocity.z;
