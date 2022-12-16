@@ -6,6 +6,11 @@ using UnityEngine.Playables;
 
 public class EndingCinematic : MonoBehaviour
 {
+    public MoveShadow shadowTrigger;
+    public ShadowController Shadow;
+    public Light ShadowLight;
+    private Color shadowRed = new Color(0.8962264f, 0.1648719f, 0.1648719f, 1);
+
     public SUPERCharacterAIO player;
     public Vector3 StartingPosition;
     public Vector3 StartingRotation;
@@ -13,7 +18,6 @@ public class EndingCinematic : MonoBehaviour
     public PlayableDirector Cinematic;
 
     public AudioSource ChaseBGM;
-    public AudioSource Voicelines;
     public AudioSource Breathing;
 
     public List<DynamicAudioZone> Voices;
@@ -37,14 +41,14 @@ public class EndingCinematic : MonoBehaviour
         player.enableCameraControl = false;
         player.enableMovementControl = false;
 
-        Voicelines.Play();
-
-        //TEST
-        Invoke("EndCinematic", Voicelines.clip.length);
+        shadowTrigger.TriggerEvent();
+        ShadowLight.color = shadowRed;
+        Cinematic.Play();
     }
 
-    private void EndCinematic()
+    public void EndCinematic()
     {
+        player.gameObject.transform.rotation = Quaternion.Euler(new Vector3(0, 192.6449f, 0));
         player.enableCameraControl = true;
         player.enableMovementControl = true;
         player.BeginChase(75, 300);

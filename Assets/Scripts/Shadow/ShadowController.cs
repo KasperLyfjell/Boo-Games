@@ -26,6 +26,7 @@ public class ShadowController : MonoBehaviour
     [Header("Other Variables")]
     [HideInInspector] public bool isFading;
     [HideInInspector] public bool isAlive;
+    [HideInInspector] public bool doResetOnWalk;
     private bool isChasing;
     private float fadingDelay;
     private string alpha = "AlphaChange";
@@ -55,7 +56,7 @@ public class ShadowController : MonoBehaviour
         isAlive = true;
         PlaySound(AppearVoice[Random.Range(0, AppearVoice.Count)]);
 
-        WalkPath(StartPos, EndPos, standardSpeed / 2, true, true);
+        WalkPath(StartPos, EndPos, standardSpeed / 2, true, true, false);
     }
 
     private void Update()
@@ -136,11 +137,15 @@ public class ShadowController : MonoBehaviour
                 }
                 else
                 {
-                    Smoke.Stop();
-                    ShadowBody.SetActive(false);
-                    effectLight.gameObject.SetActive(false);
+                    if (doResetOnWalk)
+                    {
+                        Smoke.Stop();
+                        ShadowBody.SetActive(false);
+                        effectLight.gameObject.SetActive(false);
+                        Invoke("ResetShadow", 5);
+                    }
+
                     Walking = false;
-                    Invoke("ResetShadow", 5);
                 }
             }
         }
@@ -160,7 +165,7 @@ public class ShadowController : MonoBehaviour
     }
     
 
-    public void WalkPath(Vector3 StartPos, Vector3 EndPos, float Speed, bool look, bool chase)
+    public void WalkPath(Vector3 StartPos, Vector3 EndPos, float Speed, bool look, bool chase, bool reset)
     {
         LookAtPlayer = look;
         transform.position = StartPos;
@@ -178,6 +183,7 @@ public class ShadowController : MonoBehaviour
         effectLight.gameObject.SetActive(true);
         */
 
+        doResetOnWalk = reset;
         Walking = true;
     }
 

@@ -10,6 +10,7 @@ public class MoveShadow : MonoBehaviour
     public Vector3 end;
     public float speed;
     public bool tolook;
+    public bool reset = true;
 
     bool hasTriggered;
 
@@ -30,7 +31,7 @@ public class MoveShadow : MonoBehaviour
     {
         if (GetComponent<AudioSource>() != null)
             GetComponent<AudioSource>().Play();
-        shadow.WalkPath(start, end, speed, tolook, false);
+        shadow.WalkPath(start, end, speed, tolook, false, reset);
 
         if (PlayAudioAfter)
         {

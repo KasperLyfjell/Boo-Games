@@ -39,7 +39,7 @@ public class EndingTrigger : MonoBehaviour
         BedroomDoor2.ShutDoor();
 
         bang.Play();
-        Invoke("delaydFlashback", 2);
+        Invoke("delaydFlashback", 5);
     }
 
     void delaydFlashback()

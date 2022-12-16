@@ -19,7 +19,7 @@ public class HallwayTrigger : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.K))
         {
-            SpecialLight.SetActive(true);
+            //SpecialLight.SetActive(true);
             player.transform.position = new Vector3(66.4199982f, 73.7699966f, 428.230011f);
         }
     }
