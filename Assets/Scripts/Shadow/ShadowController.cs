@@ -28,7 +28,7 @@ public class ShadowController : MonoBehaviour
     [HideInInspector] public bool isAlive;
     [HideInInspector] public bool doResetOnWalk;
     [HideInInspector] public bool Immune;
-    private bool isChasing;
+    [HideInInspector] public bool isChasing;
     private float fadingDelay;
     private string alpha = "AlphaChange";
     private float standardSpeed;
@@ -114,7 +114,7 @@ public class ShadowController : MonoBehaviour
 
 #endregion
 
-#region Chase
+        #region Chase
 
         if (isChasing)
         {

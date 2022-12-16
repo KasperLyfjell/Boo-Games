@@ -22,12 +22,21 @@ public class EndingCinematic : MonoBehaviour
 
     public List<DynamicAudioZone> Voices;
 
+    public GameObject EndingTriggers;
+
+    public List<GameObject> EditorCheats;
+
 
 #if UNITY_EDITOR
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.G))
         {
+            foreach(GameObject item in EditorCheats)
+            {
+                item.SetActive(!item.activeSelf);
+            }
+
             StartCinematic();
         }
     }
@@ -44,6 +53,9 @@ public class EndingCinematic : MonoBehaviour
         Shadow.Immune = true;
         shadowTrigger.TriggerEvent();
         ShadowLight.color = shadowRed;
+
+        EndingTriggers.SetActive(true);
+
         Cinematic.Play();
     }
 
@@ -57,7 +69,9 @@ public class EndingCinematic : MonoBehaviour
         ChaseBGM.Play();
         Breathing.Play();
 
-        foreach(DynamicAudioZone whisper in Voices)
+        Shadow.isChasing = true;
+
+        foreach (DynamicAudioZone whisper in Voices)
         {
             whisper.gameObject.SetActive(true);
             whisper.IsInside = true;
