@@ -10,9 +10,12 @@ public class Env_AmbLightning1 : MonoBehaviour
 
     public float lightStrengthMax = 40000f;
     public float lightStrengthMin = 0f;
+    public float lightTransitionVar = 0.5f;
 
     public float lightningValue;
     public float transitionSpeed = 0.2f;
+
+    float _t = 0.0f;
 
     public bool ActiveLightning;
     void Start()
@@ -26,7 +29,10 @@ public class Env_AmbLightning1 : MonoBehaviour
         if (ActiveLightning)
         {
             lightning.SetActive(true);
-            lightningValue = lightStrengthMax;
+
+            lightningValue = Mathf.Lerp(lightStrengthMax, lightStrengthMin, _t);
+            _t += lightTransitionVar * Time.deltaTime;
+
             lightningData.intensity = lightningValue;
 
 
@@ -44,5 +50,7 @@ public class Env_AmbLightning1 : MonoBehaviour
     {
         yield return new WaitForSeconds(transitionSpeed);
         ActiveLightning = false;
+        lightningValue = lightStrengthMax;
+        _t = 0;
     }
 }
