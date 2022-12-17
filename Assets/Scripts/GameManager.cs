@@ -27,6 +27,9 @@ public class GameManager : MonoBehaviour
 
     public GameObject MansionInside;
 
+    public AudioSource Rain;
+    public GameObject RiverSounds;
+
 
     private bool MenuOpen;
     private KeyCode MenuOpenButton;
@@ -41,9 +44,13 @@ public class GameManager : MonoBehaviour
 
 #if UNITY_EDITOR
         if (PlayIntro)
-            NewGameStart();
+        {
+            //NewGameStart();
+            PlayOutro();
+        }
         else
         {
+            Rain.Play();
             CutsceneEnd();
             StartCoroutine(EditorGameStart());
         }
@@ -55,7 +62,8 @@ public class GameManager : MonoBehaviour
 #endif
 
 #if !UNITY_EDITOR //Build options
-        NewGameStart();
+        //NewGameStart();
+        PlayOutro();
         //player.canSprint = false;
 
         MenuOpenButton = KeyCode.Escape;
@@ -78,6 +86,7 @@ public class GameManager : MonoBehaviour
 
     public void NewGameStart()
     {
+        Rain.Play();
         Intro.Play();
     }
     public void HideLighter()
@@ -97,6 +106,7 @@ public class GameManager : MonoBehaviour
 
     public void CutsceneEnd()
     {
+        RiverSounds.SetActive(true);
         playingCutscene = false;
         player.enableCameraControl = true;
         player.enableMovementControl = true;
@@ -163,6 +173,7 @@ public class GameManager : MonoBehaviour
 
     public void PlayOutro()
     {
+        RiverSounds.SetActive(false);
         player.gameObject.transform.position = new Vector3(-54.3400002f, 44.8600006f, 136.440002f);
         player.gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
         Outro.Play();

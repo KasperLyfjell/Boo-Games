@@ -18,6 +18,8 @@ public class EndingCinematicTrigger : MonoBehaviour
     public GameObject WalkToPos;
     //public Vector3 StartingRotation;
 
+    public List<AudioSource> DeactivateAudios;
+
     public PlayableDirector Cinematic;
 
     //public AudioSource ChaseBGM;
@@ -45,6 +47,11 @@ public class EndingCinematicTrigger : MonoBehaviour
         player.enableMovementControl = false;
 
         bobbing.OverrideBobbing = true;
+
+        foreach(AudioSource audio in DeactivateAudios)
+        {
+            audio.Stop();
+        }
 
         Cinematic.Play();
 
