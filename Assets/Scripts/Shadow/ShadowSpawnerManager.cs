@@ -51,7 +51,7 @@ public class ShadowSpawnerManager : MonoBehaviour
 
     public void InitiateRoutine()
     {
-        doSpawn = true;
+        //doSpawn = true;
         currentSpawner = Spawners[Random.Range(0, Spawners.Count)];
         StartCoroutine(SpawnRoutine());
     }
