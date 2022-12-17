@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public bool PreviewIngameSprint;
 
     public PlayableDirector Intro;
+    public PlayableDirector Outro;
 
     public SUPERCharacterAIO player;
 
@@ -158,5 +159,12 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(1);
 
         ShowLighter();
+    }
+
+    public void PlayOutro()
+    {
+        player.gameObject.transform.position = new Vector3(-54.3400002f, 44.8600006f, 136.440002f);
+        player.gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
+        Outro.Play();
     }
 }
