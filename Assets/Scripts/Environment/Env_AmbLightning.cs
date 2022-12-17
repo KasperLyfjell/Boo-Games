@@ -12,11 +12,13 @@ public class Env_AmbLightning : MonoBehaviour
 
     public float lightStrengthMax = 40000f;
     public float lightStrengthMin = 0f;
+    public float lightTransitionVar = 0.5f;
 
     public float lightningValue;
     public float transitionSpeed = 0.2f;
 
     public bool ActiveLightning;
+    public bool Test;
     void Start()
     {
         lightningValue = lightStrengthMax;
@@ -26,7 +28,9 @@ public class Env_AmbLightning : MonoBehaviour
     
     void Update()
     {
-        if (dynAudio.IsInside == true)
+        float _t = 0.0f;
+
+        if (dynAudio.IsInside == true || Test == true )
         {
 
             if(dynAudio.delay < 0.2) 
@@ -43,6 +47,8 @@ public class Env_AmbLightning : MonoBehaviour
                 lightningValue = lightStrengthMax;
                 lightningData.intensity = lightningValue;
 
+                lightningValue = Mathf.Lerp(lightStrengthMax, lightStrengthMin, _t);
+                _t += lightTransitionVar * Time.deltaTime;
 
                 StartCoroutine(Wait());
             }
