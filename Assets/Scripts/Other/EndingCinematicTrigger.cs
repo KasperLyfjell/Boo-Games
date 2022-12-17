@@ -13,7 +13,8 @@ public class EndingCinematicTrigger : MonoBehaviour
     private GameObject PlayerObj;
     public Headbob bobbing;
     public Camera cam;
-    private Vector3 StartingPosition;
+    public Vector3 StartingPosition;
+    public Quaternion StartingRotation;
     public GameObject WalkToPos;
     //public Vector3 StartingRotation;
 
@@ -21,7 +22,7 @@ public class EndingCinematicTrigger : MonoBehaviour
 
     //public AudioSource ChaseBGM;
 
-    public List<Vector3> SingleCutAnimationPositions;
+    //public List<Vector3> SingleCutAnimationPositions;
     private int MoveTo;
 
     private bool movePlayer;
@@ -38,13 +39,17 @@ public class EndingCinematicTrigger : MonoBehaviour
     void triggerCinematic()
     {
         PlayerObj = player.gameObject;
-        StartingPosition = player.transform.position;
+        PlayerObj.transform.position = StartingPosition;
+        PlayerObj.transform.rotation = StartingRotation;
         player.enableCameraControl = false;
         player.enableMovementControl = false;
 
         bobbing.OverrideBobbing = true;
 
-        movePlayer = true;
+        Cinematic.Play();
+
+
+        //movePlayer = true;
     }
 
     private void Update()
@@ -69,7 +74,7 @@ public class EndingCinematicTrigger : MonoBehaviour
 
 
             cam.transform.rotation = Quaternion.Lerp(cam.transform.rotation, WalkToPos.transform.rotation, 2 * Time.deltaTime);
-            PlayerObj.transform.position = Vector3.MoveTowards(PlayerObj.transform.position, SingleCutAnimationPositions[MoveTo], 2 * Time.deltaTime);
+            //PlayerObj.transform.position = Vector3.MoveTowards(PlayerObj.transform.position, SingleCutAnimationPositions[MoveTo], 2 * Time.deltaTime);
         }
         
     }
