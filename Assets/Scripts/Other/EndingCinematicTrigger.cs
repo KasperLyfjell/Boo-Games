@@ -6,8 +6,8 @@ using UnityEngine.Playables;
 
 public class EndingCinematicTrigger : MonoBehaviour
 {
-    public MoveShadow shadowTrigger;
-    public ShadowController Shadow;
+    public GameObject NewShadow;
+    public GameObject NewLantern;
 
     public SUPERCharacterAIO player;
     private GameObject PlayerObj;
@@ -15,19 +15,10 @@ public class EndingCinematicTrigger : MonoBehaviour
     public Camera cam;
     public Vector3 StartingPosition;
     public Quaternion StartingRotation;
-    public GameObject WalkToPos;
-    //public Vector3 StartingRotation;
 
     public List<AudioSource> DeactivateAudios;
 
     public PlayableDirector Cinematic;
-
-    //public AudioSource ChaseBGM;
-
-    //public List<Vector3> SingleCutAnimationPositions;
-    private int MoveTo;
-
-    private bool movePlayer;
 
 
     private void OnTriggerEnter(Collider other)
@@ -59,30 +50,29 @@ public class EndingCinematicTrigger : MonoBehaviour
         //movePlayer = true;
     }
 
+    public void dropLantern()
+    {
+        NewShadow.SetActive(true);
+        //Play reload animation
+        //Add on some audio to emphasize the character tripping
+
+        Invoke("spawnLantern", 1);
+    }
+
+    void spawnLantern()
+    {
+        //Remember some drop sound
+        NewLantern.SetActive(true);
+    }
+
+
+#if UNITY_EDITOR
     private void Update()
     {
-#if UNITY_EDITOR
         if (Input.GetKeyDown(KeyCode.H))
         {
             triggerCinematic();
         }
-#endif
-
-        
-        if (movePlayer)
-        {
-            /*
-            Vector3 target = Vector3.RotateTowards(player.gameObject.transform.position, WalkToPos.transform.position, 1 * Time.deltaTime, 0);
-            //player.gameObject.transform.rotation = Quaternion.LookRotation(new Vector3(player.gameObject.transform.rotation.x, target.y, player.gameObject.transform.rotation.z));
-            player.gameObject.transform.rotation = Quaternion.LookRotation(target);
-
-            player.MovePlayer(Vector3.forward, player.currentGroundSpeed);
-            */
-
-
-            cam.transform.rotation = Quaternion.Lerp(cam.transform.rotation, WalkToPos.transform.rotation, 2 * Time.deltaTime);
-            //PlayerObj.transform.position = Vector3.MoveTowards(PlayerObj.transform.position, SingleCutAnimationPositions[MoveTo], 2 * Time.deltaTime);
-        }
-        
     }
+#endif
 }
