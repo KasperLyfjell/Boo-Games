@@ -19,6 +19,7 @@ public class NewMenuController : MonoBehaviour
     public string _newGameLevel;
     public string _testScene;
     private string levelToLoad;
+    public GameObject blackout;
 
     [Header("MainMenuFolders")]
     public GameObject mainMenu;
@@ -57,6 +58,7 @@ public class NewMenuController : MonoBehaviour
     {
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
+        blackout.SetActive(false);
         pageOne.Play("TurnForward");
         StartCoroutine(DelayStart(delayValue));
 
@@ -101,6 +103,14 @@ public class NewMenuController : MonoBehaviour
 
     public void StartGame()
     {
+        blackout.SetActive(true);
+        StartCoroutine(DelayNewScene(1));
+    }
+
+    IEnumerator DelayNewScene(float delaytime)
+    {
+        yield return new WaitForSeconds(delayValue);
+
         SceneManager.LoadScene(_newGameLevel);
     }
 
