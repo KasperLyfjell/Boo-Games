@@ -16,8 +16,8 @@ public class HallwayTrigger : MonoBehaviour
     public Env_Door KidsDoor;
 
     private bool triggered;
-    private Vector3 shadowStart;
-    private Vector3 shadowEnd;
+    private Vector3 shadowStart = new Vector3(-7.86999989f, 74.8000031f, 450.589996f);
+    private Vector3 shadowEnd = new Vector3(0.939999998f, 74.8000031f, 447.220001f);
 
 #if UNITY_EDITOR
     private void Update()

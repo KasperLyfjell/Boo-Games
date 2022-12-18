@@ -118,7 +118,9 @@ public class ShadowController : MonoBehaviour
 
         if (isChasing)
         {
-            transform.position += transform.forward * Time.deltaTime * MovementSpeed;
+            //transform.position += transform.forward * Time.deltaTime * MovementSpeed;
+            Vector3 target = new Vector3(Player.transform.position.x, Player.transform.position.y - 2, Player.transform.position.z);
+            transform.position = Vector3.MoveTowards(transform.position, target, Time.deltaTime * MovementSpeed);
         }
 
 #endregion
