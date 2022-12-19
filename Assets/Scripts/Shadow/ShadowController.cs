@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.VFX;
+using SUPERCharacter;
+using UnityEngine.UI;
 
 public class ShadowController : MonoBehaviour
 {
@@ -13,6 +15,7 @@ public class ShadowController : MonoBehaviour
     public VisualEffect Smoke;
     public LanternWheelController LanternWheel;
     public Light LanternLight;
+    public GameObject dim;
 
     [Header("Public Variables")]
     public bool LookAtPlayer;
@@ -22,6 +25,7 @@ public class ShadowController : MonoBehaviour
     public float MovementSpeed;
     public ShadowSpawnerManager ActiveSpawner;
     public Light effectLight;
+    public GameObject ShadowTooltip;
 
     [Header("Other Variables")]
     [HideInInspector] public bool isFading;
@@ -36,12 +40,16 @@ public class ShadowController : MonoBehaviour
     private Vector3 walkTo;
     private bool beginChase;
     private Camera cam;
+    private bool doDim;
 
     [Header("Audio")]
     public AudioSource DamageAsyncSound;
     public List<AudioClip> AppearVoice;
     public AudioClip DamageSFX;
     public AudioClip DeathSFX;
+    public AudioClip KillSound;
+    public AudioSource Jumpscare;
+    public AudioSource BGM;
 
     private void Start()
     {
@@ -58,6 +66,14 @@ public class ShadowController : MonoBehaviour
         PlaySound(AppearVoice[Random.Range(0, AppearVoice.Count)]);
 
         WalkPath(StartPos, EndPos, standardSpeed / 2, true, true, false);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.name == "Player")
+        {
+            KillPlayer();
+        }
     }
 
     private void Update()
@@ -144,6 +160,11 @@ public class ShadowController : MonoBehaviour
                     Walking = false;
                 }
             }
+        }
+
+        if (doDim)
+        {
+            dim.GetComponent<Image>().color += new Color(0, 0, 0, 0.5f * Time.deltaTime);
         }
     }
 
@@ -235,7 +256,53 @@ public class ShadowController : MonoBehaviour
 
     private void KillPlayer()
     {
-        //Kill the player
+        Debug.Log("I KILL :3");
+        StartCoroutine(RespawnPlayer());
+    }
+
+    IEnumerator RespawnPlayer()
+    {
+        BGM.Stop();
+        isAlive = false;
+        isChasing = false;
+
+        Player.GetComponent<SUPERCharacterAIO>().enableCameraControl = false;
+        Player.GetComponent<SUPERCharacterAIO>().enableMovementControl = false;
+        Player.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
+
+        Jumpscare.Play();
+
+        transform.parent = cam.gameObject.transform;
+        transform.localPosition = new Vector3(0, -4.5f, 1.8f);
+        LookAtPlayer = false;
+        transform.localRotation = Quaternion.Euler(cam.transform.rotation.x, cam.transform.rotation.y + 180, cam.transform.rotation.z);
+
+        yield return new WaitForSeconds(1);
+
+        PlaySound(KillSound);
+        dim.GetComponent<Image>().color = new Color(0, 0, 0, 0);
+        dim.SetActive(true);
+        doDim = true;
+
+        yield return new WaitForSeconds(3);
+
+        ShadowTooltip.SetActive(true);
+
+        yield return new WaitForSeconds(3);
+
+        ShadowTooltip.SetActive(false);
+        transform.parent = null;
+        transform.position = new Vector3(0, 0, 0);
+        LookAtPlayer = true;
+        Die();
+
+        //spawn player at location
+        Player.GetComponent<SUPERCharacterAIO>().enableCameraControl = true;
+        Player.GetComponent<SUPERCharacterAIO>().enableMovementControl = true;
+
+        doDim = false;
+        dim.SetActive(false);
+        BGM.Play();
     }
 
     private void PlaySound(AudioClip clip)

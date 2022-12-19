@@ -14,7 +14,13 @@ public class ReadNote : MonoBehaviour
 
     public GameObject Blur;
     public GameObject Text;
+    public GameObject ReadPrompt;
     private bool isReading;
+    public AudioSource sfxPlay;
+    public AudioClip clickRead;
+
+    public AudioTrigger PlaySpecial;
+    private bool playOnce;
 
     private void Start()
     {
@@ -33,8 +39,17 @@ public class ReadNote : MonoBehaviour
     {
         if(isHeld)
         {
-            if(Input.GetKeyDown(KeyCode.F))
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                sfxPlay.clip = clickRead;
+                sfxPlay.Play();
                 ReadText();
+            }
+
+            if (!isReading)
+                ReadPrompt.SetActive(true);
+            else
+                ReadPrompt.SetActive(false);
 
             transform.localPosition = Vector3.MoveTowards(transform.localPosition, new Vector3(0, 0, 1), Time.deltaTime * smooth);
             transform.localRotation = Quaternion.Slerp(transform.localRotation, Quaternion.Euler(0, 0, 0), Time.deltaTime * smooth * 1.5f);
@@ -53,6 +68,12 @@ public class ReadNote : MonoBehaviour
         {
             if (isHeld)
             {
+                if(PlaySpecial != null && !playOnce)
+                {
+                    PlaySpecial.PlaySound();
+                    playOnce = true;
+                }
+
                 transform.parent = null;
 
                 player.enableCameraControl = true;
