@@ -6,6 +6,7 @@ using UnityEngine.Playables;
 
 public class EndingCinematicTrigger : MonoBehaviour
 {
+    public GameObject oldShadow;
     public GameObject NewShadow;
     public GameObject NewLantern;
 
@@ -34,6 +35,7 @@ public class EndingCinematicTrigger : MonoBehaviour
 
     void triggerCinematic()
     {
+        oldShadow.SetActive(false);
         PlayerObj = player.gameObject;
         PlayerObj.transform.position = StartingPosition;
         PlayerObj.transform.rotation = StartingRotation;
