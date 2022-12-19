@@ -205,7 +205,7 @@ public class ShadowController : MonoBehaviour
         Walking = true;
     }
 
-    void ResetShadow()
+    public void ResetShadow()
     {
         transform.position = new Vector3(0, 0, 0);
         Smoke.Play();

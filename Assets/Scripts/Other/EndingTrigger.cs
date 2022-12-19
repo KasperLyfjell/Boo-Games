@@ -35,9 +35,10 @@ public class EndingTrigger : MonoBehaviour
     private void StartEnding()
     {
         triggered = true;
+
         BedroomDoor1.ShutDoor();
         BedroomDoor2.ShutDoor();
-
+        LanternWheel.CanInteract = false;
         bang.Play();
         Invoke("delaydFlashback", 5);
     }

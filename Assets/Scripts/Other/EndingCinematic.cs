@@ -44,6 +44,7 @@ public class EndingCinematic : MonoBehaviour
 
     public void StartCinematic()
     {
+        Shadow.ResetShadow();
         player.gameObject.transform.position = StartingPosition;
         player.gameObject.transform.rotation = Quaternion.Euler(StartingRotation);
 
