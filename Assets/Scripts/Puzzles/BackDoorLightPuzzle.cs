@@ -39,6 +39,7 @@ public class BackDoorLightPuzzle : MonoBehaviour
         GetComponent<Env_Door>().Unlock();
         au.PlayOneShot(audioClip);
         MansionInsides.SetActive(true);//Attempts to fix the performance issue by spawning the inside of the mansion only after unlocking the kitchen door
+        GetComponent<Env_Door>().MoveOpenDoor(30);
         //gateDoorAnim.SetBool("Open", true);
     }
 }

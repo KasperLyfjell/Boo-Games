@@ -13,12 +13,14 @@ public class Performance_Lightswitch : MonoBehaviour
         {
             foreach(GameObject light in LightsOn)
             {
-                light.SetActive(true);
+                if(light.activeSelf == false)
+                    light.SetActive(true);
             }
 
             foreach (GameObject light in LightsOff)
             {
-                light.SetActive(false);
+                if(light.activeSelf == true)
+                    light.SetActive(false);
             }
         }
     }
