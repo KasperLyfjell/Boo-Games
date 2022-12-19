@@ -10,13 +10,16 @@ public class HorseCrestPuzzle : MonoBehaviour
 
     private void Update()
     {
-        if(!lanternWheel.lighterEquipped && lanternLight.color == Color.green)
+        if(horse != null)
         {
-            horse.SetActive(true);
-        }
-        else
-        {
-            horse.SetActive(false);
+            if (!lanternWheel.lighterEquipped && lanternLight.color == Color.green)
+            {
+                horse.SetActive(true);
+            }
+            else
+            {
+                horse.SetActive(false);
+            }
         }
     }
 }

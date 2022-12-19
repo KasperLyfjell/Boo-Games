@@ -22,6 +22,7 @@ public class EndingCinematicTrigger : MonoBehaviour
     public Quaternion StartingRotation;
 
     public List<AudioSource> DeactivateAudios;
+    public List<GameObject> DeactiveObjects;
 
     public PlayableDirector Cinematic;
 
@@ -43,12 +44,18 @@ public class EndingCinematicTrigger : MonoBehaviour
         PlayerObj.transform.rotation = StartingRotation;
         player.enableCameraControl = false;
         player.enableMovementControl = false;
+        player.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
 
         bobbing.OverrideBobbing = true;
 
         foreach(AudioSource audio in DeactivateAudios)
         {
             audio.Stop();
+        }
+
+        foreach (GameObject obj in DeactiveObjects)
+        {
+            obj.SetActive(false);
         }
 
         Cinematic.Play();
