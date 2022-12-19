@@ -9,6 +9,7 @@ public class EndingCinematicTrigger : MonoBehaviour
     public GameObject oldShadow;
     public GameObject NewShadow;
     public GameObject NewLantern;
+    public GameManager manager;
 
     public Animator armAnim;
     public LanternWheelController wheel;
@@ -35,6 +36,7 @@ public class EndingCinematicTrigger : MonoBehaviour
 
     void triggerCinematic()
     {
+        manager.FinishedGame = true;
         oldShadow.SetActive(false);
         PlayerObj = player.gameObject;
         PlayerObj.transform.position = StartingPosition;

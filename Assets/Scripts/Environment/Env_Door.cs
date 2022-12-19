@@ -238,7 +238,7 @@ public class Env_Door: MonoBehaviour
         {
             OpeningPercentage = 1 - OpeningPercentage;
         }
-        Debug.Log(OpeningPercentage);
+
         startTime = clipLength * OpeningPercentage;
 
         if(startTime <= clipLength && startTime >= 0)//removes annoying errors in editor, however the script works fine without this line

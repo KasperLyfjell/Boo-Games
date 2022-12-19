@@ -7,6 +7,8 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public bool FinishedGame;
+
     public LanternWheelController Wheel;
 
     public bool PlayIntro;
@@ -177,5 +179,13 @@ public class GameManager : MonoBehaviour
         player.gameObject.transform.position = new Vector3(-54.3400002f, 44.8600006f, 136.440002f);
         player.gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
         Outro.Play();
+    }
+
+    public void CheckForEnding()
+    {
+        if (FinishedGame)
+        {
+            SceneManager.LoadScene("Credits");
+        }
     }
 }
