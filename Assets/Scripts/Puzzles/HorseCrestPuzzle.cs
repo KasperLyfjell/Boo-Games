@@ -16,7 +16,7 @@ public class HorseCrestPuzzle : MonoBehaviour
         }
         else
         {
-            horse.SetActive(true);
+            horse.SetActive(false);
         }
     }
 }
