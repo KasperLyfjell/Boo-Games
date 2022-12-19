@@ -15,6 +15,7 @@ public class EndBasementChase : MonoBehaviour
         {
             shadow.ShouldSpawn = false;
             shadow.Die();
+            Destroy(spawner);
             exited = true;
         }
     }

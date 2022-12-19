@@ -27,7 +27,7 @@ public class ShadowController : MonoBehaviour
     [HideInInspector] public bool isFading;
     [HideInInspector] public bool isAlive;
     [HideInInspector] public bool doResetOnWalk;
-    [HideInInspector] public bool Immune;
+    [HideInInspector] public bool Immune = false;
     [HideInInspector] public bool isChasing;
     private float fadingDelay;
     private string alpha = "AlphaChange";
@@ -68,7 +68,7 @@ public class ShadowController : MonoBehaviour
         }
 
         #region Fading Out
-#if UNITY_EDITOR
+
 
         Vector3 viewpos = cam.WorldToViewportPoint(transform.position);
 
@@ -76,22 +76,15 @@ public class ShadowController : MonoBehaviour
         {
             if (LanternWheel != null)
             {
-                if (LanternWheel.lighterEquipped && LanternLight.color == Color.red)
+                if (LanternWheel.lighterEquipped == false && LanternLight.color == Color.red)
                 {
                     isFading = true;
                 }
             }
-            else
-                isFading = true;
         }
         else
             isFading = false;
-#else
-        if (LanternWheel.lighterEquipped && LanternLight.color == Color.red)
-            isFading = true;
-        else
-            isFading = false;
-#endif
+
 
         if (isAlive && !Immune)
         {

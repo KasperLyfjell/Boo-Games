@@ -46,6 +46,7 @@ public class ShadowSpawnerManager : MonoBehaviour
         //Shadow.transform.position = currentSpawner.transform.position;
         WalkTo = currentSpawner.transform.GetChild(0);
 
+        csShadow.ActiveSpawner = this;
         csShadow.Emerge(currentSpawner.transform.position, WalkTo.position);
     }
 
