@@ -135,6 +135,7 @@ public class GameManager : MonoBehaviour
 
         player.enableMovementControl = false;
         player.enableCameraControl = false;
+        player.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         //player.lockAndHideMouse = false;

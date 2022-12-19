@@ -25,6 +25,8 @@ public class EndingCinematic : MonoBehaviour
     public GameObject EndingTriggers;
 
     public List<GameObject> EditorCheats;
+    public GameObject InvisWallToBasement;
+    public GameObject OutsideTerrain;
 
 
 #if UNITY_EDITOR
@@ -44,6 +46,8 @@ public class EndingCinematic : MonoBehaviour
 
     public void StartCinematic()
     {
+        InvisWallToBasement.SetActive(true);
+        OutsideTerrain.SetActive(true);
         Shadow.ResetShadow();
         player.gameObject.transform.position = StartingPosition;
         player.gameObject.transform.rotation = Quaternion.Euler(StartingRotation);

@@ -26,6 +26,8 @@ public class EndingCinematicTrigger : MonoBehaviour
 
     public PlayableDirector Cinematic;
 
+    public GameObject MansionInsides;
+
 
     private void OnTriggerEnter(Collider other)
     {
@@ -37,6 +39,7 @@ public class EndingCinematicTrigger : MonoBehaviour
 
     void triggerCinematic()
     {
+        MansionInsides.SetActive(false);
         manager.FinishedGame = true;
         oldShadow.SetActive(false);
         PlayerObj = player.gameObject;
