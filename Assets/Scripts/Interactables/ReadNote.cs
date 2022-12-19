@@ -12,6 +12,10 @@ public class ReadNote : MonoBehaviour
     private bool isHeld;
     private float smooth = 6;
 
+    public GameObject Blur;
+    public GameObject Text;
+    private bool isReading;
+
     private void Start()
     {
         cam = Camera.main;
@@ -45,33 +49,42 @@ public class ReadNote : MonoBehaviour
 
     public void PickupNote()
     {
-        if (isHeld)
+        if (!isReading)
         {
-            transform.parent = null;
+            if (isHeld)
+            {
+                transform.parent = null;
 
-            player.enableCameraControl = true;
-            player.enableMovementControl = true;
+                player.enableCameraControl = true;
+                player.enableMovementControl = true;
 
-            isHeld = false;
+                isHeld = false;
+            }
+            else
+            {
+                transform.parent = cam.gameObject.transform;
+
+                player.enableCameraControl = false;
+                player.enableMovementControl = false;
+
+                isHeld = true;
+            }
         }
-        else
-        {
-            transform.parent = cam.gameObject.transform;
-
-            player.enableCameraControl = false;
-            player.enableMovementControl = false;
-
-            isHeld = true;
-        }
-    }
-
-    public void DropNote()
-    {
-
     }
 
     public void ReadText()
     {
-        Debug.Log("Show text");
+        if (!isReading)
+        {
+            Blur.SetActive(true);
+            Text.SetActive(true);
+            isReading = true;
+        }
+        else
+        {
+            Blur.SetActive(false);
+            Text.SetActive(false);
+            isReading = false;
+        }
     }
 }
