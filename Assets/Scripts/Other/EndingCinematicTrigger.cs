@@ -9,6 +9,9 @@ public class EndingCinematicTrigger : MonoBehaviour
     public GameObject NewShadow;
     public GameObject NewLantern;
 
+    public Animator armAnim;
+    public LanternWheelController wheel;
+
     public SUPERCharacterAIO player;
     private GameObject PlayerObj;
     public Headbob bobbing;
@@ -53,8 +56,7 @@ public class EndingCinematicTrigger : MonoBehaviour
     public void dropLantern()
     {
         NewShadow.SetActive(true);
-        //Play reload animation
-        //Add on some audio to emphasize the character tripping
+        armAnim.SetBool("Reload", true);
 
         Invoke("spawnLantern", 1);
     }
@@ -63,6 +65,11 @@ public class EndingCinematicTrigger : MonoBehaviour
     {
         //Remember some drop sound
         NewLantern.SetActive(true);
+    }
+
+    public void equipLighter()
+    {
+        wheel.EquipLighter();
     }
 
 
