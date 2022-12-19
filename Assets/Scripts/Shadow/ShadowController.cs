@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.VFX;
 using SUPERCharacter;
 using UnityEngine.UI;
+using TMPro;
 
 public class ShadowController : MonoBehaviour
 {
@@ -70,7 +71,7 @@ public class ShadowController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.name == "Player")
+        if(other.gameObject.name == "Player" && isAlive && isChasing)
         {
             KillPlayer();
         }
@@ -310,4 +311,15 @@ public class ShadowController : MonoBehaviour
         Sound.clip = clip;
         Sound.Play();
     }
+
+    public void AssingBGM(AudioSource currentBGM)
+    {
+        BGM = currentBGM;
+    }
+
+    public void ChangeTooltip(string text)
+    {
+        ShadowTooltip.GetComponent<TextMeshProUGUI>().text = text;
+    }
 }
+

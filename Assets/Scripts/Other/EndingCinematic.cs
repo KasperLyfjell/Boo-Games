@@ -70,6 +70,8 @@ public class EndingCinematic : MonoBehaviour
         Breathing.Play();
 
         Shadow.isChasing = true;
+        Shadow.AssingBGM(ChaseBGM);
+        Shadow.ChangeTooltip("Run, Flee, Escape");
 
         foreach (DynamicAudioZone whisper in Voices)
         {
