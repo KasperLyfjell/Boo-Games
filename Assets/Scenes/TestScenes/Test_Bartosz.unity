@@ -5857,11 +5857,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc53bab49735079409d9cde671d63bdc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Blur: {fileID: 0}
-  Text: {fileID: 0}
-  ReadPrompt: {fileID: 0}
-  sfxPlay: {fileID: 0}
-  clickRead: {fileID: 0}
+  Blur: {fileID: 1025324561}
+  Text: {fileID: 1025324561}
+  ReadPrompt: {fileID: 1025324561}
+  sfxPlay: {fileID: 1000433243}
+  clickRead: {fileID: 8300000, guid: ca47b3fa753826343b8678c4ebb1d676, type: 3}
   PlaySpecial: {fileID: 0}
 --- !u!65 &1375639019
 BoxCollider:
@@ -5896,7 +5896,7 @@ MeshRenderer:
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 73c176f402d2c2f4d929aa5da7585d17, type: 2}
+  - {fileID: 2100000, guid: 254548cd5889424479f0be26dc7edd30, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5933,14 +5933,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1375639017}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0.04211016, y: -0.7204077, z: 0.69109166, w: 0.04039655}
   m_LocalPosition: {x: -4.39, y: 4.63, z: -6.573}
   m_LocalScale: {x: 0.4078, y: 0.4078, z: 0.029799983}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 22
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 92.380005, y: 0, z: 173.309}
 --- !u!114 &1375639023
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6668,7 +6668,7 @@ MonoBehaviour:
   - {fileID: 681949746}
   minDelay: 6
   maxDelay: 10
-  doSpawn: 1
+  doSpawn: 0
 --- !u!4 &1543710850
 Transform:
   m_ObjectHideFlags: 0

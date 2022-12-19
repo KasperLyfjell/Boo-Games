@@ -51,8 +51,9 @@ public class ReadNote : MonoBehaviour
             else
                 ReadPrompt.SetActive(false);
 
-            transform.localPosition = Vector3.MoveTowards(transform.localPosition, new Vector3(0, 0, 1), Time.deltaTime * smooth);
-            transform.localRotation = Quaternion.Slerp(transform.localRotation, Quaternion.Euler(0, 0, 0), Time.deltaTime * smooth * 1.5f);
+            transform.localPosition = Vector3.MoveTowards(transform.localPosition, new Vector3(0, 0, 1.2f), Time.deltaTime * smooth);
+            transform.localRotation = Quaternion.Slerp(transform.localRotation, Quaternion.Euler(90, 180, 0), Time.deltaTime * smooth * 1.5f);
+            player.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
         }
         else
         {
@@ -78,6 +79,7 @@ public class ReadNote : MonoBehaviour
 
                 player.enableCameraControl = true;
                 player.enableMovementControl = true;
+                ReadPrompt.SetActive(true);
 
                 isHeld = false;
             }
@@ -87,6 +89,7 @@ public class ReadNote : MonoBehaviour
 
                 player.enableCameraControl = false;
                 player.enableMovementControl = false;
+                ReadPrompt.SetActive(false);
 
                 isHeld = true;
             }

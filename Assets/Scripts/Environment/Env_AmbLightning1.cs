@@ -53,4 +53,9 @@ public class Env_AmbLightning1 : MonoBehaviour
         lightningValue = lightStrengthMax;
         _t = 0;
     }
+
+    public void activateStrike()
+    {
+        ActiveLightning = true;
+    }
 }
