@@ -13,8 +13,6 @@ public class PoolBallSolutionCheck : MonoBehaviour
     Animator anim;
     AudioSource au;
 
-    public Interactable boxBlocker;
-
     private void Start()
     {
         anim = GetComponent<Animator>();
@@ -45,7 +43,6 @@ public class PoolBallSolutionCheck : MonoBehaviour
 
     void Open()
     {
-        boxBlocker.enabled = false;
         anim.SetBool("Open", true);
         au.PlayOneShot(openSound);
     }
