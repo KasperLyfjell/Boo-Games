@@ -609,6 +609,7 @@ public class SUPERCharacterAIO : MonoBehaviour{
                 #endregion
 
                 UpdateCrosshair();
+
         }
     }
     private void OnTriggerEnter(Collider other){
@@ -1565,6 +1566,7 @@ public class SUPERCharacterAIO : MonoBehaviour{
     }
 #endif
         #endregion
+
 
 
     public void PausePlayer(PauseModes pauseMode){

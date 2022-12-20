@@ -11,6 +11,7 @@ TagManager:
   - LanternWheel
   - LanternFlame
   - LanternLight
+  - Stair
   layers:
   - Default
   - TransparentFX

@@ -59,6 +59,7 @@ public class EndingCinematic : MonoBehaviour
 
         Shadow.AssingPlayerRespawn(playerSpawnPoint);
         Shadow.Immune = true;
+        Shadow.isAlive = true;
         shadowTrigger.TriggerEvent();
         ShadowLight.color = shadowRed;
 

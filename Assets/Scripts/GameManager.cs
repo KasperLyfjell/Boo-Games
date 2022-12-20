@@ -37,6 +37,7 @@ public class GameManager : MonoBehaviour
     private KeyCode MenuOpenButton;
 
     private bool playingCutscene;
+    public Headbob lighterBob;
 
     private void Start()
     {
@@ -93,7 +94,22 @@ public class GameManager : MonoBehaviour
     }
     public void HideLighter()
     {
-        //Lighter.SetBool("Equip", false);
+        Lighter.SetBool("Equip", false);
+        Invoke("disableLighter", 1);
+    }
+
+    public void ForceBobbingOn()
+    {
+        lighterBob.OverrideBobbing = true;
+    }
+
+    public void ForceBobbingOff()
+    {
+        lighterBob.OverrideBobbing = false;
+    }
+
+    void disableLighter()
+    {
         Lighter.gameObject.SetActive(false);
     }
 

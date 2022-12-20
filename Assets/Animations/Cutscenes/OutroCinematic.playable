@@ -1095,6 +1095,7 @@ MonoBehaviour:
   m_Markers:
     m_Objects:
     - {fileID: 860621300007031702}
+    - {fileID: -2626796898865911455}
 --- !u!114 &-3454605856304158425
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1146,6 +1147,38 @@ MonoBehaviour:
   m_bufferingTime: 0.1
   m_ClipProperties:
     volume: 1
+--- !u!114 &-2686785161652594960
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15c38f6fa1940124db1ab7f6fe7268d1, type: 3}
+  m_Name: Signal Emitter
+  m_EditorClassIdentifier: 
+  m_Time: 19.166666666666668
+  m_Retroactive: 0
+  m_EmitOnce: 0
+  m_Asset: {fileID: 11400000, guid: 169f92b197a0f4f4995423e9b032d369, type: 2}
+--- !u!114 &-2626796898865911455
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15c38f6fa1940124db1ab7f6fe7268d1, type: 3}
+  m_Name: Signal Emitter
+  m_EditorClassIdentifier: 
+  m_Time: 0.65
+  m_Retroactive: 0
+  m_EmitOnce: 0
+  m_Asset: {fileID: 11400000, guid: 531bf797348a071499fb4c58a796b6a0, type: 2}
 --- !u!114 &-2600964943814822283
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3226,6 +3259,7 @@ MonoBehaviour:
     m_Objects:
     - {fileID: -2600964943814822283}
     - {fileID: 5894757500181892088}
+    - {fileID: -2686785161652594960}
   m_InfiniteClipPreExtrapolation: 1
   m_InfiniteClipPostExtrapolation: 1
   m_InfiniteClipOffsetPosition: {x: 0, y: 0.5999985, z: 0}
