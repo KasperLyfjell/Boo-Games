@@ -17,6 +17,7 @@ public class ShadowController : MonoBehaviour
     public LanternWheelController LanternWheel;
     public Light LanternLight;
     public GameObject dim;
+    public GameObject PlayerSpawn;
 
     [Header("Public Variables")]
     public bool LookAtPlayer;
@@ -297,7 +298,9 @@ public class ShadowController : MonoBehaviour
         LookAtPlayer = true;
         Die();
 
-        //spawn player at location
+        Player.transform.position = PlayerSpawn.transform.position;
+        Player.transform.rotation = PlayerSpawn.transform.rotation;
+        Player.GetComponentInChildren<Camera>().gameObject.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
         Player.GetComponent<SUPERCharacterAIO>().enableCameraControl = true;
         Player.GetComponent<SUPERCharacterAIO>().enableMovementControl = true;
 
@@ -320,6 +323,11 @@ public class ShadowController : MonoBehaviour
     public void ChangeTooltip(string text)
     {
         ShadowTooltip.GetComponent<TextMeshProUGUI>().text = text;
+    }
+
+    public void AssingPlayerRespawn(GameObject spawner)
+    {
+        PlayerSpawn = spawner;
     }
 }
 

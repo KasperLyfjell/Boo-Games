@@ -28,6 +28,8 @@ public class EndingCinematic : MonoBehaviour
     public GameObject InvisWallToBasement;
     public GameObject OutsideTerrain;
 
+    public GameObject playerSpawnPoint;
+
 
 #if UNITY_EDITOR
     private void Update()
@@ -55,6 +57,7 @@ public class EndingCinematic : MonoBehaviour
         player.enableCameraControl = false;
         player.enableMovementControl = false;
 
+        Shadow.AssingPlayerRespawn(playerSpawnPoint);
         Shadow.Immune = true;
         shadowTrigger.TriggerEvent();
         ShadowLight.color = shadowRed;
@@ -74,6 +77,8 @@ public class EndingCinematic : MonoBehaviour
         ChaseBGM.Play();
         Breathing.Play();
 
+        Shadow.ActiveSpawner = gameObject.GetComponent<ShadowSpawnerManager>();
+        Shadow.ShouldSpawn = true;
         Shadow.isChasing = true;
         Shadow.AssingBGM(ChaseBGM);
         Shadow.ChangeTooltip("Run, Flee, Escape");
