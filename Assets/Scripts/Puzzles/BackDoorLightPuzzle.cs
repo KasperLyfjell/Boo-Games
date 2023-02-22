@@ -14,12 +14,15 @@ public class BackDoorLightPuzzle : MonoBehaviour
     public AudioClip audioClip;
 
     public GameObject MansionInsides;
+    public GameObject tutorialText;
 
     private void Start()
     {
         lwController = GameObject.FindWithTag("LanternWheel").GetComponent<LanternWheelController>();
         gateDoorAnim = GetComponent<Animator>();
         au = GetComponent<AudioSource>();
+
+        tutorialText.SetActive(false);
     }
 
     // Update is called once per frame
@@ -40,6 +43,7 @@ public class BackDoorLightPuzzle : MonoBehaviour
         au.PlayOneShot(audioClip);
         MansionInsides.SetActive(true);//Attempts to fix the performance issue by spawning the inside of the mansion only after unlocking the kitchen door
         GetComponent<Env_Door>().MoveOpenDoor(30);
+        tutorialText.SetActive(true);
         //gateDoorAnim.SetBool("Open", true);
     }
 }

@@ -7,6 +7,7 @@ public class KitchenDoorLock : MonoBehaviour
     public AudioSource WindGust;
     public Env_Door KitchenDoor;
     private bool canttrigger;
+    public GameObject tutorialText;
 
     private void OnTriggerExit(Collider other)
     {
@@ -14,6 +15,7 @@ public class KitchenDoorLock : MonoBehaviour
         {
             WindGust.Play();
             KitchenDoor.ShutDoor();
+            Destroy(tutorialText);
             canttrigger = true;
         }
     }
