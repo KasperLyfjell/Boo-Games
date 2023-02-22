@@ -10,6 +10,9 @@ public class PoolBallSolutionCheck : MonoBehaviour
     public BallButton[] fakeBallButtons;
     bool played;
 
+    public GameObject note;
+    public GameObject crest;
+
     Animator anim;
     AudioSource au;
 
@@ -17,6 +20,9 @@ public class PoolBallSolutionCheck : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         au = GetComponent<AudioSource>();
+
+        note.SetActive(false);
+        crest.SetActive(false);
     }
 
 
@@ -35,6 +41,8 @@ public class PoolBallSolutionCheck : MonoBehaviour
                 {
                     //Put whatever is supposed to happen when puzzle is complete here
                     played = true;
+                    note.SetActive(true);
+                    crest.SetActive(true);
                     Open();
                 }
             }

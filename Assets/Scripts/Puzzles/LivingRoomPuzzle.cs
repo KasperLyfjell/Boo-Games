@@ -10,6 +10,7 @@ public class LivingRoomPuzzle : MonoBehaviour
 
     public GameObject topPaint;
     public GameObject leftPaint;
+    public GameObject crest;
 
     RotatePainting topP;
     RotatePainting leftP;
@@ -24,6 +25,8 @@ public class LivingRoomPuzzle : MonoBehaviour
 
         anim = GetComponent<Animator>();
         au = GetComponent<AudioSource>();
+
+        crest.SetActive(false);
     }
 
     // Update is called once per frame
@@ -34,6 +37,7 @@ public class LivingRoomPuzzle : MonoBehaviour
             if(topP.correct == true && leftP.correct == true)
             {
                 played = true;
+                crest.SetActive(true);
                 Open();
             }
         }

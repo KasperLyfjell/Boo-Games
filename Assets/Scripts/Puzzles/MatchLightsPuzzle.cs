@@ -9,6 +9,8 @@ public class MatchLightsPuzzle : MonoBehaviour
     Animator anim;
     bool played;
 
+    public GameObject crest;
+
     AudioSource au;
     public AudioClip audioClip;
 
@@ -16,6 +18,8 @@ public class MatchLightsPuzzle : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         au = GetComponent<AudioSource>();
+
+        crest.SetActive(false);
     }
 
     // Update is called once per frame
@@ -27,6 +31,7 @@ public class MatchLightsPuzzle : MonoBehaviour
             {
                 //Put whatever is supposed to happen when puzzle is complete here
                 played = true;
+                crest.SetActive(true);
                 Open();
             }
 
@@ -34,6 +39,7 @@ public class MatchLightsPuzzle : MonoBehaviour
             {
                 //Put whatever is supposed to happen when puzzle is complete here
                 played = true;
+                crest.SetActive(true);
                 Open();
             }
         }

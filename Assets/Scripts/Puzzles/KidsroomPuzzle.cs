@@ -16,7 +16,7 @@ public class KidsroomPuzzle : MonoBehaviour
     RotatePainting midP;
     RotatePainting rightP;
 
-    bool played;
+    public bool played;
 
     // Start is called before the first frame update
     void Start()
