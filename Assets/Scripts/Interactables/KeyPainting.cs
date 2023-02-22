@@ -9,15 +9,13 @@ public class KeyPainting : MonoBehaviour
     Type reactToColor = new Type();
     private Color color;
 
-    bool close = false;
     DecalProjector dp;
     public Light lanternLight;
     public LanternWheelController lanternWheel;
 
     public Material normalMaterial;
     public Material afterMaterial;
-    public GameObject key;
-    public DoorNeedingKey door;
+    public GameObject crest;
 
 
     // Start is called before the first frame update
@@ -46,39 +44,23 @@ public class KeyPainting : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(door.haveKey == false)
+        if(crest != null)
         {
-            if (lanternWheel.lighterEquipped == false && close == true && lanternLight.color == color)
+            if (lanternWheel.lighterEquipped == false && lanternLight.color == color && lanternWheel.redCollected == true)
             {   
                 dp.material = afterMaterial;
-                key.SetActive(true);
+                crest.SetActive(true);
             }
             else
             {
                 dp.material = normalMaterial;
-                key.SetActive(false);
+                crest.SetActive(false);
             }
         }
         else
         {
             dp.material = afterMaterial;
         }
-    }
-
-    public void PickUpKey()
-    {
-        door.haveKey = true;
-        Destroy(key);
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        close = true;
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        close = false;
     }
 
     enum Type
