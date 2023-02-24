@@ -12,6 +12,7 @@ public class PoolBallSolutionCheck : MonoBehaviour
 
     public GameObject note;
     public GameObject crest;
+    public GameObject livingRoomLight;
 
     Animator anim;
     AudioSource au;
@@ -23,6 +24,7 @@ public class PoolBallSolutionCheck : MonoBehaviour
 
         note.SetActive(false);
         crest.SetActive(false);
+        livingRoomLight.SetActive(false);
     }
 
 
@@ -44,6 +46,7 @@ public class PoolBallSolutionCheck : MonoBehaviour
                     note.SetActive(true);
                     crest.SetActive(true);
                     Open();
+                    livingRoomLight.SetActive(true);
                 }
             }
         }
