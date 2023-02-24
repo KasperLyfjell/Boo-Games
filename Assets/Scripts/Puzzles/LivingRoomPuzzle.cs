@@ -39,6 +39,8 @@ public class LivingRoomPuzzle : MonoBehaviour
                 played = true;
                 crest.SetActive(true);
                 Open();
+                topP.enabled = false;
+                leftP.enabled = false;
             }
         }
     }
