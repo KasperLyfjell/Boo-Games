@@ -21,6 +21,8 @@ public class HallwayTrigger : MonoBehaviour
 
     public GameObject endingtrigger;
 
+    public GameObject playerRespawn;
+
 #if UNITY_EDITOR
     private void Update()
     {
@@ -61,6 +63,7 @@ public class HallwayTrigger : MonoBehaviour
         endingtrigger.SetActive(true);
         playAudio.Play();
         KidsDoor.ShutDoor();
+        Shadow.AssingPlayerRespawn(playerRespawn);
 
         yield return new WaitForSeconds(2);
 

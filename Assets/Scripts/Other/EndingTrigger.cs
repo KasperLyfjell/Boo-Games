@@ -7,6 +7,7 @@ public class EndingTrigger : MonoBehaviour
 {
     private bool IsInside;
     private bool triggered;
+    private bool doorsClosed;
 
     public LanternWheelController LanternWheel;
     public Light lanternlight;
@@ -21,6 +22,9 @@ public class EndingTrigger : MonoBehaviour
         if(other.gameObject.name == "Player" && !triggered)
         {
             IsInside = true;
+
+            if (!doorsClosed)
+                close();
         }
     }
 
@@ -36,8 +40,8 @@ public class EndingTrigger : MonoBehaviour
     {
         triggered = true;
 
-        BedroomDoor1.ShutDoor();
-        BedroomDoor2.ShutDoor();
+        //BedroomDoor1.ShutDoor();
+        //BedroomDoor2.ShutDoor();
         LanternWheel.CanInteract = false;
         bang.Play();
         Invoke("delaydFlashback", 5);
@@ -46,5 +50,12 @@ public class EndingTrigger : MonoBehaviour
     void delaydFlashback()
     {
         GetComponent<FlashbackTrigger>().StartFlashback();
+    }
+
+    void close()
+    {
+        BedroomDoor1.ShutDoor();
+        BedroomDoor2.ShutDoor();
+        doorsClosed = true;
     }
 }
