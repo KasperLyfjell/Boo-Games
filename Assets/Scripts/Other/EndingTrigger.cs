@@ -40,11 +40,8 @@ public class EndingTrigger : MonoBehaviour
     {
         triggered = true;
 
-        //BedroomDoor1.ShutDoor();
-        //BedroomDoor2.ShutDoor();
         LanternWheel.CanInteract = false;
-        bang.Play();
-        Invoke("delaydFlashback", 5);
+        Invoke("delaydFlashback", 1);
     }
 
     void delaydFlashback()
@@ -56,6 +53,7 @@ public class EndingTrigger : MonoBehaviour
     {
         BedroomDoor1.ShutDoor();
         BedroomDoor2.ShutDoor();
+        bang.Play();
         doorsClosed = true;
     }
 }
