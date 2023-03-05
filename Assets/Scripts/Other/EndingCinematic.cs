@@ -78,7 +78,7 @@ public class EndingCinematic : MonoBehaviour
         ChaseBGM.Play();
         Breathing.Play();
 
-        Shadow.MovementSpeed = 4.6f;
+        Shadow.MovementSpeed = 4.9f;
         Shadow.EmergeDuration = 1;
         Shadow.ActiveSpawner = gameObject.GetComponent<ShadowSpawnerManager>();
         Shadow.ShouldSpawn = true;

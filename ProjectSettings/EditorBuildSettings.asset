@@ -5,7 +5,7 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SteamInitiation.unity
     guid: 265762d3d184b1649a28c567ca0ef20d
   - enabled: 1

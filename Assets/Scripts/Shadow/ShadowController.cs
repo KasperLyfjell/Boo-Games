@@ -258,7 +258,6 @@ public class ShadowController : MonoBehaviour
 
     private void KillPlayer()
     {
-        Debug.Log("I KILL :3");
         StartCoroutine(RespawnPlayer());
     }
 
@@ -290,7 +289,7 @@ public class ShadowController : MonoBehaviour
 
         ShadowTooltip.SetActive(true);
 
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(5);
 
         ShadowTooltip.SetActive(false);
         transform.parent = null;
